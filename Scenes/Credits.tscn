@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgm7kv1ut1wu8"]
+
+[ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="1_7xmno"]
+[ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_uy3b0"]
+[ext_resource type="Script" uid="uid://cb8yt3moiakpn" path="res://Scripts/credits.gd" id="3_iynit"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(958.5, 539.5)
+scale = Vector2(120.188, 67.1875)
+texture = ExtResource("1_7xmno")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 95.0
+offset_top = 44.0
+offset_right = 1092.0
+offset_bottom = 185.0
+theme = ExtResource("2_uy3b0")
+theme_override_font_sizes/normal_font_size = 140
+text = "credits"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 222.0
+offset_top = 250.0
+offset_right = 1740.0
+offset_bottom = 792.0
+theme = ExtResource("2_uy3b0")
+theme_override_font_sizes/normal_font_size = 100
+text = "Game made by 
+Nicolaj, Mathias, Rasmus, Christian and Asger"
+
+[node name="Interactive" type="Node2D" parent="."]
+script = ExtResource("3_iynit")
+
+[node name="BackButton" type="Button" parent="Interactive"]
+offset_left = 583.0
+offset_top = 889.0
+offset_right = 1291.0
+offset_bottom = 1003.0
+theme = ExtResource("2_uy3b0")
+theme_override_font_sizes/font_size = 90
+text = "Back"
+
+[connection signal="pressed" from="Interactive/BackButton" to="Interactive" method="_on_back_button_pressed"]
