@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx20x3knm431p"]
+
+[ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="1_hcxxy"]
+[ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="1_totuj"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(958.5, 539.5)
+scale = Vector2(120.188, 67.1875)
+texture = ExtResource("1_hcxxy")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 95.0
+offset_top = 44.0
+offset_right = 1092.0
+offset_bottom = 185.0
+theme = ExtResource("1_totuj")
+theme_override_font_sizes/normal_font_size = 140
+text = "hypertris"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 607.0
+offset_top = 408.0
+offset_right = 1315.0
+offset_bottom = 522.0
+theme = ExtResource("1_totuj")
+theme_override_font_sizes/font_size = 90
+text = "Start game"
