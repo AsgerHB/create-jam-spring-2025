@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnej4jb3hkyph"]
 
-[ext_resource type="Script" uid="uid://lqxaxv008t5h" path="res://Scenes/MainTickEvent.gd" id="1_2ovo5"]
-[ext_resource type="Script" uid="uid://d3hhgq3jyhwgk" path="res://Scenes/ListenerExample.gd" id="2_lx2kt"]
+[ext_resource type="Script" uid="uid://lqxaxv008t5h" path="res://Scripts/MainTickEvent.gd" id="1_2ovo5"]
+[ext_resource type="Script" uid="uid://d3hhgq3jyhwgk" path="res://Scripts/ListenerExample.gd" id="2_lx2kt"]
 
 [node name="ChristianScene" type="Node2D"]
 

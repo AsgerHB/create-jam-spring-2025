@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Create Jam Spring 2025"
-run/main_scene="uid://cx20x3knm431p"
+run/main_scene="uid://bnej4jb3hkyph"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-MainTickEvent="*res://Scenes/MainTickEvent.gd"
+MainTickEvent="*res://Scripts/MainTickEvent.gd"
 
 [display]
 
