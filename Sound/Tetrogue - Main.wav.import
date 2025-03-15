@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://byb2xhlhq16fj"
+path="res://.godot/imported/Tetrogue - Main.wav-e92890c1194cd22b10a82b03b612141c.sample"
+
+[deps]
+
+source_file="res://Sound/Tetrogue - Main.wav"
+dest_files=["res://.godot/imported/Tetrogue - Main.wav-e92890c1194cd22b10a82b03b612141c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

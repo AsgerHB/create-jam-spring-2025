@@ -349,7 +349,7 @@ func win():
 	run_state.increment_level()
 	status_label.text = "[color=green]Winner! :-)[/color]"
 	pause = true
-	await get_tree().create_timer(4.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	var run = $"/root/Run"
 	var game = $"/root/Run/Game"
 	var selector = selector_prefab.instantiate()
