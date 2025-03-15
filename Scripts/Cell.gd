@@ -80,6 +80,7 @@ const SpriteCoords: Dictionary[State, Vector2i] = {
 	set(value):
 		sprite_sheet = value
 		queue_redraw()
+@export var explosion_particle: PackedScene;
 
 
 # NOTE: Local coord if in falling tetriminos
@@ -118,6 +119,10 @@ func destroy(game: TetrisGame):
 			game.remove_at(grid_pos.x, grid_pos.y)
 		Type.Bomb:
 			game.score_counter.apply_score(10)
+			var particle_instance = explosion_particle.instantiate()
+			get_parent().add_child(particle_instance)
+			particle_instance.position = grid_pos * CELL_SIZE
+			particle_instance.emitting = true
 			game.remove_at(grid_pos.x, grid_pos.y)
 			# Destroy all surrounding blocks
 			for offset in [Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1), Vector2i(-1, -1), Vector2i(-1, 0), Vector2i(-1, 1)]:
