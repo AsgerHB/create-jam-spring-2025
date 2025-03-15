@@ -11,19 +11,19 @@ var current_stash: Array[TetriminosTemplate] = stash.duplicate();
 var stash: Array[TetriminosTemplate] = []
 var level: int = 0
 var levels = [
-	[500, 120],
-	[750, 120],
-	[900, 120],
-	[1500, 120],
-	[1800, 120],
-	[2000, 120],
-	[2500, 120],
-	[3000, 120],
-	[3500, 120],
-	[4000, 120],
-	[5000, 120],
-	[7000, 120],
-	[10000, 120],
+	[100, 90],
+	[250, 90],
+	[500, 90],
+	[750, 90],
+	[1000, 90],
+	[1300, 90],
+	[1750, 90],
+	[2000, 90],
+	[2500, 90],
+	[3000, 90],
+	[4000, 90],
+	[7000, 90],
+	[10000, 90],
 ]
 
 
@@ -47,7 +47,11 @@ func pop_from_stash():
 		return null
 
 func get_level():
-	return levels[level]
+	var n = levels.size()
+	if level < n:
+		return levels[level]
+	else:
+		return [11000 + 2**(level - n), 60]
 
 func increment_level():
-	++level
+	level += 1

@@ -44,6 +44,10 @@ func _ready() -> void:
 		grid.append(r)
 	
 	run_state.new_game()
+	var lvl = run_state.get_level()
+	score_goal = lvl[0]
+	remaining_time = lvl[1]
+	
 	goal_value.text = str(score_goal)
 	#win()
 
@@ -191,6 +195,8 @@ func _on_tick() -> void:
 		elif Input.is_action_pressed("ui_left"):
 			if try_move_falling_tetriminos_x(-1):
 				ticks_since_last_sideways_move = 0
+		elif Input.is_key_pressed(KEY_W):
+			win()
 	
 	# Move downwards regularly, but faster if key is held
 	ticks_since_last_down_move += 1
@@ -330,6 +336,7 @@ func clear_full_rows():
 	
 
 func win():
+	run_state.increment_level()
 	status_label.text = "[color=green]Winner! :-)[/color]"
 	pause = true
 	await get_tree().create_timer(4.0).timeout

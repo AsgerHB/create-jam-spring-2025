@@ -21,7 +21,7 @@ func _ready():
 	generator = TetriminoGenerator.new()
 	#Make some minos
 	for i in minos_to_spawn:
-		tetriminos.append(generator.generate_tetrimino(randi() % 3 + 3, randi() % 5))
+		tetriminos.append(generator.generate_tetrimino(randi() % 3 + 3, randi() % 7))
 	
 	#Spawn them all
 	for i in minos_to_spawn:
