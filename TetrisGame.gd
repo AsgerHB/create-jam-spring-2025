@@ -9,12 +9,8 @@ const CELL_SIZE: int = 32
 const cell_prefab: PackedScene = preload("res://Prefabs/Cell.tscn")
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 
-var example_tetriminos = TetriminosTemplate.new([
-	CellTemplate.new(-1, 0, Cell.Type.Standard),
-	CellTemplate.new(0, 0, Cell.Type.Standard),
-	CellTemplate.new(1, 0, Cell.Type.Standard),
-	CellTemplate.new(-1, 1, Cell.Type.Standard),
-])
+@onready var run_state:RunState = $"/root/Run"
+
 
 @export var move_interval_ticks: int = 14
 @export var move_fast_interval_ticks: int = 2
@@ -34,10 +30,15 @@ func _ready() -> void:
 			r.append(null)
 		grid.append(r)
 	
+	run_state.new_game()
+	
 	# TEST
 	set_at(0, 0, Cell.Type.Standard)
 	set_at(0, HEIGHT-1, Cell.Type.Standard)
 	set_at(WIDTH-1, 0, Cell.Type.Standard)
+
+func dead():
+	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
 
 
 func out_of_bounds(x: int, y: int) -> bool:
@@ -67,9 +68,10 @@ func _draw() -> void:
 	draw_rect(Rect2(-half, -half, WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE), Color.GRAY)
 
 func get_next_tetriminos_from_deck() -> TetriminosTemplate:
-	# TODO Draw from deck instead
-	return example_tetriminos
-
+	var next = run_state.pop_from_stash()
+	if next == null:
+		dead()
+	return next
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_right"):
