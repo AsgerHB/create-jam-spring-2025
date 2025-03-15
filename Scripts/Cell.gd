@@ -13,11 +13,11 @@ enum Type {
 }
 # Map that assigns a complexity score to each cell type
 const cell_complexity_score = {
-	Type.Standard: 1,
-	Type.Sand: 2,
+	Type.Standard: 0,
+	Type.Sand: 1,
 	Type.Compressed: 2,
-	Type.Balloon: 2,
-	Type.Gold: 2,
+	Type.Balloon: 1,
+	Type.Gold: 3,
 	Type.Bomb: 3,
 }
 # A mapping of a sprite's state and where it maps to in the sprite sheet

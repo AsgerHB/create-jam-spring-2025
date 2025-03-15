@@ -19,13 +19,14 @@ func update_sprites(cells: Array[CellTemplate]):
 				
 				'
 # Complexity controls how complex the tetromino is
-func generate_tetrimino(complexity: int) -> TetriminosTemplate:
+func generate_tetrimino(size:int, complexity: int=0) -> TetriminosTemplate:
 	var tetrimino: Array[CellTemplate] = []
 	var possible_next_positions: Array[Vector2i] = [Vector2i(0, 0)]
 	var used_positions: Array[Vector2i] = []
+	var current_size: int = 0
 	var current_complexity: int = 0
 
-	while (current_complexity < complexity):
+	while (current_size < size):
 		# Choose random next position
 		var next_position = possible_next_positions[randi() % possible_next_positions.size()]
 		possible_next_positions.erase(next_position)
@@ -36,9 +37,12 @@ func generate_tetrimino(complexity: int) -> TetriminosTemplate:
 		for type in Cell.Type.values():
 			if Cell.cell_complexity_score[type] + current_complexity <= complexity:
 				types_in_budget.append(type)
+			else:
+				types_in_budget.append(Cell.Type.Standard)
 		
 		var next_type = types_in_budget[randi() % types_in_budget.size()]
 		current_complexity += Cell.cell_complexity_score[next_type]
+		current_size += 1
 
 		# Add cell to tetrimino
 		tetrimino.append(CellTemplate.new(next_position.x, next_position.y, next_type))
@@ -48,6 +52,16 @@ func generate_tetrimino(complexity: int) -> TetriminosTemplate:
 			var new_position = next_position + offset
 			if not possible_next_positions.has(new_position) and not used_positions.has(new_position):
 				possible_next_positions.append(new_position)
+				
+	if (complexity > 0 && randi() % 10 == 0):
+		var oops_type
+		if randi() % 2 == 0:
+			oops_type = Cell.Type.Balloon # OOPS! ALL BALLOONS!
+		else:
+			oops_type = Cell.Type.Sand # OOPS! ALL SAND!
+		for t in tetrimino:
+			t.type = oops_type
+		
 	# update_sprites(tetrimino)
 	# Canonize tetrimino
 	var min_hash = tetrimino_hash(tetrimino)
