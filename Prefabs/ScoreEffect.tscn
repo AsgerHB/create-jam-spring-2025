@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dl58xmnqnaa6o"]
 
-[ext_resource type="Script" path="res://Scripts/score_effect.gd" id="1_ka2of"]
+[ext_resource type="Script" uid="uid://jp5wo41b5yo6" path="res://Scripts/score_effect.gd" id="1_ka2of"]
 [ext_resource type="FontFile" uid="uid://dcoieaqmmkyva" path="res://Theming/MozartNbp-93Ey.ttf" id="1_uneyr"]
 
 [node name="ScoreEffect" type="Node2D"]

@@ -5,6 +5,7 @@ const CELL_SIZE: int = 32
 
 enum Type {
 	Standard,
+	Compressed,
 	Sand,
 	Balloon,
 	Gold,
@@ -14,6 +15,7 @@ enum Type {
 const cell_complexity_score = {
 	Type.Standard: 1,
 	Type.Sand: 2,
+	Type.Compressed: 2,
 	Type.Balloon: 2,
 	Type.Gold: 2,
 	Type.Bomb: 3,
