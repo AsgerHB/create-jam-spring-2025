@@ -331,7 +331,7 @@ func win():
 	
 
 func dead():
-	status_label.text = "[color=red]Died :/[/color]"
+	status_label.text = "[color=red]you are Died :'([/color]"
 	pause = true
 	await get_tree().create_timer(2.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
