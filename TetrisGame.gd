@@ -176,7 +176,7 @@ func _on_tick() -> void:
 	
 	# If we immediately collide with existing cells -> game over
 	if does_falling_tetriminos_collide():
-		print("GAME OVER") # TODO
+		dead()
 
 
 func try_move_falling_tetriminos_x(delta: int) -> bool:

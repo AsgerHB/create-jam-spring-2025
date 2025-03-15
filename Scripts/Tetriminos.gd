@@ -9,6 +9,9 @@ var cells: Array[Cell]
 var grid_pos: Vector2i = Vector2i(0, 0)
 
 func setup(template: TetriminosTemplate):
+	if template == null: # After running out of tetriminos, it still tries to spawn the last one
+		return
+		
 	assert(len(cells) == 0, "Tetriminos got setup twice")
 	for ct in template.cells:
 		var cell: Cell = cell_prefab.instantiate()
