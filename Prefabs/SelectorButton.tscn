@@ -6,7 +6,7 @@
 [node name="SelectorButton" type="Button"]
 theme = ExtResource("1_hw63p")
 button_mask = 7
-text = "Select!!!"
+text = "Add to pool"
 script = ExtResource("1_bk6sj")
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]

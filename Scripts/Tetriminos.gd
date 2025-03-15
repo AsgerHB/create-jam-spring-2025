@@ -5,6 +5,7 @@ const CELL_SIZE: int = 32
 
 const cell_prefab = preload("res://Prefabs/Cell.tscn")
 
+
 var cells: Array[Cell]
 var grid_pos: Vector2i = Vector2i(0, 0)
 
