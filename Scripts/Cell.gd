@@ -97,7 +97,10 @@ func destroy(game: TetrisGame):
 	var score
 	match type:
 		Type.Gold:
-			score = 20
+			score = 10
+		Type.Compressed:
+			score = 5
+			game.score_counter.add_mult(1)
 		_:
 			score = 5
 	game.score_counter.apply_score(score, grid_pos * CELL_SIZE)
