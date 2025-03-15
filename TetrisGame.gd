@@ -140,8 +140,6 @@ func _process(delta):
 
 func _on_tick() -> void:
 	tick_number += 1
-	
-	score_counter.on_tick()
 
 	# Call on_tick for all cells in order of their type
 	var cell_type_to_cells: Dictionary[Cell.Type, Array] = {}
@@ -291,11 +289,20 @@ func clear_full_rows():
 	var mult = 0
 	
 	# Destroy all tiles in the cleared rows, then shift cells down (affects resolution order)
-	score_counter.apply_score(0,  len(rows_to_clear))
 	for y in rows_to_clear:
+		mult += 1
 		for x in range(WIDTH):
 			var c: Cell = get_at(x, y)
+			if c == null:
+				pass
+			elif c.type == Cell.Type.Standard:
+				points += 5
+			else:
+				points -= 999999
+				printerr("Unsupported block type!!!")
 			destroy_at(x, y)
 	for y in rows_to_clear:
 		for x in range(WIDTH):
 			shift_above_cells_down(x, y)
+	if points != 0:
+		score_counter.apply_score(points, mult)

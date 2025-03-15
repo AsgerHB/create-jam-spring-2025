@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtj6g7cn5y1ah"]
+[gd_scene load_steps=4 format=3 uid="uid://dtj6g7cn5y1ah"]
 
 [ext_resource type="Script" uid="uid://dhcv8k3pcomjn" path="res://TetrisGame.gd" id="1_43n6e"]
+[ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_blw18"]
 [ext_resource type="PackedScene" uid="uid://cam00wyvm1d7v" path="res://Prefabs/ScoreCounter.tscn" id="3_cdei4"]
 
 [node name="TetrisGame" type="Node2D"]
@@ -9,6 +10,16 @@ script = ExtResource("1_43n6e")
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+
+[node name="Score Label" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_top = -1.0
+offset_right = 560.0
+offset_bottom = 65.0
+theme = ExtResource("2_blw18")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[color=yellow]Score:[/color]"
 
 [node name="ScoreCounter" parent="." instance=ExtResource("3_cdei4")]
 
