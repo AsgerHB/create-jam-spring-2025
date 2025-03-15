@@ -26,8 +26,8 @@ const SpriteCoords: Dictionary[Type, Vector2i] = {
 	Type.Sand: Vector2i(8,0),
 	Type.Gold: Vector2i(0,8),
 	Type.Bomb: Vector2i(8,8),
-	Type.Compressed: Vector2i(16,8),
-	Type.Balloon: Vector2i(16,8)
+	Type.Compressed: Vector2i(0,16),
+	Type.Balloon: Vector2i(8,8)
 }
 
 @export var type: Type = Type.Standard;
@@ -45,21 +45,6 @@ func _draw() -> void:
 	const rec = Rect2(-CELL_SIZE / 2, -CELL_SIZE / 2, CELL_SIZE, CELL_SIZE)
 	var sprite_coords = SpriteCoords[type]
 	draw_texture_rect_region(sprite_sheet, rec, Rect2(sprite_coords.x, sprite_coords.y, 8,8))
-	# TODO: Use, 
-	match type: 
-		Type.Standard:
-			draw_rect(rec, Color.RED)
-		Type.Sand:
-			draw_rect(rec, Color.SANDY_BROWN)
-		Type.Balloon:
-			draw_rect(rec, Color.BLUE)
-		Type.Gold:
-			draw_rect(rec, Color.GOLD)
-		Type.Bomb:
-			draw_rect(rec, Color.BLACK)
-		_:
-			draw_rect(rec, Color.MAGENTA)
-
 
 func destroy(game: TetrisGame):
 
