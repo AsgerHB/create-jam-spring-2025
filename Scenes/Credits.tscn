@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cb8yt3moiakpn" path="res://Scripts/Credits.gd" id="3_iynit"]
 
 [node name="Menu" type="Node2D"]
+script = ExtResource("3_iynit")
 
 [node name="Black" type="Sprite2D" parent="."]
 position = Vector2(958.5, 539.5)
