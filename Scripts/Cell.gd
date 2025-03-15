@@ -7,6 +7,11 @@ enum Type {
 	Standard
 }
 
+# Map that assigns a complexity score to each cell type
+const cell_complexity_score = {
+	Type.Standard: 1
+}
+
 @export var type: Type = Type.Standard;
 
 # NOTE: Local coord if in falling tetriminos

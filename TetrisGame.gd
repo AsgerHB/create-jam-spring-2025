@@ -15,6 +15,7 @@ var example_tetriminos = TetriminosTemplate.new([
 	CellTemplate.new(1, 0, Cell.Type.Standard),
 	CellTemplate.new(-1, 1, Cell.Type.Standard),
 ])
+var tetrimino_generator = TetriminoGenerator.new()
 
 @export var move_interval_ticks: int = 14
 @export var move_fast_interval_ticks: int = 2
@@ -68,7 +69,7 @@ func _draw() -> void:
 
 func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 	# TODO Draw from deck instead
-	return example_tetriminos
+	return tetrimino_generator.generate_tetrimino(4)
 
 
 func _process(delta):
