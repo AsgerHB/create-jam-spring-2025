@@ -7,7 +7,8 @@ const game_prefab: PackedScene = preload("res://Scenes/Game.tscn")
 
 func setup(value):
 	tetramino = value
-	button_down.connect(_on_button_down)
+	#This was not required, leaving it here in case it breaks itself again
+	#button_down.connect(_on_button_down)
 
 func _on_button_down():
 	var run = $"/root/Run"

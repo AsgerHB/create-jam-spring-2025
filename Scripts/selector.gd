@@ -11,8 +11,6 @@ var tetriminos = []
 var spawnedminos = []
 var time = 0
 
-var g_container
-
 var minos_to_spawn = 10
 
 var button_y_offset = 100
@@ -24,7 +22,6 @@ var grid_spacing = 180
 var mino_offset = 45
 
 func _ready():
-	g_container = $"GridContainer"
 	print(self.get_path())
 	generator = TetriminoGenerator.new()
 	#Make some minos
