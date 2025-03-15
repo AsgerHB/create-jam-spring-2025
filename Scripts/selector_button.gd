@@ -18,8 +18,9 @@ func _on_button_down():
 	#Make game prefab and add to root node as child
 	#Requires this structure constantly
 	#root
-	# Game
-	# Selector 
+	# run
+	#  Game/tetrisgame
+	#  Selector 
 	#Where only one of them exists at any given time.
 	#Game creates selector, selector creates game, the cycle of life and death continues
 	var selector = get_node("/root/Run/Selector")

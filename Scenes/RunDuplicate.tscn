@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ca1q7vb0kmbif"]
 
-[ext_resource type="Script" path="res://Scripts/RunState.gd" id="1_8fubq"]
+[ext_resource type="Script" uid="uid://cpr0xjiihm1b7" path="res://Scripts/RunState.gd" id="1_8fubq"]
 [ext_resource type="PackedScene" uid="uid://bmlcob562vhmb" path="res://Prefabs/Selector.tscn" id="3_hjjmg"]
 
 [node name="Run" type="Node2D"]
