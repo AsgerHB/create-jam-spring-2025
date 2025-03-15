@@ -8,4 +8,6 @@ func set_time(time: float):
 	time -= seconds
 	var milliseconds: int = round(time*1e3)
 	time -= milliseconds
-	text = str(minutes) + ":" + str(seconds) + "." + str(milliseconds)
+	text = ("[color=blue]" + 
+		str(minutes) + ":" + str(seconds) + "." + str(milliseconds) + 
+	"[/color]")

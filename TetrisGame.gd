@@ -143,8 +143,14 @@ func _process(delta):
 	elif Input.is_action_just_pressed("ui_up"):
 		try_rotate_falling_tetriminos()
 	
-	remaining_time -= delta
+	if remaining_time > 1:
+		remaining_time -= delta
+	else:
+		remaining_time -= delta / 3 # Artificially extend the last second
 	remaining_time_label.set_time(remaining_time)
+	
+	if score_counter.current_score >= score_goal:
+		win()
 	
 	if remaining_time < 0:
 		dead()
@@ -297,30 +303,23 @@ func clear_full_rows():
 		if do_clear:
 			rows_to_clear.append(y)
 	
-	var points = 0
-	var mult = 0
-	
-	# Destroy all tiles in the cleared rows, then shift cells down (affects resolution order)
+	# Destroy all tiles in the cleared rows, applying mult
+	var first = true
 	for y in rows_to_clear:
-		mult += 1
+		if !first:
+			score_counter.add_mult(1)
+		first = false
 		for x in range(WIDTH):
 			var c: Cell = get_at(x, y)
 			if c == null:
 				pass
-			elif c.type == Cell.Type.Standard:
-				points += 5
-			else:
-				points -= 999999
-				printerr("Unsupported block type!!!")
 			destroy_at(x, y)
+		
+	# Then shift cells down (affects resolution order)
 	for y in rows_to_clear:
 		for x in range(WIDTH):
 			shift_above_cells_down(x, y)
-	if points != 0:
-		score_counter.apply_score(points, mult)
 	
-	if score_counter.current_score >= score_goal:
-		win()
 
 func win():
 	await get_tree().create_timer(4.0).timeout

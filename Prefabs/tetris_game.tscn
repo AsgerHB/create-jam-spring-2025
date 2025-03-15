@@ -12,24 +12,15 @@ script = ExtResource("1_43n6e")
 wait_time = 0.05
 autostart = true
 
-[node name="Score Label" type="RichTextLabel" parent="."]
-offset_left = 320.0
-offset_top = 131.0
-offset_right = 560.0
-offset_bottom = 197.0
-theme = ExtResource("2_blw18")
-theme_override_font_sizes/normal_font_size = 50
-bbcode_enabled = true
-text = "[color=yellow]Score:[/color]"
-
 [node name="Remaining Time" type="RichTextLabel" parent="."]
 offset_left = 320.0
-offset_right = 804.0
+offset_right = 833.0
 offset_bottom = 66.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[color=red]??:??.??????[/color]"
+horizontal_alignment = 2
 script = ExtResource("3_arn4l")
 
 [node name="Goal Label" type="RichTextLabel" parent="."]
@@ -40,12 +31,12 @@ offset_bottom = 132.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[color=red]goal:[/color]"
+text = "[color=yellow]goal:[/color]"
 
 [node name="Goal Value" type="RichTextLabel" parent="."]
-offset_left = 495.0
+offset_left = 560.0
 offset_top = 67.0
-offset_right = 768.0
+offset_right = 833.0
 offset_bottom = 126.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 50
@@ -54,6 +45,6 @@ text = "??"
 horizontal_alignment = 2
 
 [node name="ScoreCounter" parent="." instance=ExtResource("3_cdei4")]
-position = Vector2(495, 126)
+position = Vector2(320, 126)
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]
