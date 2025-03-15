@@ -5,4 +5,4 @@
 [node name="Game" type="Node2D"]
 
 [node name="TetrisGame" parent="." instance=ExtResource("1_iukft")]
-position = Vector2(447, 178)
+position = Vector2(32, 32)

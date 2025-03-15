@@ -10,7 +10,7 @@ const cell_prefab: PackedScene = preload("res://Prefabs/Cell.tscn")
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 
 @onready var run_state:RunState = $"/root/Run"
-
+@onready var score_counter:ScoreCounter = $"ScoreCounter"
 
 @export var move_interval_ticks: int = 14
 @export var move_fast_interval_ticks: int = 2
@@ -269,10 +269,22 @@ func clear_full_rows():
 		if do_clear:
 			rows_to_clear.append(y)
 	
+	var points = 0
+	var mult = 0
+	
 	# Destroy all tiles in the cleared rows, then shift cells down (affects resolution order)
 	for y in rows_to_clear:
+		mult += 1
 		for x in range(WIDTH):
+			if get_at(x, y).type == Cell.Type.Standard:
+				points += 5
+			else:
+				points -= 999999
+				printerr("Unsupported block type!!!")
 			destroy_at(x, y)
 	for y in rows_to_clear:
 		for x in range(WIDTH):
 			shift_above_cells_down(x, y)
+			
+	if points != 0:
+		score_counter.apply_score(points, mult)
