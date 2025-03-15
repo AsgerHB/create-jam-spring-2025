@@ -21,7 +21,7 @@ const selector_prefab: PackedScene = preload("res://Prefabs/Selector.tscn")
 var tick_number: int = 0 # The current tick count
 @export var move_interval_ticks: int = 14
 @export var move_fast_interval_ticks: int = 2
-@export var move_sideways_interval_ticks: int = 3
+@export var move_sideways_interval_ticks: int = 2
 
 var pause: bool = false
 
@@ -143,10 +143,10 @@ func _process(delta):
 		return
 	if Input.is_action_just_pressed("ui_right"):
 		if try_move_falling_tetriminos_x(1):
-			ticks_since_last_sideways_move = 0
+			ticks_since_last_sideways_move = -6
 	elif Input.is_action_just_pressed("ui_left"):
 		if try_move_falling_tetriminos_x(-1):
-			ticks_since_last_sideways_move = 0
+			ticks_since_last_sideways_move = -6
 	elif Input.is_action_just_pressed("ui_down"):
 		if try_move_falling_tetriminos_down():
 			ticks_since_last_down_move = 0
