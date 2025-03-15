@@ -73,8 +73,7 @@ func destroy_at(x: int, y: int):
 	var c = get_at(x, y)
 	if c != null:
 		# Pass self in case destruction has side effects (e.g. bomb)
-		if c.on_destroy(self):
-			remove_at(x, y)
+		c.destroy(self)
 
 
 # See also try_move_cell.
@@ -293,7 +292,10 @@ func clear_full_rows():
 	for y in rows_to_clear:
 		mult += 1
 		for x in range(WIDTH):
-			if get_at(x, y).type == Cell.Type.Standard:
+			var c: Cell = get_at(x, y)
+			if c == null:
+				pass
+			elif c.type == Cell.Type.Standard:
 				points += 5
 			else:
 				points -= 999999

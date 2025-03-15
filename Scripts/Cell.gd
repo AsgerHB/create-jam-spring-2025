@@ -6,11 +6,15 @@ const CELL_SIZE: int = 32
 enum Type {
 	Standard,
 	Sand,
+	Gold,
+	Bomb,
 }
 # Map that assigns a complexity score to each cell type
 const cell_complexity_score = {
 	Type.Standard: 1,
 	Type.Sand: 2,
+	Type.Gold: 2,
+	Type.Bomb: 3,
 }
 
 # All the different states that a sprite can be in
@@ -81,19 +85,36 @@ var grid_pos: Vector2i
 
 func _draw() -> void:
 	const rec = Rect2(-CELL_SIZE / 2, -CELL_SIZE / 2, CELL_SIZE, CELL_SIZE)
-	var sprite_coords = SpriteCoords[sprite_state]
-	draw_texture_rect_region(sprite_sheet,rec, Rect2(sprite_coords.x, sprite_coords.y, 8,8))
+	# var sprite_coords = SpriteCoords[sprite_state]
+	# draw_texture_rect_region(sprite_sheet,rec, Rect2(sprite_coords.x, sprite_coords.y, 8,8))
 	# TODO: Use, 
-	#if type == Type.Standard:
-	#	draw_rect(rec, Color.RED)
-	#else:
-	#	draw_rect(rec, Color.MAGENTA)
+	match type: 
+		Type.Standard:
+			draw_rect(rec, Color.RED)
+		Type.Sand:
+			draw_rect(rec, Color.SANDY_BROWN)
+		Type.Gold:
+			draw_rect(rec, Color.GOLD)
+		Type.Bomb:
+			draw_rect(rec, Color.BLACK)
+		_:
+			draw_rect(rec, Color.MAGENTA)
 
 
-func on_destroy(game: TetrisGame) -> bool:
-	# Returns true if the cell can be destroyed
+func destroy(game: TetrisGame):
 	# TODO: Score points
-	# TODO: Cool effects go here
+	match type:
+		Type.Bomb:
+			game.remove_at(grid_pos.x, grid_pos.y)
+			# Destroy all surrounding blocks
+			for offset in [Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1), Vector2i(-1, -1), Vector2i(-1, 0), Vector2i(-1, 1)]:
+				var res_grid_pos = grid_pos + offset
+				var n = game.get_at(res_grid_pos.x, res_grid_pos.y)
+				if n != null:
+					n.destroy(game)
+		_:
+			game.remove_at(grid_pos.x, grid_pos.y)
+
 	return true
 
 
@@ -108,3 +129,6 @@ func on_tick(game: TetrisGame, tick: int):
 		Type.Sand:
 			if tick % 3 == 0:
 				game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y + 1)
+		Type.Gold:
+			if tick % 12 == 0:
+				game.score_counter.apply_score(1, 1)
