@@ -170,6 +170,8 @@ func _on_tick() -> void:
 	if pause:
 		return
 	tick_number += 1
+	
+	clear_full_rows()
 
 	# Call on_tick for all cells in order of their type
 	var cell_type_to_cells: Dictionary[Cell.Type, Array] = {}
@@ -309,10 +311,9 @@ func place_falling_tetriminos() -> void:
 	for cell in falling_tetriminos.cells:
 		var res_grid_pos = falling_tetriminos.grid_pos + cell.grid_pos
 		set_at(res_grid_pos.x, res_grid_pos.y, cell.type)
+		get_at(res_grid_pos.x, res_grid_pos.y).on_place(self)
 	falling_tetriminos.queue_free()
 	falling_tetriminos = null
-	
-	clear_full_rows()
 
 
 func clear_full_rows():
