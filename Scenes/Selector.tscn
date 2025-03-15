@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxy1i87sje2kt"]
+[gd_scene load_steps=4 format=3 uid="uid://dxy1i87sje2kt"]
 
 [ext_resource type="Script" uid="uid://b8gaikrmlclxy" path="res://Scripts/selector.gd" id="1_k2e2o"]
+[ext_resource type="AudioStream" uid="uid://bkslgyuj1ovc7" path="res://Sound/Tetrogue - Menu.wav" id="2_q75pq"]
+[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="3_c44gr"]
 
 [node name="Selector" type="Node2D"]
 script = ExtResource("1_k2e2o")
+
+[node name="Tetrogue-Menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q75pq")
+autoplay = true
+script = ExtResource("3_c44gr")
+
+[connection signal="finished" from="Tetrogue-Menu" to="Tetrogue-Menu" method="_on_finished"]

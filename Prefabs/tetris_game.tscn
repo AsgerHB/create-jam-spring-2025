@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtj6g7cn5y1ah"]
+[gd_scene load_steps=7 format=3 uid="uid://dtj6g7cn5y1ah"]
 
 [ext_resource type="Script" uid="uid://dhcv8k3pcomjn" path="res://TetrisGame.gd" id="1_43n6e"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_blw18"]
 [ext_resource type="Script" uid="uid://elavi4xosona" path="res://Scripts/RemainingTime.gd" id="3_arn4l"]
 [ext_resource type="PackedScene" uid="uid://cam00wyvm1d7v" path="res://Prefabs/ScoreCounter.tscn" id="3_cdei4"]
+[ext_resource type="AudioStream" uid="uid://byb2xhlhq16fj" path="res://Sound/Tetrogue - Main.wav" id="5_2fiad"]
+[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="6_aowk6"]
 
 [node name="TetrisGame" type="Node2D"]
 script = ExtResource("1_43n6e")
@@ -56,4 +58,10 @@ theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 
+[node name="Tetrogue-Main" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2fiad")
+autoplay = true
+script = ExtResource("6_aowk6")
+
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]
+[connection signal="finished" from="Tetrogue-Main" to="Tetrogue-Main" method="_on_finished"]

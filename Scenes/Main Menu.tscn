@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx20x3knm431p"]
+[gd_scene load_steps=7 format=3 uid="uid://cx20x3knm431p"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_eotax"]
 [ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="1_hcxxy"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="1_totuj"]
 [ext_resource type="Script" uid="uid://d3hhgq3jyhwgk" path="res://Scripts/ListenerExample.gd" id="4_eotax"]
+[ext_resource type="AudioStream" uid="uid://bkslgyuj1ovc7" path="res://Sound/Tetrogue - Menu.wav" id="5_mjet1"]
+[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="6_0126h"]
 
 [node name="Menu2" type="Node2D"]
 script = ExtResource("1_eotax")
@@ -45,5 +47,11 @@ text = "Credits"
 [node name="ListenerExample" type="Node" parent="."]
 script = ExtResource("4_eotax")
 
+[node name="Tetrogue-Menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mjet1")
+autoplay = true
+script = ExtResource("6_0126h")
+
 [connection signal="pressed" from="Interactive/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Interactive/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="finished" from="Tetrogue-Menu" to="Tetrogue-Menu" method="_on_finished"]
