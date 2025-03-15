@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func set_score(score: int):
 	label.text = "+" + str(score)
+	label.add_theme_color_override("font_color", Color.WHITE.lerp(Color.MAGENTA, clampf(score / 25.0, 0.0, 1.0)))
 	
 
 func _process(delta: float) -> void:
