@@ -11,12 +11,20 @@ var tetriminos = []
 var spawnedminos = []
 var time = 0
 
+var g_container
+
 var minos_to_spawn = 10
 
 var button_y_offset = 100
-var grid_spacing = 200
+var row_offset = 500
+var row_spacing = 200
+var grid_spacing = 180
+
+#Minos are misalligned, hack to move them to the right manually
+var mino_offset = 45
 
 func _ready():
+	g_container = $"GridContainer"
 	print(self.get_path())
 	generator = TetriminoGenerator.new()
 	#Make some minos
@@ -25,6 +33,7 @@ func _ready():
 	
 	#Spawn them all
 	for i in minos_to_spawn:
+		
 		var prefab = tetriminos_prefab.instantiate()
 		var prefabButton: Button = button_prefab.instantiate()
 		add_child(prefab)
@@ -34,8 +43,13 @@ func _ready():
 		
 		prefab.setup(current_mino)
 		prefabButton.setup(current_mino)
-		prefab.position = Vector2(grid_spacing * i,100)
-		prefabButton.position = Vector2(grid_spacing * i,100 + button_y_offset)
+		var ypos = row_spacing
+		var xpos = grid_spacing * i
+		if(i % 2 == 0):
+			ypos += row_offset
+			xpos += grid_spacing
+		prefab.position = Vector2(xpos + mino_offset, ypos)
+		prefabButton.position = Vector2(xpos, ypos + button_y_offset)
 		
 		#For spinning game objects
 		spawnedminos.push_back(prefab)
