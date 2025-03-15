@@ -24,3 +24,16 @@ func _draw() -> void:
 		draw_rect(rec, Color.RED)
 	else:
 		draw_rect(rec, Color.MAGENTA)
+
+
+func on_destroy(game: TetrisGame) -> bool:
+	# Returns true if the cell can be destroyed
+	# TODO: Score points
+	# TODO: Cool effects go here
+	return true
+
+
+func on_move(game: TetrisGame, to_x: int, to_y: int) -> bool:
+	# Returns true if the cell can be moved
+	# TODO: Cool effects go here
+	return true
