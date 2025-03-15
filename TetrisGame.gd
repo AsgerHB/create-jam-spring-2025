@@ -12,6 +12,7 @@ const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 @onready var run_state:RunState = $"/root/Run"
 @onready var goal_value:RichTextLabel = $"Goal Value"
 @onready var remaining_time_label:RichTextLabel = $"Remaining Time"
+@onready var status_label:RichTextLabel = $"Status Label"
 @onready var score_counter:ScoreCounter = $"ScoreCounter"
 
 @export var remaining_time: float = 50
@@ -20,6 +21,8 @@ var tick_number: int = 0 # The current tick count
 @export var move_interval_ticks: int = 14
 @export var move_fast_interval_ticks: int = 2
 @export var move_sideways_interval_ticks: int = 3
+
+var pause: bool = false
 
 var grid: Array = []
 var falling_tetriminos: Tetriminos = null
@@ -37,11 +40,6 @@ func _ready() -> void:
 	
 	run_state.new_game()
 	goal_value.text = str(score_goal)
-
-func dead():
-	await get_tree().create_timer(2.0).timeout
-	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
-
 
 func out_of_bounds(x: int, y: int) -> bool:
 	# NOTE: There is no lower bound on y axis (upwards)
@@ -131,6 +129,8 @@ func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 	return next
 
 func _process(delta):
+	if pause:
+		return
 	if Input.is_action_just_pressed("ui_right"):
 		if try_move_falling_tetriminos_x(1):
 			ticks_since_last_sideways_move = 0
@@ -157,6 +157,8 @@ func _process(delta):
 
 
 func _on_tick() -> void:
+	if pause:
+		return
 	tick_number += 1
 
 	# Call on_tick for all cells in order of their type
@@ -322,6 +324,14 @@ func clear_full_rows():
 	
 
 func win():
+	status_label.text = "[color=green]Winner![/color]"
+	pause = true
 	await get_tree().create_timer(4.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
 	
+
+func dead():
+	status_label.text = "[color=red]Died :/[/color]"
+	pause = true
+	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
