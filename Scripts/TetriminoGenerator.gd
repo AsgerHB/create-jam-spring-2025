@@ -5,7 +5,19 @@ func tetrimino_hash(tetrimino: Array[CellTemplate]) -> int:
 	for cell in tetrimino:
 		_hash ^= cell.pos.x + cell.pos.y * 100
 	return _hash
-
+'
+func update_sprites(cells: Array[CellTemplate]):
+	
+	for cell in cells:
+		for other_cell in cells:
+			if cell == other_cell:
+				continue;
+			if cell.pos.x - other_cell.pos.x == 1: cell.neighbours["left"] = true 
+			if cell.pos.x - other_cell.pos.x == -1: cell.neighbours["right"] = true 
+			if cell.pos.y - other_cell.pos.y == 1: cell.neighbours["down"] = true 
+			if cell.pos.y - other_cell.pos.y == -1: cell.neighbours["up"] = true 
+				
+				'
 # Complexity controls how complex the tetromino is
 func generate_tetrimino(complexity: int) -> TetriminosTemplate:
 	var tetrimino: Array[CellTemplate] = []
@@ -36,7 +48,7 @@ func generate_tetrimino(complexity: int) -> TetriminosTemplate:
 			var new_position = next_position + offset
 			if not possible_next_positions.has(new_position) and not used_positions.has(new_position):
 				possible_next_positions.append(new_position)
-	
+	# update_sprites(tetrimino)
 	# Canonize tetrimino
 	var min_hash = tetrimino_hash(tetrimino)
 	var min_hash_tetrimino = tetrimino.duplicate()
@@ -47,5 +59,5 @@ func generate_tetrimino(complexity: int) -> TetriminosTemplate:
 		if tetrimino.hash() < min_hash:
 			min_hash = tetrimino_hash(tetrimino)
 			min_hash_tetrimino = tetrimino.duplicate()
-
+	
 	return TetriminosTemplate.new(min_hash_tetrimino)
