@@ -18,10 +18,12 @@ var example_tetriminos = TetriminosTemplate.new([
 
 @export var move_interval_ticks: int = 14
 @export var move_fast_interval_ticks: int = 2
+@export var move_sideways_interval_ticks: int = 3
 
 var grid: Array = []
 var falling_tetriminos: Tetriminos = null
-var ticks_since_last_move: int = 0
+var ticks_since_last_down_move: int = 0
+var ticks_since_last_sideways_move: int = 0
 
 var move_int 
 
@@ -71,20 +73,38 @@ func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_right"):
-		try_move_falling_tetriminos_x(1)
+		if try_move_falling_tetriminos_x(1):
+			ticks_since_last_sideways_move = 0
 	elif Input.is_action_just_pressed("ui_left"):
-		try_move_falling_tetriminos_x(-1)
+		if try_move_falling_tetriminos_x(-1):
+			ticks_since_last_sideways_move = 0
 	elif Input.is_action_just_pressed("ui_down"):
-		try_move_falling_tetriminos_down()
+		if try_move_falling_tetriminos_down():
+			ticks_since_last_down_move = 0
+	elif Input.is_action_just_pressed("ui_up"):
+		try_rotate_falling_tetriminos()
 
 
 func _on_tick() -> void:
 	# TODO Incorporate with other tick stuff
-	ticks_since_last_move += 1
-	if ticks_since_last_move < move_interval_ticks:
+	
+	# Move sideways if key is held
+	ticks_since_last_sideways_move += 1
+	if falling_tetriminos != null && ticks_since_last_sideways_move >= move_sideways_interval_ticks:
+		if Input.is_action_pressed("ui_right"):
+			if try_move_falling_tetriminos_x(1):
+				ticks_since_last_sideways_move = 0
+		elif Input.is_action_pressed("ui_left"):
+			if try_move_falling_tetriminos_x(-1):
+				ticks_since_last_sideways_move = 0
+	
+	# Move downwards regularly, but faster if key is held
+	ticks_since_last_down_move += 1
+	var interval = move_fast_interval_ticks if Input.is_action_pressed("ui_down") else move_interval_ticks
+	if ticks_since_last_down_move < interval:
 		return
 		
-	ticks_since_last_move = 0
+	ticks_since_last_down_move = 0
 	
 	# If we do not have a falling tetriminos, spawn one instead
 	if falling_tetriminos == null:
@@ -129,6 +149,37 @@ func try_move_falling_tetriminos_down() -> bool:
 		falling_tetriminos.position.y -= CELL_SIZE
 		place_falling_tetriminos()
 	return true
+
+
+func try_rotate_falling_tetriminos() -> bool:
+	if falling_tetriminos == null:
+		return false
+	rotate_falling_tetriminos(true)
+	if not does_falling_tetriminos_collide():
+		return true
+	
+	# Colliding! Try to avoid collision by moving left or right
+	try_move_falling_tetriminos_x(1)
+	if not does_falling_tetriminos_collide():
+		return true
+	try_move_falling_tetriminos_x(-1)
+	if not does_falling_tetriminos_collide():
+		return true
+	
+	# Rotation failed, undo
+	rotate_falling_tetriminos(false)
+	return false
+
+
+func rotate_falling_tetriminos(counter_clockwise: bool) -> void:
+	if counter_clockwise:
+		for cell in falling_tetriminos.cells:
+			cell.grid_pos = Vector2i(-cell.grid_pos.y, cell.grid_pos.x)
+			cell.position = cell.grid_pos * CELL_SIZE
+	else:
+		for cell in falling_tetriminos.cells:
+			cell.grid_pos = Vector2i(cell.grid_pos.y, -cell.grid_pos.x)
+			cell.position = cell.grid_pos * CELL_SIZE
 
 
 func does_falling_tetriminos_collide() -> bool:
