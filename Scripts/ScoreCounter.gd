@@ -17,10 +17,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if mult_timeout < 0:
-		mult_timeout = 0
+		mult_timeout = 1
 		if current_mult > 1:
 			set_mult(current_mult - 1)
-	mult_timeout += delta
+	mult_timeout -= delta
 
 func _spawn_score_effect(score: int, position: Vector2):
 	var score_effect_instance = score_effect.instantiate()
@@ -29,6 +29,7 @@ func _spawn_score_effect(score: int, position: Vector2):
 	score_effect_instance.set_score(score)
 
 func add_mult(mult: int):
+	mult_timeout = 1
 	set_mult(current_mult + 1)
 
 func set_mult(mult: int):
