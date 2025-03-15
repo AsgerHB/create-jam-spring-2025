@@ -11,7 +11,7 @@ offset_left = 240.0
 offset_right = 513.0
 offset_bottom = 100.0
 theme = ExtResource("2_1ac0v")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "0"
 fit_content = true
@@ -24,7 +24,7 @@ offset_top = 94.0
 offset_right = 513.0
 offset_bottom = 194.0
 theme = ExtResource("2_1ac0v")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "0"
 fit_content = true
@@ -35,7 +35,7 @@ horizontal_alignment = 2
 offset_right = 240.0
 offset_bottom = 100.0
 theme = ExtResource("2_1ac0v")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[color=yellow]Score:[/color]"
 
@@ -44,6 +44,6 @@ offset_top = 100.0
 offset_right = 240.0
 offset_bottom = 200.0
 theme = ExtResource("2_1ac0v")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[color=red]Mult:[/color]"

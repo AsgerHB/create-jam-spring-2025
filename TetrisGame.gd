@@ -324,14 +324,14 @@ func clear_full_rows():
 	
 
 func win():
-	status_label.text = "[color=green]Winner![/color]"
+	status_label.text = "[color=green]Winner! :-)[/color]"
 	pause = true
 	await get_tree().create_timer(4.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
 	
 
 func dead():
-	status_label.text = "[color=red]you are Died :'([/color]"
+	status_label.text = "[color=red]DIED :'([/color]"
 	pause = true
 	await get_tree().create_timer(2.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")

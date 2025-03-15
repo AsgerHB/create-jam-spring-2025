@@ -17,7 +17,7 @@ offset_left = 320.0
 offset_right = 833.0
 offset_bottom = 66.0
 theme = ExtResource("2_blw18")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[color=red]??:??.??????[/color]"
 horizontal_alignment = 2
@@ -29,9 +29,9 @@ offset_top = 126.0
 offset_right = 560.0
 offset_bottom = 192.0
 theme = ExtResource("2_blw18")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
-text = "[color=yellow]goal:[/color]"
+text = "[color=yellow]Goal:[/color]"
 
 [node name="Goal Value" type="RichTextLabel" parent="."]
 offset_left = 560.0
@@ -39,7 +39,7 @@ offset_top = 127.0
 offset_right = 833.0
 offset_bottom = 186.0
 theme = ExtResource("2_blw18")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "??"
 horizontal_alignment = 2
@@ -53,7 +53,7 @@ offset_top = 550.0
 offset_right = 833.0
 offset_bottom = 616.0
 theme = ExtResource("2_blw18")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]
