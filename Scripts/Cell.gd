@@ -135,7 +135,10 @@ func on_tick(game: TetrisGame, tick: int):
 				game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y + 1)
 		Type.Balloon:
 			if tick % 3 == 0:
-				game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y - 1)
+				if grid_pos.y == 0:
+					game.remove_at(grid_pos.x, grid_pos.y)
+				else:
+					game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y - 1)
 		Type.Gold:
 			if tick % 12 == 0:
 				game.score_counter.apply_score(1, 1)
