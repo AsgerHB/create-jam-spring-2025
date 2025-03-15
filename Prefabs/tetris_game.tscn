@@ -15,13 +15,15 @@ wait_time = 0.05
 autostart = true
 
 [node name="Remaining Time" type="RichTextLabel" parent="."]
-offset_left = 320.0
-offset_right = 833.0
-offset_bottom = 66.0
+offset_left = 321.0
+offset_top = -1.0
+offset_right = 834.0
+offset_bottom = 129.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[color=red]??:??.??????[/color]"
+scroll_active = false
 horizontal_alignment = 2
 script = ExtResource("3_arn4l")
 
