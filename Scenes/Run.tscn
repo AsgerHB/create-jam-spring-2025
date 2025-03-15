@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c551lhgp2fs81"]
+[gd_scene load_steps=4 format=3 uid="uid://ds3imwx25qavg"]
 
-[ext_resource type="Script" uid="uid://cpr0xjiihm1b7" path="res://Scripts/RunState.gd" id="1_ropog"]
-[ext_resource type="PackedScene" uid="uid://ctihikfxioa4t" path="res://Scenes/Game.tscn" id="2_wyxvx"]
+[ext_resource type="Script" path="res://Scripts/RunState.gd" id="1_ropog"]
+[ext_resource type="PackedScene" uid="uid://l23xvq2t2mfl" path="res://Scenes/Game.tscn" id="2_wyxvx"]
+[ext_resource type="PackedScene" uid="uid://bmlcob562vhmb" path="res://Scenes/Selector.tscn" id="3_38uoo"]
 
 [node name="Run" type="Node2D"]
 script = ExtResource("1_ropog")
 
 [node name="Game" parent="." instance=ExtResource("2_wyxvx")]
+
+[node name="Selector" parent="." instance=ExtResource("3_38uoo")]

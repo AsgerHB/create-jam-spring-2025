@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://divvrw2rjvrc2"]
+
+[ext_resource type="Script" uid="uid://c6ost157qn27d" path="res://Scripts/selector_button.gd" id="1_bk6sj"]
+
+[node name="SelectorButton" type="Button"]
+button_mask = 7
+text = "Select!!!"
+script = ExtResource("1_bk6sj")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

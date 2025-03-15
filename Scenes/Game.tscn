@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctihikfxioa4t"]
+[gd_scene load_steps=2 format=3 uid="uid://l23xvq2t2mfl"]
 
-[ext_resource type="PackedScene" uid="uid://dtj6g7cn5y1ah" path="res://Prefabs/tetris_game.tscn" id="1_iukft"]
+[ext_resource type="PackedScene" uid="uid://c7ul1u5ca1od5" path="res://Prefabs/tetris_game.tscn" id="1_iukft"]
 
 [node name="Game" type="Node2D"]
 
