@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuo37ijhwa1ew"]
+[gd_scene load_steps=3 format=3 uid="uid://cuo37ijhwa1ew"]
 
 [ext_resource type="Script" uid="uid://yr2tvymwtp2h" path="res://Scripts/Cell.gd" id="1_tf5rp"]
+[ext_resource type="Texture2D" uid="uid://rcnkvakcmdfc" path="res://Sprites/BaseSprite.png" id="2_7g4dk"]
 
 [node name="Cell" type="Node2D"]
 script = ExtResource("1_tf5rp")
+sprite_state = 0
+sprite_sheet = ExtResource("2_7g4dk")
