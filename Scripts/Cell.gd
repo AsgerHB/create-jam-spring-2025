@@ -10,15 +10,28 @@ enum Type {
 	Balloon,
 	Gold,
 	Bomb,
+	Concrete,
+	ConcreteSemiBroken,
+	Clock,
+	Gift,
+	PlantPot,
+	Plant,
 }
 # Map that assigns a complexity score to each cell type
+const infinity = 1000000
 const cell_complexity_score = {
 	Type.Standard: 0,
 	Type.Sand: 1,
+	Type.Concrete: 1,
+	Type.ConcreteSemiBroken: infinity,
 	Type.Compressed: 2,
 	Type.Balloon: 1,
 	Type.Gold: 3,
 	Type.Bomb: 3,
+	Type.Clock: 1,
+	Type.Gift: 1,
+	Type.PlantPot: 1,
+	Type.Plant: infinity,
 }
 # A mapping of a sprite's state and where it maps to in the sprite sheet
 const SpriteCoords: Dictionary[Type, Vector2i] = {
@@ -42,12 +55,29 @@ var grid_pos: Vector2i
 
 func _draw() -> void:
 	const rec = Rect2(-CELL_SIZE / 2, -CELL_SIZE / 2, CELL_SIZE, CELL_SIZE)
-	var sprite_coords = SpriteCoords[type]
-	draw_texture_rect_region(sprite_sheet, rec, Rect2(sprite_coords.x, sprite_coords.y, 8,8))
+	match type:
+		Type.Concrete:
+			draw_rect(rec, Color.DARK_GRAY)
+		Type.ConcreteSemiBroken:
+			draw_rect(rec, Color.LIGHT_GRAY)
+		Type.Clock:
+			draw_rect(rec, Color.YELLOW)
+		Type.Gift:
+			draw_rect(rec, Color.RED)
+		Type.PlantPot:
+			draw_rect(rec, Color.BROWN)
+		Type.Plant:
+			draw_rect(rec, Color.GREEN)
+		_:
+			var sprite_coords = SpriteCoords[type]
+			draw_texture_rect_region(sprite_sheet, rec, Rect2(sprite_coords.x, sprite_coords.y, 8,8))
 
 func destroy(game: TetrisGame):
 	# Do effects
 	match type:
+		Type.Concrete:
+			game.remove_at(grid_pos.x, grid_pos.y)
+			game.set_at(grid_pos.x, grid_pos.y, Type.ConcreteSemiBroken)
 		Type.Bomb:
 			var particle_instance = explosion_particle.instantiate()
 			get_parent().add_child(particle_instance)
@@ -60,6 +90,9 @@ func destroy(game: TetrisGame):
 				var n = game.get_at(res_grid_pos.x, res_grid_pos.y)
 				if n != null:
 					n.destroy(game)
+		Type.Clock:
+			game.remove_at(grid_pos.x, grid_pos.y)
+			game.remaining_time += 5
 		_:
 			game.remove_at(grid_pos.x, grid_pos.y)
 	
@@ -96,3 +129,30 @@ func on_tick(game: TetrisGame, tick: int):
 		Type.Gold:
 			if tick % 12 == 0:
 				game.score_counter.apply_score(1, position)
+		Type.PlantPot:
+			if tick % 18 == 0:
+				var pos = grid_pos
+				for i in range(5):
+					pos += Vector2i(0, -1)
+					if game.out_of_bounds(pos.x, pos.y):
+						break
+
+					var c = game.get_at(pos.x, pos.y)
+					if c != null:
+						if c.type != Type.Plant:
+							break
+					else:
+						game.set_at(pos.x, pos.y, Type.Plant)
+						break
+
+func on_place(game: TetrisGame):
+	# Called when the cell is placed
+	match type:
+		Type.Gift:
+			game.remove_at(grid_pos.x, grid_pos.y)
+			var non_infinite_complexity_types = []
+			for _type in Type.values():
+				if cell_complexity_score[_type] < infinity:
+					non_infinite_complexity_types.append(_type)
+			var new_type = non_infinite_complexity_types[randi() % non_infinite_complexity_types.size()]
+			game.set_at(grid_pos.x, grid_pos.y, new_type)
