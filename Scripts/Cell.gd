@@ -78,8 +78,7 @@ func destroy(game: TetrisGame):
 		Type.Bomb:
 			var particle_instance = explosion_particle.instantiate()
 			get_parent().add_child(particle_instance)
-			particle_instance.position = grid_pos * CELL_SIZE
-			particle_instance.emitting = true
+			particle_instance.position = position
 			game.remove_at(grid_pos.x, grid_pos.y)
 			# Destroy all surrounding blocks
 			for offset in [Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1), Vector2i(-1, -1), Vector2i(-1, 0), Vector2i(-1, 1)]:
