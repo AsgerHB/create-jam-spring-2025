@@ -3,10 +3,18 @@ class_name RunState
 
 # Script to contain player status such as level, lives, and tetrimino stash
 
+func _init() -> void:
+	var tetrimino_generator = TetriminoGenerator.new()
+	for i in 10:
+		var tetriminos = tetrimino_generator.generate_tetrimino(4)
+		stash.push_back(tetriminos)
+	for i in 3:
+		var tetriminos = tetrimino_generator.generate_tetrimino(5)
+		stash.push_back(tetriminos)
 
 func new_game():
 	current_stash = stash.duplicate()
-	#current_stash.shuffle()
+	current_stash.shuffle()
 
 func pop_from_stash():
 	if current_stash.size() > 0:
@@ -17,54 +25,5 @@ func pop_from_stash():
 # The player's stash, minus all the ones that have already been put in play.
 var current_stash: Array[TetriminosTemplate] = stash.duplicate();
 
-var L = TetriminosTemplate.new([
-		CellTemplate.new(-1, 0, Cell.Type.Standard),
-		CellTemplate.new(0, 0, Cell.Type.Standard),
-		CellTemplate.new(1, 0, Cell.Type.Standard),
-		CellTemplate.new(-1, 1, Cell.Type.Standard),
-	])
-	
-var T = TetriminosTemplate.new([
-		CellTemplate.new(1, 0, Cell.Type.Standard),
-		CellTemplate.new(0, 0, Cell.Type.Standard),
-		CellTemplate.new(-1, 0, Cell.Type.Standard),
-		CellTemplate.new(0, 1, Cell.Type.Standard),
-	])
-
-var I = TetriminosTemplate.new([
-		CellTemplate.new(1, 0, Cell.Type.Standard),
-		CellTemplate.new(0, 0, Cell.Type.Standard),
-		CellTemplate.new(-1, 0, Cell.Type.Standard),
-		CellTemplate.new(-2, 0, Cell.Type.Standard),
-	])
-
-var S = TetriminosTemplate.new([
-		CellTemplate.new(-1, -1, Cell.Type.Standard),
-		CellTemplate.new(-1, 0, Cell.Type.Standard),
-		CellTemplate.new(0, 0, Cell.Type.Standard),
-		CellTemplate.new(0, 1, Cell.Type.Standard),
-	])
-
-var Z = TetriminosTemplate.new([
-		CellTemplate.new(1, -1, Cell.Type.Standard),
-		CellTemplate.new(1, 0, Cell.Type.Standard),
-		CellTemplate.new(0, 0, Cell.Type.Standard),
-		CellTemplate.new(0, 1, Cell.Type.Standard),
-	])
-
-var O = TetriminosTemplate.new([
-		CellTemplate.new(0, 0, Cell.Type.Standard),
-		CellTemplate.new(0, 1, Cell.Type.Standard),
-		CellTemplate.new(1, 0, Cell.Type.Standard),
-		CellTemplate.new(1, 1, Cell.Type.Standard),
-	])
-
 # All the player's tetriminos. Hard-coded to starting values
-var stash: Array[TetriminosTemplate] = [
-	L,
-	O,
-	T,
-	I,
-	S,
-	Z,
-]
+var stash: Array[TetriminosTemplate] = []
