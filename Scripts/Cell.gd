@@ -4,13 +4,15 @@ class_name Cell
 const CELL_SIZE: int = 32
 
 enum Type {
-	Standard
+	Standard,
+	Sand,
 }
-
 # Map that assigns a complexity score to each cell type
 const cell_complexity_score = {
-	Type.Standard: 1
+	Type.Standard: 1,
+	Type.Sand: 2,
 }
+
 # All the different states that a sprite can be in
 enum State {
 	CellTopLeft,
@@ -99,3 +101,10 @@ func on_move(game: TetrisGame, to_x: int, to_y: int) -> bool:
 	# Returns true if the cell can be moved
 	# TODO: Cool effects go here
 	return true
+
+func on_tick(game: TetrisGame, tick: int):
+	# Updates the game state for this tick
+	match type:
+		Type.Sand:
+			if tick % 3 == 0:
+				game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y + 1)

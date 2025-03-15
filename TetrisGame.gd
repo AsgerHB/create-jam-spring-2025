@@ -12,6 +12,7 @@ const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 @onready var run_state:RunState = $"/root/Run"
 @onready var score_counter:ScoreCounter = $"ScoreCounter"
 
+var tick_number: int = 0 # The current tick count
 @export var move_interval_ticks: int = 14
 @export var move_fast_interval_ticks: int = 2
 @export var move_sideways_interval_ticks: int = 3
@@ -30,7 +31,7 @@ func _ready() -> void:
 			r.append(null)
 		grid.append(r)
 	
-	run_state.new_game()
+		run_state.new_game()
 
 func dead():
 	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
@@ -53,6 +54,7 @@ func set_at(x: int, y: int, type: Cell.Type) -> Cell:
 	var cell = cell_prefab.instantiate()
 	add_child(cell)
 	cell.position = Vector2i(x * CELL_SIZE, y * CELL_SIZE)
+	cell.grid_pos = Vector2i(x, y)
 	cell.type = type
 	grid[y][x] = cell
 	return cell
@@ -78,7 +80,7 @@ func destroy_at(x: int, y: int):
 # See also try_move_cell.
 # Destination must be empty.
 func move_cell(from_x: int, from_y: int, to_x: int, to_y: int):
-	var c = get_at(from_x, from_y)
+	var c: Cell = get_at(from_x, from_y)
 	if c == null:
 		return
 	assert(get_at(to_x, to_y) == null, "Destination must be empty")
@@ -89,10 +91,9 @@ func move_cell(from_x: int, from_y: int, to_x: int, to_y: int):
 
 
 # Similar to move_cell but triggers the cell's on_move effect (possibly preventing the move).
-# Destination must be empty.
 func try_move_cell(from_x: int, from_y: int, to_x: int, to_y: int) -> bool:
 	var c = get_at(from_x, from_y)
-	if c == null:
+	if c == null || not get_at(to_x, to_y) == null || out_of_bounds(to_x, to_y):
 		return false
 	# Pass self in case movement has side effects
 	if c.on_move(self, to_x, to_y):
@@ -139,7 +140,22 @@ func _process(delta):
 
 
 func _on_tick() -> void:
-	# TODO Incorporate with other tick stuff
+	tick_number += 1
+
+	# Call on_tick for all cells in order of their type
+	var cell_type_to_cells: Dictionary[Cell.Type, Array] = {}
+	for y in range(HEIGHT):
+		for x in range(WIDTH):
+			var cell = get_at(x, y)
+			if cell != null:
+				if not cell.type in cell_type_to_cells:
+					cell_type_to_cells[cell.type] = []
+				cell_type_to_cells[cell.type].append(cell)
+	
+	for cell_type in Cell.Type.values():
+		if cell_type in cell_type_to_cells:
+			for cell in cell_type_to_cells[cell_type]:
+				cell.on_tick(self, tick_number)
 	
 	# Move sideways if key is held
 	ticks_since_last_sideways_move += 1
@@ -174,6 +190,7 @@ func _on_tick() -> void:
 	falling_tetriminos.position = grid_pos * CELL_SIZE
 	falling_tetriminos.grid_pos = grid_pos
 	
+
 	# If we immediately collide with existing cells -> game over
 	if does_falling_tetriminos_collide():
 		dead()
@@ -285,6 +302,5 @@ func clear_full_rows():
 	for y in rows_to_clear:
 		for x in range(WIDTH):
 			shift_above_cells_down(x, y)
-			
 	if points != 0:
 		score_counter.apply_score(points, mult)
