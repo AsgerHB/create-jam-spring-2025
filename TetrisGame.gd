@@ -69,6 +69,15 @@ func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 	return example_tetriminos
 
 
+func _process(delta):
+	if Input.is_action_just_pressed("ui_right"):
+		try_move_falling_tetriminos_x(1)
+	elif Input.is_action_just_pressed("ui_left"):
+		try_move_falling_tetriminos_x(-1)
+	elif Input.is_action_just_pressed("ui_down"):
+		try_move_falling_tetriminos_down()
+
+
 func _on_tick() -> void:
 	# TODO Incorporate with other tick stuff
 	ticks_since_last_move += 1
@@ -77,7 +86,7 @@ func _on_tick() -> void:
 		
 	ticks_since_last_move = 0
 	
-	# Move the falling brick - if we have any
+	# If we do not have a falling tetriminos, spawn one instead
 	if falling_tetriminos == null:
 		print("Spawning new falling tetriminos")
 		var template = get_next_tetriminos_from_deck()
@@ -92,6 +101,26 @@ func _on_tick() -> void:
 		return
 	
 	# Move down
+	try_move_falling_tetriminos_down()
+
+
+func try_move_falling_tetriminos_x(delta: int) -> bool:
+	if falling_tetriminos == null:
+		return false
+	falling_tetriminos.grid_pos.x += delta
+	falling_tetriminos.position.x += delta * CELL_SIZE
+	if does_falling_tetriminos_collide():
+		# Undo move
+		falling_tetriminos.grid_pos.x -= delta
+		falling_tetriminos.position.x -= delta * CELL_SIZE
+		return false
+	return true
+
+
+# Returns true if it moved; false if landed OR if null
+func try_move_falling_tetriminos_down() -> bool:
+	if falling_tetriminos == null:
+		return false
 	falling_tetriminos.grid_pos.y += 1
 	falling_tetriminos.position.y += CELL_SIZE
 	if does_falling_tetriminos_collide():
@@ -99,6 +128,7 @@ func _on_tick() -> void:
 		falling_tetriminos.grid_pos.y -= 1
 		falling_tetriminos.position.y -= CELL_SIZE
 		place_falling_tetriminos()
+	return true
 
 
 func does_falling_tetriminos_collide() -> bool:
