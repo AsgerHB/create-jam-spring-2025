@@ -126,7 +126,7 @@ func on_tick(game: TetrisGame, tick: int):
 			if tick % 12 == 0:
 				game.score_counter.apply_score(1, position)
 		Type.PlantPot:
-			if tick % 18 == 0:
+			if tick % 40 == 0:
 				var pos = grid_pos
 				for i in range(5):
 					pos += Vector2i(0, -1)
