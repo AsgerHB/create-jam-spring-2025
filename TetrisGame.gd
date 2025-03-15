@@ -47,6 +47,7 @@ func _ready() -> void:
 	var lvl = run_state.get_level()
 	score_goal = lvl[0]
 	remaining_time = lvl[1]
+	remaining_time_label.set_max_time(remaining_time)
 	
 	goal_value.text = str(score_goal)
 	#win()

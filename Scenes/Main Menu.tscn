@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="1_totuj"]
 [ext_resource type="Script" uid="uid://d3hhgq3jyhwgk" path="res://Scripts/ListenerExample.gd" id="4_eotax"]
 [ext_resource type="AudioStream" uid="uid://bkslgyuj1ovc7" path="res://Sound/Tetrogue - Menu.wav" id="5_mjet1"]
-[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="6_0126h"]
+[ext_resource type="Script" path="res://Scripts/LoopMusic.gd" id="6_0126h"]
 
 [node name="Menu2" type="Node2D"]
 script = ExtResource("1_eotax")

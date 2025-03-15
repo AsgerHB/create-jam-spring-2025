@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8gaikrmlclxy" path="res://Scripts/selector.gd" id="1_k2e2o"]
 [ext_resource type="AudioStream" uid="uid://bkslgyuj1ovc7" path="res://Sound/Tetrogue - Menu.wav" id="2_fxtt5"]
-[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="3_637dj"]
+[ext_resource type="Script" path="res://Scripts/LoopMusic.gd" id="3_637dj"]
 
 [node name="Selector" type="Node2D"]
 script = ExtResource("1_k2e2o")
