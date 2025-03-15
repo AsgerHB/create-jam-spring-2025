@@ -192,18 +192,27 @@ func _on_tick() -> void:
 			if try_move_falling_tetriminos_x(-1):
 				ticks_since_last_sideways_move = 0
 	
-	# Move downwards regularly, but faster if key is held
-	ticks_since_last_down_move += 1
-	var interval = move_fast_interval_ticks if Input.is_action_pressed("ui_down") else move_interval_ticks
-	if ticks_since_last_down_move < interval:
-		return
+	if Input.is_action_pressed("slam_down"):
+		# Hard drop
+		if falling_tetriminos != null:
+			while try_move_falling_tetriminos_down():
+				pass
+			ticks_since_last_down_move = 0
+			return
+	else:
+		# Move downwards regularly, but faster if key is held
+		ticks_since_last_down_move += 1
+		var interval = move_fast_interval_ticks if Input.is_action_pressed("ui_down") else move_interval_ticks
+		if ticks_since_last_down_move < interval:
+			return
 		
-	ticks_since_last_down_move = 0
-	
-	if falling_tetriminos != null:
-		# Move down
-		try_move_falling_tetriminos_down()
-		return
+		ticks_since_last_down_move = 0
+			
+		if falling_tetriminos != null:
+			# Move down
+			try_move_falling_tetriminos_down()
+			return
+
 	
 	# If we do not have a falling tetriminos, spawn one instead
 	print("Spawning new falling tetriminos")
