@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://0guyg45mewl2"]
 
-[ext_resource type="FontFile" uid="uid://8urutbj7wyrq" path="res://Theming/slkscre.ttf" id="1_ve1wj"]
+[ext_resource type="FontFile" uid="uid://dcoieaqmmkyva" path="res://Theming/MozartNbp-93Ey.ttf" id="1_ve1wj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ve1wj"]
 
@@ -20,3 +20,4 @@ Button/styles/focus = SubResource("StyleBoxEmpty_ve1wj")
 Button/styles/hover = SubResource("StyleBoxEmpty_cfjhi")
 Button/styles/normal = SubResource("StyleBoxEmpty_5vll4")
 Button/styles/pressed = SubResource("StyleBoxEmpty_0gems")
+Label/fonts/font = ExtResource("1_ve1wj")

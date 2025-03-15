@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7ul1u5ca1od5"]
+[gd_scene load_steps=5 format=3 uid="uid://dtj6g7cn5y1ah"]
 
-[ext_resource type="Script" path="res://TetrisGame.gd" id="1_43n6e"]
+[ext_resource type="Script" uid="uid://dhcv8k3pcomjn" path="res://TetrisGame.gd" id="1_43n6e"]
+[ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_blw18"]
+[ext_resource type="Script" uid="uid://elavi4xosona" path="res://Scripts/RemainingTime.gd" id="3_arn4l"]
+[ext_resource type="PackedScene" uid="uid://cam00wyvm1d7v" path="res://Prefabs/ScoreCounter.tscn" id="3_cdei4"]
 
 [node name="TetrisGame" type="Node2D"]
 script = ExtResource("1_43n6e")
@@ -8,5 +11,49 @@ script = ExtResource("1_43n6e")
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+
+[node name="Remaining Time" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_right = 833.0
+offset_bottom = 66.0
+theme = ExtResource("2_blw18")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[color=red]??:??.??????[/color]"
+horizontal_alignment = 2
+script = ExtResource("3_arn4l")
+
+[node name="Goal Label" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_top = 126.0
+offset_right = 560.0
+offset_bottom = 192.0
+theme = ExtResource("2_blw18")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[color=yellow]Goal:[/color]"
+
+[node name="Goal Value" type="RichTextLabel" parent="."]
+offset_left = 560.0
+offset_top = 127.0
+offset_right = 833.0
+offset_bottom = 186.0
+theme = ExtResource("2_blw18")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "??"
+horizontal_alignment = 2
+
+[node name="ScoreCounter" parent="." instance=ExtResource("3_cdei4")]
+position = Vector2(320, 242)
+
+[node name="Status Label" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_top = 550.0
+offset_right = 833.0
+offset_bottom = 616.0
+theme = ExtResource("2_blw18")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]

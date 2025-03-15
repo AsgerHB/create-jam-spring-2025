@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://g56m3cmbqnck"
-path="res://.godot/imported/slkscr.ttf-860e65fea7675a5b0912bee7d0af98df.fontdata"
+uid="uid://dcoieaqmmkyva"
+path="res://.godot/imported/MozartNbp-93Ey.ttf-aef4a958306a2df828928b2184f233c4.fontdata"
 
 [deps]
 
-source_file="res://Theming/slkscr.ttf"
-dest_files=["res://.godot/imported/slkscr.ttf-860e65fea7675a5b0912bee7d0af98df.fontdata"]
+source_file="res://Theming/MozartNbp-93Ey.ttf"
+dest_files=["res://.godot/imported/MozartNbp-93Ey.ttf-aef4a958306a2df828928b2184f233c4.fontdata"]
 
 [params]
 

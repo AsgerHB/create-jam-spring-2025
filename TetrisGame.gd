@@ -10,11 +10,19 @@ const cell_prefab: PackedScene = preload("res://Prefabs/Cell.tscn")
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 
 @onready var run_state:RunState = $"/root/Run"
+@onready var goal_value:RichTextLabel = $"Goal Value"
+@onready var remaining_time_label:RichTextLabel = $"Remaining Time"
+@onready var status_label:RichTextLabel = $"Status Label"
+@onready var score_counter:ScoreCounter = $"ScoreCounter"
 
-
+@export var remaining_time: float = 50
+@export var score_goal: int = 100
+var tick_number: int = 0 # The current tick count
 @export var move_interval_ticks: int = 14
 @export var move_fast_interval_ticks: int = 2
 @export var move_sideways_interval_ticks: int = 3
+
+var pause: bool = false
 
 var grid: Array = []
 var falling_tetriminos: Tetriminos = null
@@ -31,10 +39,7 @@ func _ready() -> void:
 		grid.append(r)
 	
 	run_state.new_game()
-
-func dead():
-	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
-
+	goal_value.text = str(score_goal)
 
 func out_of_bounds(x: int, y: int) -> bool:
 	# NOTE: There is no lower bound on y axis (upwards)
@@ -53,6 +58,7 @@ func set_at(x: int, y: int, type: Cell.Type) -> Cell:
 	var cell = cell_prefab.instantiate()
 	add_child(cell)
 	cell.position = Vector2i(x * CELL_SIZE, y * CELL_SIZE)
+	cell.grid_pos = Vector2i(x, y)
 	cell.type = type
 	grid[y][x] = cell
 	return cell
@@ -71,14 +77,13 @@ func destroy_at(x: int, y: int):
 	var c = get_at(x, y)
 	if c != null:
 		# Pass self in case destruction has side effects (e.g. bomb)
-		if c.on_destroy(self):
-			remove_at(x, y)
+		c.destroy(self)
 
 
 # See also try_move_cell.
 # Destination must be empty.
 func move_cell(from_x: int, from_y: int, to_x: int, to_y: int):
-	var c = get_at(from_x, from_y)
+	var c: Cell = get_at(from_x, from_y)
 	if c == null:
 		return
 	assert(get_at(to_x, to_y) == null, "Destination must be empty")
@@ -89,10 +94,9 @@ func move_cell(from_x: int, from_y: int, to_x: int, to_y: int):
 
 
 # Similar to move_cell but triggers the cell's on_move effect (possibly preventing the move).
-# Destination must be empty.
 func try_move_cell(from_x: int, from_y: int, to_x: int, to_y: int) -> bool:
 	var c = get_at(from_x, from_y)
-	if c == null:
+	if c == null || not get_at(to_x, to_y) == null || out_of_bounds(to_x, to_y):
 		return false
 	# Pass self in case movement has side effects
 	if c.on_move(self, to_x, to_y):
@@ -125,6 +129,8 @@ func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 	return next
 
 func _process(delta):
+	if pause:
+		return
 	if Input.is_action_just_pressed("ui_right"):
 		if try_move_falling_tetriminos_x(1):
 			ticks_since_last_sideways_move = 0
@@ -136,10 +142,39 @@ func _process(delta):
 			ticks_since_last_down_move = 0
 	elif Input.is_action_just_pressed("ui_up"):
 		try_rotate_falling_tetriminos()
+	
+	if remaining_time > 1:
+		remaining_time -= delta
+	else:
+		remaining_time -= delta / 3 # Artificially extend the last second
+	remaining_time_label.set_time(remaining_time)
+	
+	if score_counter.current_score >= score_goal:
+		win()
+	
+	if remaining_time < 0:
+		dead()
 
 
 func _on_tick() -> void:
-	# TODO Incorporate with other tick stuff
+	if pause:
+		return
+	tick_number += 1
+
+	# Call on_tick for all cells in order of their type
+	var cell_type_to_cells: Dictionary[Cell.Type, Array] = {}
+	for y in range(HEIGHT):
+		for x in range(WIDTH):
+			var cell = get_at(x, y)
+			if cell != null:
+				if not cell.type in cell_type_to_cells:
+					cell_type_to_cells[cell.type] = []
+				cell_type_to_cells[cell.type].append(cell)
+	
+	for cell_type in Cell.Type.values():
+		if cell_type in cell_type_to_cells:
+			for cell in cell_type_to_cells[cell_type]:
+				cell.on_tick(self, tick_number)
 	
 	# Move sideways if key is held
 	ticks_since_last_sideways_move += 1
@@ -174,6 +209,7 @@ func _on_tick() -> void:
 	falling_tetriminos.position = grid_pos * CELL_SIZE
 	falling_tetriminos.grid_pos = grid_pos
 	
+
 	# If we immediately collide with existing cells -> game over
 	if does_falling_tetriminos_collide():
 		dead()
@@ -269,10 +305,33 @@ func clear_full_rows():
 		if do_clear:
 			rows_to_clear.append(y)
 	
-	# Destroy all tiles in the cleared rows, then shift cells down (affects resolution order)
+	# Destroy all tiles in the cleared rows, applying mult
+	var first = true
 	for y in rows_to_clear:
+		if !first:
+			score_counter.add_mult(1)
+		first = false
 		for x in range(WIDTH):
+			var c: Cell = get_at(x, y)
+			if c == null:
+				pass
 			destroy_at(x, y)
+		
+	# Then shift cells down (affects resolution order)
 	for y in rows_to_clear:
 		for x in range(WIDTH):
 			shift_above_cells_down(x, y)
+	
+
+func win():
+	status_label.text = "[color=green]Winner! :-)[/color]"
+	pause = true
+	await get_tree().create_timer(4.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
+	
+
+func dead():
+	status_label.text = "[color=red]DIED :'([/color]"
+	pause = true
+	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")

@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuo37ijhwa1ew"]
+[gd_scene load_steps=5 format=3 uid="uid://cuo37ijhwa1ew"]
 
 [ext_resource type="Script" uid="uid://yr2tvymwtp2h" path="res://Scripts/Cell.gd" id="1_tf5rp"]
+[ext_resource type="Texture2D" uid="uid://rcnkvakcmdfc" path="res://Sprites/BaseSprite.png" id="2_7g4dk"]
+[ext_resource type="PackedScene" uid="uid://b7ncp4pmyev1r" path="res://Prefabs/ExplosionParticle.tscn" id="3_7g4dk"]
+[ext_resource type="PackedScene" uid="uid://dl58xmnqnaa6o" path="res://Prefabs/ScoreEffect.tscn" id="4_gfo3m"]
 
 [node name="Cell" type="Node2D"]
 script = ExtResource("1_tf5rp")
+sprite_state = 0
+sprite_sheet = ExtResource("2_7g4dk")
+explosion_particle = ExtResource("3_7g4dk")
+score_effect = ExtResource("4_gfo3m")
