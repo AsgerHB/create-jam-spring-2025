@@ -333,6 +333,9 @@ func clear_full_rows():
 		if do_clear:
 			rows_to_clear.append(y)
 	
+	if len(rows_to_clear) > 0:
+		score_counter.bump_streak()
+	
 	# Destroy all tiles in the cleared rows, applying mult
 	var first = true
 	for y in rows_to_clear:

@@ -123,7 +123,7 @@ func on_tick(game: TetrisGame, tick: int):
 				else:
 					game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y - 1)
 		Type.Gold:
-			if tick % 12 == 0:
+			if tick % 20 == 0:
 				game.score_counter.apply_score(1, position)
 		Type.PlantPot:
 			if tick % 40 == 0:
