@@ -3,14 +3,14 @@ extends Button
 var tetramino
 
 @onready var run_state:RunState = $"/root/Run"
-const game_prefab: PackedScene = preload("res://Prefabs/tetris_game.tscn")
+const game_prefab: PackedScene = preload("res://Scenes/Game.tscn")
 
 func setup(value):
 	tetramino = value
 	button_down.connect(_on_button_down)
 
 func _on_button_down():
-	var root = get_tree().get_root()
+	var run = $"/root/Run"
 	#Add reward to stash
 	run_state.stash.push_back(tetramino)
 	
@@ -24,6 +24,6 @@ func _on_button_down():
 	#Game creates selector, selector creates game, the cycle of life and death continues
 	var selector = get_node("/root/Run/Selector")
 	var game = game_prefab.instantiate()
-	root.add_child(game)
+	run.add_child(game)
 	selector.call_deferred("queue_free")
 	#root.remove_child(selector) 

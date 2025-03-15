@@ -8,6 +8,7 @@ const CELL_SIZE: int = 32
 # TODO: Both of these are basically empty, maybe unnecessary
 const cell_prefab: PackedScene = preload("res://Prefabs/Cell.tscn")
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
+const selector_prefab: PackedScene = preload("res://Prefabs/Selector.tscn")
 
 @onready var run_state:RunState = $"/root/Run"
 @onready var goal_value:RichTextLabel = $"Goal Value"
@@ -31,7 +32,11 @@ var ticks_since_last_sideways_move: int = 0
 
 var move_int 
 
+var root
+
 func _ready() -> void:
+	root = get_tree().get_root()
+	print(self.get_path())
 	for row in range(HEIGHT):
 		var r = []
 		for col in range(WIDTH):
@@ -40,6 +45,7 @@ func _ready() -> void:
 	
 	run_state.new_game()
 	goal_value.text = str(score_goal)
+	#win()
 
 func out_of_bounds(x: int, y: int) -> bool:
 	# NOTE: There is no lower bound on y axis (upwards)
@@ -327,7 +333,13 @@ func win():
 	status_label.text = "[color=green]Winner! :-)[/color]"
 	pause = true
 	await get_tree().create_timer(4.0).timeout
-	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
+	var run = $"/root/Run"
+	var game = $"/root/Run/Game"
+	var selector = selector_prefab.instantiate()
+	run.add_child(selector)
+	game.call_deferred("queue_free")
+	
+	#get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
 	
 
 func dead():
