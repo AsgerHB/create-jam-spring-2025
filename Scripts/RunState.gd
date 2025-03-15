@@ -29,11 +29,8 @@ var levels = [
 
 func _init() -> void:
 	var tetrimino_generator = TetriminoGenerator.new()
-	for i in 20:
+	for i in 10:
 		var tetriminos = tetrimino_generator.generate_tetrimino(4, 0)
-		stash.push_back(tetriminos)
-	for i in 3:
-		var tetriminos = tetrimino_generator.generate_tetrimino(5, 0)
 		stash.push_back(tetriminos)
 
 func new_game():
