@@ -6,6 +6,7 @@ const CELL_SIZE: int = 32
 enum Type {
 	Standard,
 	Sand,
+	Balloon,
 	Gold,
 	Bomb,
 }
@@ -13,6 +14,7 @@ enum Type {
 const cell_complexity_score = {
 	Type.Standard: 1,
 	Type.Sand: 2,
+	Type.Balloon: 2,
 	Type.Gold: 2,
 	Type.Bomb: 3,
 }
@@ -93,6 +95,8 @@ func _draw() -> void:
 			draw_rect(rec, Color.RED)
 		Type.Sand:
 			draw_rect(rec, Color.SANDY_BROWN)
+		Type.Balloon:
+			draw_rect(rec, Color.BLUE)
 		Type.Gold:
 			draw_rect(rec, Color.GOLD)
 		Type.Bomb:
@@ -129,6 +133,9 @@ func on_tick(game: TetrisGame, tick: int):
 		Type.Sand:
 			if tick % 3 == 0:
 				game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y + 1)
+		Type.Balloon:
+			if tick % 3 == 0:
+				game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y - 1)
 		Type.Gold:
 			if tick % 12 == 0:
 				game.score_counter.apply_score(1, 1)
