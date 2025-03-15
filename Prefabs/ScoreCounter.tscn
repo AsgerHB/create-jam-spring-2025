@@ -17,3 +17,36 @@ text = "0"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 2
+
+[node name="CurrentMult" type="RichTextLabel" parent="."]
+offset_left = 536.0
+offset_top = 68.0
+offset_right = 809.0
+offset_bottom = 162.0
+theme = ExtResource("2_1ac0v")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "x1"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="Score Label" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_top = -1.0
+offset_right = 560.0
+offset_bottom = 65.0
+theme = ExtResource("2_1ac0v")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[color=yellow]Score:[/color]"
+
+[node name="Mult Label" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_top = 70.0
+offset_right = 560.0
+offset_bottom = 136.0
+theme = ExtResource("2_1ac0v")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[color=red]Mult:[/color]"

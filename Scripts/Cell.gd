@@ -109,6 +109,7 @@ func destroy(game: TetrisGame):
 	# TODO: Score points
 	match type:
 		Type.Bomb:
+			game.score_counter.apply_score(5, 0)
 			game.remove_at(grid_pos.x, grid_pos.y)
 			# Destroy all surrounding blocks
 			for offset in [Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1), Vector2i(-1, -1), Vector2i(-1, 0), Vector2i(-1, 1)]:
@@ -117,6 +118,7 @@ func destroy(game: TetrisGame):
 				if n != null:
 					n.destroy(game)
 		_:
+			game.score_counter.apply_score(5, 0)
 			game.remove_at(grid_pos.x, grid_pos.y)
 
 	return true
@@ -141,4 +143,4 @@ func on_tick(game: TetrisGame, tick: int):
 					game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y - 1)
 		Type.Gold:
 			if tick % 12 == 0:
-				game.score_counter.apply_score(1, 1)
+				game.score_counter.apply_score(1, 0)
