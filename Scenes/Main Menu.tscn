@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx20x3knm431p"]
+[gd_scene load_steps=5 format=3 uid="uid://cx20x3knm431p"]
 
+[ext_resource type="Script" uid="uid://vt4epfuxfljr" path="res://Scripts/MainMenu.gd" id="1_eotax"]
 [ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="1_hcxxy"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="1_totuj"]
 [ext_resource type="Script" uid="uid://d3hhgq3jyhwgk" path="res://Scripts/ListenerExample.gd" id="4_eotax"]
 
-[node name="Menu" type="Node2D"]
+[node name="Menu2" type="Node2D"]
+script = ExtResource("1_eotax")
 
 [node name="Black" type="Sprite2D" parent="."]
 position = Vector2(958.5, 539.5)
@@ -18,24 +20,24 @@ offset_right = 1092.0
 offset_bottom = 185.0
 theme = ExtResource("1_totuj")
 theme_override_font_sizes/normal_font_size = 140
-text = "tetrogue"
+text = "TETROGUE"
 
 [node name="Interactive" type="Node2D" parent="."]
 
 [node name="PlayButton" type="Button" parent="Interactive"]
-offset_left = 607.0
-offset_top = 408.0
-offset_right = 1315.0
-offset_bottom = 522.0
+offset_left = 97.0
+offset_top = 383.0
+offset_right = 805.0
+offset_bottom = 497.0
 theme = ExtResource("1_totuj")
 theme_override_font_sizes/font_size = 90
 text = "Start game"
 
 [node name="CreditsButton" type="Button" parent="Interactive"]
-offset_left = 605.0
-offset_top = 602.0
-offset_right = 1313.0
-offset_bottom = 716.0
+offset_left = 95.0
+offset_top = 577.0
+offset_right = 803.0
+offset_bottom = 691.0
 theme = ExtResource("1_totuj")
 theme_override_font_sizes/font_size = 90
 text = "Credits"
@@ -43,5 +45,5 @@ text = "Credits"
 [node name="ListenerExample" type="Node" parent="."]
 script = ExtResource("4_eotax")
 
-[connection signal="pressed" from="Interactive/PlayButton" to="Interactive" method="_on_play_button_pressed"]
-[connection signal="pressed" from="Interactive/CreditsButton" to="Interactive" method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Interactive/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Interactive/CreditsButton" to="." method="_on_credits_button_pressed"]
