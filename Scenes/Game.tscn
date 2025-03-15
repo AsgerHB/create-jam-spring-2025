@@ -6,3 +6,6 @@
 
 [node name="TetrisGame" parent="." instance=ExtResource("1_iukft")]
 position = Vector2(447, 178)
+move_interval_ticks = null
+move_fast_interval_ticks = null
+move_sideways_interval_ticks = null

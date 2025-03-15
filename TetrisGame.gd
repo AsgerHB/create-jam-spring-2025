@@ -31,11 +31,6 @@ func _ready() -> void:
 		grid.append(r)
 	
 	run_state.new_game()
-	
-	# TEST
-	set_at(0, 0, Cell.Type.Standard)
-	set_at(0, HEIGHT-1, Cell.Type.Standard)
-	set_at(WIDTH-1, 0, Cell.Type.Standard)
 
 func dead():
 	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
@@ -63,9 +58,65 @@ func set_at(x: int, y: int, type: Cell.Type) -> Cell:
 	return cell
 
 
+# See also destroy_at
+func remove_at(x: int, y: int):
+	var c = get_at(x, y)
+	if c != null:
+		grid[y][x] = null
+		c.queue_free()
+
+
+# Similar to remove_at but triggers the cell's on_destory effect (possibly preventing destruction)
+func destroy_at(x: int, y: int):
+	var c = get_at(x, y)
+	if c != null:
+		# Pass self in case destruction has side effects (e.g. bomb)
+		if c.on_destroy(self):
+			remove_at(x, y)
+
+
+# See also try_move_cell.
+# Destination must be empty.
+func move_cell(from_x: int, from_y: int, to_x: int, to_y: int):
+	var c = get_at(from_x, from_y)
+	if c == null:
+		return
+	assert(get_at(to_x, to_y) == null, "Destination must be empty")
+	grid[from_y][from_x] = null
+	c.grid_pos = Vector2i(to_x, to_y)
+	c.position = c.grid_pos * CELL_SIZE
+	grid[to_y][to_x] = c
+
+
+# Similar to move_cell but triggers the cell's on_move effect (possibly preventing the move).
+# Destination must be empty.
+func try_move_cell(from_x: int, from_y: int, to_x: int, to_y: int) -> bool:
+	var c = get_at(from_x, from_y)
+	if c == null:
+		return false
+	# Pass self in case movement has side effects
+	if c.on_move(self, to_x, to_y):
+		move_cell(from_x, from_y, to_x, to_y)
+		return true
+	return false
+
+
+func shift_above_cells_down(x: int, y: int):
+	var c = get_at(x, y)
+	if c != null:
+		return
+	for from_y in range(y - 1, -1, -1):
+		var to_y = from_y + 1
+		if get_at(x, from_y) != null && not try_move_cell(x, from_y, x, to_y):
+			# A cell refused to move, skip the rest
+			return
+
+
 func _draw() -> void:
+	# Background
 	var half = 0.5 * CELL_SIZE
 	draw_rect(Rect2(-half, -half, WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE), Color.GRAY)
+
 
 func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 	var next = run_state.pop_from_stash()
@@ -108,22 +159,24 @@ func _on_tick() -> void:
 		
 	ticks_since_last_down_move = 0
 	
-	# If we do not have a falling tetriminos, spawn one instead
-	if falling_tetriminos == null:
-		print("Spawning new falling tetriminos")
-		var template = get_next_tetriminos_from_deck()
-		falling_tetriminos = tetriminos_prefab.instantiate()
-		add_child(falling_tetriminos)
-		falling_tetriminos.setup(template)
-		var grid_pos = Vector2i(WIDTH / 2, 0)
-		falling_tetriminos.position = grid_pos * CELL_SIZE
-		falling_tetriminos.grid_pos = grid_pos
-		
-		# TODO: Check if collision with existing cells -> game over
+	if falling_tetriminos != null:
+		# Move down
+		try_move_falling_tetriminos_down()
 		return
 	
-	# Move down
-	try_move_falling_tetriminos_down()
+	# If we do not have a falling tetriminos, spawn one instead
+	print("Spawning new falling tetriminos")
+	var template = get_next_tetriminos_from_deck()
+	falling_tetriminos = tetriminos_prefab.instantiate()
+	add_child(falling_tetriminos)
+	falling_tetriminos.setup(template)
+	var grid_pos = Vector2i(WIDTH / 2, 0)
+	falling_tetriminos.position = grid_pos * CELL_SIZE
+	falling_tetriminos.grid_pos = grid_pos
+	
+	# If we immediately collide with existing cells -> game over
+	if does_falling_tetriminos_collide():
+		print("GAME OVER") # TODO
 
 
 func try_move_falling_tetriminos_x(delta: int) -> bool:
@@ -196,9 +249,30 @@ func does_falling_tetriminos_collide() -> bool:
 
 
 func place_falling_tetriminos() -> void:
-	# TODO Add cells to grid
 	for cell in falling_tetriminos.cells:
 		var res_grid_pos = falling_tetriminos.grid_pos + cell.grid_pos
 		set_at(res_grid_pos.x, res_grid_pos.y, cell.type)
 	falling_tetriminos.queue_free()
 	falling_tetriminos = null
+	
+	clear_full_rows()
+
+
+func clear_full_rows():
+	var rows_to_clear = []
+	for y in range(HEIGHT):
+		var do_clear = true
+		for x in range(WIDTH):
+			if get_at(x, y) == null:
+				do_clear = false
+				continue
+		if do_clear:
+			rows_to_clear.append(y)
+	
+	# Destroy all tiles in the cleared rows, then shift cells down (affects resolution order)
+	for y in rows_to_clear:
+		for x in range(WIDTH):
+			destroy_at(x, y)
+	for y in rows_to_clear:
+		for x in range(WIDTH):
+			shift_above_cells_down(x, y)
