@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtj6g7cn5y1ah"]
+[gd_scene load_steps=5 format=3 uid="uid://dtj6g7cn5y1ah"]
 
 [ext_resource type="Script" uid="uid://dhcv8k3pcomjn" path="res://TetrisGame.gd" id="1_43n6e"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_blw18"]
+[ext_resource type="Script" uid="uid://elavi4xosona" path="res://Scripts/RemainingTime.gd" id="3_arn4l"]
 [ext_resource type="PackedScene" uid="uid://cam00wyvm1d7v" path="res://Prefabs/ScoreCounter.tscn" id="3_cdei4"]
 
 [node name="TetrisGame" type="Node2D"]
@@ -13,14 +14,46 @@ autostart = true
 
 [node name="Score Label" type="RichTextLabel" parent="."]
 offset_left = 320.0
-offset_top = -1.0
+offset_top = 131.0
 offset_right = 560.0
-offset_bottom = 65.0
+offset_bottom = 197.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[color=yellow]Score:[/color]"
 
+[node name="Remaining Time" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_right = 804.0
+offset_bottom = 66.0
+theme = ExtResource("2_blw18")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[color=red]??:??.??????[/color]"
+script = ExtResource("3_arn4l")
+
+[node name="Goal Label" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_top = 66.0
+offset_right = 560.0
+offset_bottom = 132.0
+theme = ExtResource("2_blw18")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[color=red]goal:[/color]"
+
+[node name="Goal Value" type="RichTextLabel" parent="."]
+offset_left = 495.0
+offset_top = 67.0
+offset_right = 768.0
+offset_bottom = 126.0
+theme = ExtResource("2_blw18")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "??"
+horizontal_alignment = 2
+
 [node name="ScoreCounter" parent="." instance=ExtResource("3_cdei4")]
+position = Vector2(495, 126)
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]

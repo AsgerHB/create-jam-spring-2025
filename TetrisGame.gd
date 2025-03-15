@@ -10,8 +10,12 @@ const cell_prefab: PackedScene = preload("res://Prefabs/Cell.tscn")
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 
 @onready var run_state:RunState = $"/root/Run"
+@onready var goal_value:RichTextLabel = $"Goal Value"
+@onready var remaining_time_label:RichTextLabel = $"Remaining Time"
 @onready var score_counter:ScoreCounter = $"ScoreCounter"
 
+@export var remaining_time: float = 50
+@export var score_goal: int = 100
 var tick_number: int = 0 # The current tick count
 @export var move_interval_ticks: int = 14
 @export var move_fast_interval_ticks: int = 2
@@ -31,9 +35,11 @@ func _ready() -> void:
 			r.append(null)
 		grid.append(r)
 	
-		run_state.new_game()
+	run_state.new_game()
+	goal_value.text = str(score_goal)
 
 func dead():
+	await get_tree().create_timer(2.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
 
 
@@ -136,6 +142,12 @@ func _process(delta):
 			ticks_since_last_down_move = 0
 	elif Input.is_action_just_pressed("ui_up"):
 		try_rotate_falling_tetriminos()
+	
+	remaining_time -= delta
+	remaining_time_label.set_time(remaining_time)
+	
+	if remaining_time < 0:
+		dead()
 
 
 func _on_tick() -> void:
@@ -306,3 +318,11 @@ func clear_full_rows():
 			shift_above_cells_down(x, y)
 	if points != 0:
 		score_counter.apply_score(points, mult)
+	
+	if score_counter.current_score >= score_goal:
+		win()
+
+func win():
+	await get_tree().create_timer(4.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
+	
