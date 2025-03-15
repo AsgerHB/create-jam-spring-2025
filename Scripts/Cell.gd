@@ -16,6 +16,7 @@ enum Type {
 	Gift,
 	PlantPot,
 	Plant,
+	Monster,
 }
 # Map that assigns a complexity score to each cell type
 const infinity = 1000000
@@ -32,15 +33,23 @@ const cell_complexity_score = {
 	Type.Gift: 1,
 	Type.PlantPot: 1,
 	Type.Plant: infinity,
+	Type.Monster: 1,
 }
 # A mapping of a sprite's state and where it maps to in the sprite sheet
 const SpriteCoords: Dictionary[Type, Vector2i] = {
-	Type.Standard: Vector2i(0,0),
-	Type.Sand: Vector2i(8,0),
-	Type.Gold: Vector2i(0,8),
-	Type.Bomb: Vector2i(8,8),
-	Type.Compressed: Vector2i(0,16),
-	Type.Balloon: Vector2i(8,16)
+	Type.Standard: 8 * Vector2i(0,0),
+	Type.Sand: 8 * Vector2i(1,0),
+	Type.Gold: 8 * Vector2i(0,1),
+	Type.Bomb: 8 * Vector2i(1,1),
+	Type.Compressed: 8 * Vector2i(0,2),
+	Type.Balloon: 8 * Vector2i(1,2),
+	Type.Monster: 8 * Vector2i(3,2),
+	Type.Gift: 8 * Vector2i(3,0),
+	Type.Plant: 8 * Vector2i(4,1),
+	Type.PlantPot: 8 * Vector2i(4,2),
+	Type.Clock: 8 * Vector2i(2,0),
+	Type.Concrete: 8 * Vector2i(2,1),
+	Type.ConcreteSemiBroken: 8 * Vector2i(2,1),
 }
 
 @export var type: Type = Type.Standard;
@@ -56,18 +65,6 @@ var grid_pos: Vector2i
 func _draw() -> void:
 	const rec = Rect2(-CELL_SIZE / 2, -CELL_SIZE / 2, CELL_SIZE, CELL_SIZE)
 	match type:
-		Type.Concrete:
-			draw_rect(rec, Color.DARK_GRAY)
-		Type.ConcreteSemiBroken:
-			draw_rect(rec, Color.LIGHT_GRAY)
-		Type.Clock:
-			draw_rect(rec, Color.YELLOW)
-		Type.Gift:
-			draw_rect(rec, Color.RED)
-		Type.PlantPot:
-			draw_rect(rec, Color.BROWN)
-		Type.Plant:
-			draw_rect(rec, Color.GREEN)
 		_:
 			var sprite_coords = SpriteCoords[type]
 			draw_texture_rect_region(sprite_sheet, rec, Rect2(sprite_coords.x, sprite_coords.y, 8,8))
@@ -144,6 +141,25 @@ func on_tick(game: TetrisGame, tick: int):
 					else:
 						game.set_at(pos.x, pos.y, Type.Plant)
 						break
+		Type.Monster:
+			var moved = false
+			if tick % 3 == 0:
+				moved = moved or game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y + 1)
+			if not moved and tick % 12 == 0:
+				var possible_directions = []
+				if not game.out_of_bounds(grid_pos.x - 1, grid_pos.y) and game.get_at(grid_pos.x - 1, grid_pos.y) == null:
+					possible_directions.append(Vector2i(-1, 0))
+				elif not game.out_of_bounds(grid_pos.x - 1, grid_pos.y - 1) and game.get_at(grid_pos.x - 1, grid_pos.y - 1) == null:
+					possible_directions.append(Vector2i(-1, -1))
+
+				if not game.out_of_bounds(grid_pos.x + 1, grid_pos.y) and game.get_at(grid_pos.x + 1, grid_pos.y) == null:
+					possible_directions.append(Vector2i(1, 0))
+				elif not game.out_of_bounds(grid_pos.x + 1, grid_pos.y - 1) and game.get_at(grid_pos.x + 1, grid_pos.y - 1) == null:
+					possible_directions.append(Vector2i(1, -1))
+				
+				if possible_directions.size() > 0:
+					var direction = possible_directions[randi() % possible_directions.size()]
+					game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x + direction.x, grid_pos.y + direction.y)
 
 func on_place(game: TetrisGame):
 	# Called when the cell is placed
