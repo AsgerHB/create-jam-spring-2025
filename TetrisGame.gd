@@ -25,6 +25,8 @@ var tick_number: int = 0 # The current tick count
 
 var pause: bool = false
 
+var smash_next: bool = false
+
 var grid: Array = []
 var falling_tetriminos: Tetriminos = null
 var ticks_since_last_down_move: int = 0
@@ -142,6 +144,8 @@ func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 func _process(delta):
 	if pause:
 		return
+	if Input.is_action_just_pressed("slam_down"):
+		smash_next = true
 	if Input.is_action_just_pressed("ui_right"):
 		if try_move_falling_tetriminos_x(1):
 			ticks_since_last_sideways_move = -6
@@ -201,7 +205,8 @@ func _on_tick() -> void:
 		elif Input.is_key_pressed(KEY_W):
 			win()
 	
-	if Input.is_action_pressed("slam_down"):
+	if smash_next:
+		smash_next = false
 		# Hard drop
 		if falling_tetriminos != null:
 			while try_move_falling_tetriminos_down():
