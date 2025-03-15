@@ -49,7 +49,7 @@ const SpriteCoords: Dictionary[Type, Vector2i] = {
 	Type.PlantPot: 8 * Vector2i(4,2),
 	Type.Clock: 8 * Vector2i(2,0),
 	Type.Concrete: 8 * Vector2i(2,1),
-	Type.ConcreteSemiBroken: 8 * Vector2i(2,1),
+	Type.ConcreteSemiBroken: 8 * Vector2i(2,2),
 }
 
 @export var type: Type = Type.Standard;
