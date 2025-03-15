@@ -27,7 +27,7 @@ const SpriteCoords: Dictionary[Type, Vector2i] = {
 	Type.Gold: Vector2i(0,8),
 	Type.Bomb: Vector2i(8,8),
 	Type.Compressed: Vector2i(0,16),
-	Type.Balloon: Vector2i(8,8)
+	Type.Balloon: Vector2i(8,16)
 }
 
 @export var type: Type = Type.Standard;
