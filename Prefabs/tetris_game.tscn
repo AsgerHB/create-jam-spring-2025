@@ -45,7 +45,7 @@ text = "??"
 horizontal_alignment = 2
 
 [node name="ScoreCounter" parent="." instance=ExtResource("3_cdei4")]
-position = Vector2(320, 242)
+position = Vector2(320, 241)
 
 [node name="Status Label" type="RichTextLabel" parent="."]
 offset_left = 320.0
