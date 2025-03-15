@@ -38,8 +38,12 @@ func _ready() -> void:
 	set_at(WIDTH-1, 0, Cell.Type.Standard)
 
 
+func out_of_bounds(x: int, y: int) -> bool:
+	# NOTE: There is no lower bound on y axis (upwards)
+	return x < 0 || x >= WIDTH || y >= HEIGHT
+
 func get_at(x: int, y: int) -> Cell:
-	if x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT:
+	if out_of_bounds(x, y) || y < 0:
 		return null
 	return grid[y][x]
 
@@ -52,6 +56,7 @@ func set_at(x: int, y: int, type: Cell.Type) -> Cell:
 	add_child(cell)
 	cell.position = Vector2i(x * CELL_SIZE, y * CELL_SIZE)
 	cell.type = type
+	grid[y][x] = cell
 	return cell
 
 
@@ -79,10 +84,38 @@ func _on_tick() -> void:
 		falling_tetriminos = tetriminos_prefab.instantiate()
 		add_child(falling_tetriminos)
 		falling_tetriminos.setup(template)
-		falling_tetriminos.position = Vector2i(WIDTH / 2, 0) * CELL_SIZE
+		var grid_pos = Vector2i(WIDTH / 2, 0)
+		falling_tetriminos.position = grid_pos * CELL_SIZE
+		falling_tetriminos.grid_pos = grid_pos
 		
 		# TODO: Check if collision with existing cells -> game over
 		return
 	
-	# TODO: Check if collision with existing cells -> place it instead
+	# Move down
+	falling_tetriminos.grid_pos.y += 1
 	falling_tetriminos.position.y += CELL_SIZE
+	if does_falling_tetriminos_collide():
+		# Undo move and place instead
+		falling_tetriminos.grid_pos.y -= 1
+		falling_tetriminos.position.y -= CELL_SIZE
+		place_falling_tetriminos()
+
+
+func does_falling_tetriminos_collide() -> bool:
+	for cell in falling_tetriminos.cells:
+		var res_grid_pos = falling_tetriminos.grid_pos + cell.grid_pos
+		if out_of_bounds(res_grid_pos.x, res_grid_pos.y):
+			return true
+		if get_at(res_grid_pos.x, res_grid_pos.y) != null:
+			return true
+	
+	return false
+
+
+func place_falling_tetriminos() -> void:
+	# TODO Add cells to grid
+	for cell in falling_tetriminos.cells:
+		var res_grid_pos = falling_tetriminos.grid_pos + cell.grid_pos
+		set_at(res_grid_pos.x, res_grid_pos.y, cell.type)
+	falling_tetriminos.queue_free()
+	falling_tetriminos = null

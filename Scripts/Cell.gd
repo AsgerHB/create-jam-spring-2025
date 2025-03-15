@@ -9,6 +9,9 @@ enum Type {
 
 @export var type: Type = Type.Standard;
 
+# NOTE: Local coord if in falling tetriminos
+var grid_pos: Vector2i
+
 func _draw() -> void:
 	const rec = Rect2(-CELL_SIZE / 2, -CELL_SIZE / 2, CELL_SIZE, CELL_SIZE)
 	# TODO: Use sprites
