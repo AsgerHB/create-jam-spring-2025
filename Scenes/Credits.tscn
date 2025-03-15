@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="1_7xmno"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_uy3b0"]
-[ext_resource type="Script" path="res://Scripts/Credits.gd" id="3_iynit"]
+[ext_resource type="Script" uid="uid://cb8yt3moiakpn" path="res://Scripts/Credits.gd" id="3_iynit"]
 
 [node name="Menu" type="Node2D"]
 

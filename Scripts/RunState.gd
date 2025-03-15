@@ -33,7 +33,7 @@ func _init() -> void:
 		var tetriminos = tetrimino_generator.generate_tetrimino(4, 0)
 		stash.push_back(tetriminos)
 	for i in 3:
-		var tetriminos = tetrimino_generator.generate_tetrimino(5, 4)
+		var tetriminos = tetrimino_generator.generate_tetrimino(5, 0)
 		stash.push_back(tetriminos)
 
 func new_game():
@@ -41,10 +41,10 @@ func new_game():
 	current_stash.shuffle()
 
 func pop_from_stash():
-	if current_stash.size() > 0:
-		return current_stash.pop_back()
-	else:
-		return null
+	if current_stash.size() <= 0:
+		current_stash = stash.duplicate()
+		current_stash.shuffle()
+	return current_stash.pop_back()
 
 func get_level():
 	var n = levels.size()
