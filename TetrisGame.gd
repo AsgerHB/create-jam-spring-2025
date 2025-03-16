@@ -8,7 +8,7 @@ const CELL_SIZE: int = 32
 # TODO: Both of these are basically empty, maybe unnecessary
 const cell_prefab: PackedScene = preload("res://Prefabs/Cell.tscn")
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
-const selector_prefab: PackedScene = preload("res://Prefabs/Selector.tscn")
+const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 
 @onready var run_state:RunState = $"/root/Run"
 @onready var goal_value:RichTextLabel = $"Goal Value"
