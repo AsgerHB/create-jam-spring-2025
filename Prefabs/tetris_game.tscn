@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://elavi4xosona" path="res://Scripts/RemainingTime.gd" id="3_arn4l"]
 [ext_resource type="PackedScene" uid="uid://cam00wyvm1d7v" path="res://Prefabs/ScoreCounter.tscn" id="3_cdei4"]
 [ext_resource type="AudioStream" uid="uid://byb2xhlhq16fj" path="res://Sound/Tetrogue - Main.wav" id="5_2fiad"]
-[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="6_aowk6"]
+[ext_resource type="Script" path="res://Scripts/LoopMusic.gd" id="6_aowk6"]
 
 [node name="TetrisGame" type="Node2D"]
 script = ExtResource("1_43n6e")
