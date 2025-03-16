@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1hqtmp8wnpd"]
+
+[ext_resource type="Script" uid="uid://cb8yt3moiakpn" path="res://Scripts/Credits.gd" id="1_vs51u"]
+[ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="2_8lqe2"]
+[ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="3_mq808"]
+
+[node name="Menu2" type="Node2D"]
+script = ExtResource("1_vs51u")
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(958.5, 539.5)
+scale = Vector2(120.188, 67.1875)
+texture = ExtResource("2_8lqe2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 95.0
+offset_top = 44.0
+offset_right = 1092.0
+offset_bottom = 185.0
+theme = ExtResource("3_mq808")
+theme_override_font_sizes/normal_font_size = 140
+text = "How play"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 85.0
+offset_top = 250.0
+offset_right = 1826.0
+offset_bottom = 792.0
+theme = ExtResource("3_mq808")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "←↑↓→ Move blocks
+SPACE     Slam block down
+
+Reach score target before time runs out.
+Tip: Keep your [color=red] score multiplier[/color] high"
+
+[node name="Interactive" type="Node2D" parent="."]
+script = ExtResource("1_vs51u")
+
+[node name="BackButton" type="Button" parent="Interactive"]
+offset_left = 92.0
+offset_top = 878.0
+offset_right = 800.0
+offset_bottom = 992.0
+theme = ExtResource("3_mq808")
+theme_override_font_sizes/font_size = 90
+text = "Back"
+
+[node name="NextButton" type="Button" parent="Interactive"]
+offset_left = 1007.0
+offset_top = 878.0
+offset_right = 1715.0
+offset_bottom = 992.0
+theme = ExtResource("3_mq808")
+theme_override_font_sizes/font_size = 90
+text = "Next >"
+
+[connection signal="pressed" from="Interactive/BackButton" to="Interactive" method="_on_back_button_pressed"]
+[connection signal="pressed" from="Interactive/NextButton" to="Interactive" method="_on_next_button_pressed"]

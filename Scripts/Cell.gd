@@ -102,7 +102,13 @@ func destroy(game: TetrisGame):
 	# Do scoring
 	var score
 	match type:
-		Type.Gold:
+		Type.Monster:
+			score = 20
+		Type.Mole:
+			score = 15
+		Type.Concrete:
+			score = 10
+		Type.ConcreteSemiBroken:
 			score = 10
 		Type.Compressed:
 			score = 5

@@ -44,13 +44,22 @@ theme_override_font_sizes/font_size = 90
 text = "Start game"
 
 [node name="CreditsButton" type="Button" parent="Interactive"]
-offset_left = 95.0
-offset_top = 577.0
-offset_right = 803.0
-offset_bottom = 691.0
+offset_left = 97.0
+offset_top = 736.0
+offset_right = 805.0
+offset_bottom = 850.0
 theme = ExtResource("1_totuj")
 theme_override_font_sizes/font_size = 90
 text = "Credits"
+
+[node name="InstructionsButton" type="Button" parent="Interactive"]
+offset_left = 97.0
+offset_top = 533.0
+offset_right = 805.0
+offset_bottom = 647.0
+theme = ExtResource("1_totuj")
+theme_override_font_sizes/font_size = 90
+text = "Instructions"
 
 [node name="ListenerExample" type="Node" parent="."]
 script = ExtResource("4_eotax")
@@ -63,4 +72,5 @@ script = ExtResource("6_0126h")
 
 [connection signal="pressed" from="Interactive/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Interactive/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Interactive/InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="finished" from="Tetrogue-Menu" to="Tetrogue-Menu" method="_on_finished"]
