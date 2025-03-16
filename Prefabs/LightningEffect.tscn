@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfevnlrf13kmd"]
+
+[ext_resource type="Texture2D" uid="uid://bbqf5hsc1tsvu" path="res://Sprites/lightning_effect.png" id="1_0672m"]
+
+[node name="LightningEffect" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -287)
+scale = Vector2(3, 3)
+texture = ExtResource("1_0672m")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]
