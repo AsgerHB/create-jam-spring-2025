@@ -17,6 +17,7 @@ enum Type {
 	PlantPot,
 	Plant,
 	Monster,
+	Lightning,
 }
 # Map that assigns a complexity score to each cell type
 const infinity = 1000000
@@ -33,7 +34,8 @@ const cell_complexity_score = {
 	Type.Gift: 2,
 	Type.PlantPot: 1,
 	Type.Plant: infinity,
-	Type.Monster: 1,
+	Type.Monster: 2,
+	Type.Lightning: 1,
 }
 # A mapping of a sprite's state and where it maps to in the sprite sheet
 const SpriteCoords: Dictionary[Type, Vector2i] = {
@@ -50,6 +52,7 @@ const SpriteCoords: Dictionary[Type, Vector2i] = {
 	Type.Clock: 8 * Vector2i(2,0),
 	Type.Concrete: 8 * Vector2i(2,1),
 	Type.ConcreteSemiBroken: 8 * Vector2i(2,2),
+	Type.Lightning: 8 * Vector2i(4,0),
 }
 
 @export var type: Type = Type.Standard;
@@ -174,6 +177,12 @@ func on_tick(game: TetrisGame, tick: int):
 					non_infinite_complexity_types.append(_type)
 			var new_type = non_infinite_complexity_types[randi() % non_infinite_complexity_types.size()]
 			game.set_at(grid_pos.x, grid_pos.y, new_type)
+		Type.Lightning:
+			# Destroy all cells in column
+			for y in range(game.HEIGHT):
+				var c = game.get_at(grid_pos.x, y)
+				if c != null:
+					c.destroy(game)
 
 func on_place(game: TetrisGame):
 	# Called when the cell is placed
