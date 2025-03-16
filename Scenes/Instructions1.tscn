@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1hqtmp8wnpd"]
+[gd_scene load_steps=4 format=3 uid="uid://bwm54cidfov30"]
 
 [ext_resource type="Script" uid="uid://cb8yt3moiakpn" path="res://Scripts/Credits.gd" id="1_vs51u"]
 [ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="2_8lqe2"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="3_mq808"]
 
-[node name="Menu2" type="Node2D"]
+[node name="Menu3" type="Node2D"]
 script = ExtResource("1_vs51u")
 
 [node name="Black" type="Sprite2D" parent="."]

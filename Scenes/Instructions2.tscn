@@ -1,157 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccggcah8x2y63"]
+[gd_scene load_steps=5 format=3 uid="uid://b1h7kajwfrkrv"]
 
 [ext_resource type="Script" uid="uid://cb8yt3moiakpn" path="res://Scripts/Credits.gd" id="1_4uyco"]
 [ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="2_1cyd4"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="3_m48fc"]
-[ext_resource type="Texture2D" uid="uid://dj7j4put16rls" path="res://Sprites/Gray.png" id="3_rv3dk"]
-[ext_resource type="Texture2D" uid="uid://t27wqlp1hsc5" path="res://Sprites/BlockSprites.png" id="5_xl543"]
+[ext_resource type="PackedScene" uid="uid://bbnjt3yj141lc" path="res://Prefabs/block_instructions.tscn" id="4_1cyd4"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_4uyco")
 
 [node name="Black" type="Sprite2D" parent="."]
-position = Vector2(958.5, 539.5)
+position = Vector2(960.5, 537.5)
 scale = Vector2(120.188, 67.1875)
 texture = ExtResource("2_1cyd4")
-
-[node name="Gray" type="Sprite2D" parent="."]
-position = Vector2(1007.25, 451.75)
-scale = Vector2(6.02239, 3.74896)
-texture = ExtResource("3_rv3dk")
-
-[node name="BlockSprites" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.8725, -111.975)
-scale = Vector2(1.11686, 1.79415)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(0.0531025, 0.110546, 7.75385, 7.50169)
-
-[node name="BlockSprites2" type="Sprite2D" parent="Gray"]
-position = Vector2(-92.7749, -96.0388)
-scale = Vector2(1.03681, 1.61089)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(8, 0, 8, 8)
-
-[node name="BlockSprites3" type="Sprite2D" parent="Gray"]
-position = Vector2(-92.6918, -80.2158)
-scale = Vector2(1.01605, 1.6322)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(8, 16, 8, 8)
-
-[node name="BlockSprites4" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.0314, -62.8777)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(0, 8, 8, 8)
-
-[node name="BlockSprites5" type="Sprite2D" parent="Gray"]
-position = Vector2(-90.7863, -47.013)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(8, 8, 8, 8)
-
-[node name="BlockSprites6" type="Sprite2D" parent="Gray"]
-position = Vector2(-90.6202, -32.3423)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(0, 16, 8, 8)
-
-[node name="BlockSprites7" type="Sprite2D" parent="Gray"]
-position = Vector2(-90.1221, -16.8713)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(16, 0, 8, 8)
-
-[node name="BlockSprites8" type="Sprite2D" parent="Gray"]
-position = Vector2(-90.4542, -1.40039)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(32, 0, 8, 8)
-
-[node name="BlockSprites9" type="Sprite2D" parent="Gray"]
-position = Vector2(-89.2918, 13.5371)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(32, 8, 8, 8)
-
-[node name="BlockSprites10" type="Sprite2D" parent="Gray"]
-position = Vector2(-89.2918, 29.008)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(32, 16, 8, 8)
-
-[node name="BlockSprites11" type="Sprite2D" parent="Gray"]
-position = Vector2(-89.79, 44.479)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(24, 0, 8, 8)
-
-[node name="BlockSprites12" type="Sprite2D" parent="Gray"]
-position = Vector2(-90.1221, 59.1497)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(24, 16, 8, 8)
-
-[node name="BlockSprites13" type="Sprite2D" parent="Gray"]
-position = Vector2(-89.6239, 76.7546)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(40, 0, 8, 8)
-
-[node name="BlockSprites14" type="Sprite2D" parent="Gray"]
-position = Vector2(-89.79, 91.692)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("5_xl543")
-region_enabled = true
-region_rect = Rect2(16, 8, 8, 8)
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="."]
-offset_left = 501.5
-offset_top = 11.5
-offset_right = 1905.5
-offset_bottom = 895.5
-theme = ExtResource("3_m48fc")
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 70
-bbcode_enabled = true
-text = "Normal block. +5 points.
-Sand falls down. +5 points.
-FLoats up. +10 points [color=red]+1 mult[/color].
-Steady income. +5 points.
-Explode. +5 points.
-More block per block. +5 points [color=red]+1 mult[/color].
-Extra time. +5 points +5 seconds.
-Clear blocks below. +5 points.
-Plant that grows. +5 points.
-Grows plant. +5 points.
-Random surprise gift!
-He move. +20 points.
-Digs around. +15 points.
-Sturdy. +10 points.
-There may be more that I forgot."
 
 [node name="Interactive" type="Node2D" parent="."]
 script = ExtResource("1_4uyco")
 
 [node name="BackButton" type="Button" parent="Interactive"]
-offset_left = -138.0
+offset_left = -151.0
 offset_top = 49.0
-offset_right = 570.0
+offset_right = 557.0
 offset_bottom = 163.0
 theme = ExtResource("3_m48fc")
 theme_override_font_sizes/font_size = 90
 text = "Back"
+
+[node name="BlockInstructions" parent="." instance=ExtResource("4_1cyd4")]
+position = Vector2(436, 69)
 
 [connection signal="pressed" from="Interactive/BackButton" to="Interactive" method="_on_back_button_pressed"]

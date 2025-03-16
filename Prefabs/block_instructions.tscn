@@ -1,0 +1,135 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbnjt3yj141lc"]
+
+[ext_resource type="Texture2D" uid="uid://dj7j4put16rls" path="res://Sprites/Gray.png" id="1_u0mki"]
+[ext_resource type="Texture2D" uid="uid://t27wqlp1hsc5" path="res://Sprites/BlockSprites.png" id="2_4oh6a"]
+[ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="3_v6a76"]
+
+[node name="BlockInstructions" type="Node2D"]
+
+[node name="Gray" type="Sprite2D" parent="."]
+position = Vector2(605.25, 451.75)
+scale = Vector2(6.02239, 3.74896)
+texture = ExtResource("1_u0mki")
+
+[node name="BlockSprites" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, -111.975)
+scale = Vector2(1.11686, 1.79415)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(0.0531025, 0.110546, 7.75385, 7.50169)
+
+[node name="BlockSprites2" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, -96.0388)
+scale = Vector2(1.03681, 1.61089)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="BlockSprites3" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, -80.2158)
+scale = Vector2(1.01605, 1.6322)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(8, 16, 8, 8)
+
+[node name="BlockSprites4" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, -62.8777)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(0, 8, 8, 8)
+
+[node name="BlockSprites5" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, -47.013)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(8, 8, 8, 8)
+
+[node name="BlockSprites6" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, -32.3423)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(0, 16, 8, 8)
+
+[node name="BlockSprites7" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, -16.8713)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="BlockSprites8" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, -1.40039)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[node name="BlockSprites9" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, 13.5371)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(32, 8, 8, 8)
+
+[node name="BlockSprites10" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, 29.008)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(32, 16, 8, 8)
+
+[node name="BlockSprites11" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, 44.479)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(24, 0, 8, 8)
+
+[node name="BlockSprites12" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, 59.1497)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(24, 16, 8, 8)
+
+[node name="BlockSprites13" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, 76.7546)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(40, 0, 8, 8)
+
+[node name="BlockSprites14" type="Sprite2D" parent="Gray"]
+position = Vector2(-91.6204, 91.692)
+scale = Vector2(1.14059, 1.83225)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(16, 8, 8, 8)
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 99.5002
+offset_top = 11.4997
+offset_right = 1503.5
+offset_bottom = 895.5
+theme = ExtResource("3_v6a76")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "Normal block. +5 points.
+Sand falls down. +5 points.
+FLoats up. +10 points [color=red]+1 mult[/color].
+Steady income. +5 points.
+Explode. +5 points.
+More block per block. +5 points [color=red]+1 mult[/color].
+Extra time. +5 points +5 seconds.
+Clear blocks in column. +5 points.
+Plant that grows. +5 points.
+Grows plant. +5 points.
+Random surprise gift!
+He move. +20 points.
+Digs around. +15 points.
+Sturdy. +10 points.
+There may be more that I forgot..."
