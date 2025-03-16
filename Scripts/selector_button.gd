@@ -3,6 +3,7 @@ extends Button
 var tetramino
 
 @onready var run_state:RunState = $"/root/Run"
+@onready var selector:Selector = $"/root/Run/Selector"
 const game_prefab: PackedScene = preload("res://Scenes/Game.tscn")
 
 func setup(value):
@@ -14,6 +15,12 @@ func _on_button_down():
 	var run = $"/root/Run"
 	#Add reward to stash
 	run_state.stash.push_back(tetramino)
+	
+	self.queue_free()
+	
+	if selector.minos_to_pick > 1:
+		selector.minos_to_pick -= 1
+		return
 	
 	#Pass to game by call_defer deleting entire selector node and all children
 	#Make game prefab and add to root node as child

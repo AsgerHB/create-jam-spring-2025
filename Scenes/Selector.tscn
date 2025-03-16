@@ -1,16 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxy1i87sje2kt"]
+[gd_scene load_steps=6 format=3 uid="uid://dxy1i87sje2kt"]
 
 [ext_resource type="Script" uid="uid://b8gaikrmlclxy" path="res://Scripts/selector.gd" id="1_k2e2o"]
+[ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="2_ji8yk"]
 [ext_resource type="AudioStream" uid="uid://bkslgyuj1ovc7" path="res://Sound/Tetrogue - Menu.wav" id="2_q75pq"]
 [ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="3_c44gr"]
+[ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="4_c44gr"]
 
 [node name="Selector" type="Node2D"]
 script = ExtResource("1_k2e2o")
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(953, 546)
+scale = Vector2(125.25, 72.375)
+texture = ExtResource("2_ji8yk")
 
 [node name="Tetrogue-Menu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_q75pq")
 volume_db = -5.0
 autoplay = true
 script = ExtResource("3_c44gr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 1344.0
+offset_top = 18.0
+offset_right = 1909.0
+offset_bottom = 282.0
+theme = ExtResource("4_c44gr")
+theme_override_font_sizes/normal_font_size = 120
+bbcode_enabled = true
+text = "[color=green]Level up![/color]
+Select 2"
 
 [connection signal="finished" from="Tetrogue-Menu" to="Tetrogue-Menu" method="_on_finished"]
