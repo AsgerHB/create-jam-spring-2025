@@ -148,7 +148,7 @@ func swap(x1: int, y1: int, x2: int, y2: int):
 	snd.position = snd.grid_pos * CELL_SIZE
 	grid[y2][x2] = fst
 	fst.grid_pos = Vector2i(x2, y2)
-	fst.position = snd.grid_pos * CELL_SIZE
+	fst.position = fst.grid_pos * CELL_SIZE
 
 
 func _draw() -> void:
