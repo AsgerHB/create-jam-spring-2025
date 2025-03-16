@@ -26,15 +26,60 @@ var levels = [
 	[2900, 90],
 ]
 
+var L = TetriminosTemplate.new([
+		CellTemplate.new(-1, 0, Cell.Type.Standard),
+		CellTemplate.new(0, 0, Cell.Type.Standard),
+		CellTemplate.new(1, 0, Cell.Type.Standard),
+		CellTemplate.new(-1, 1, Cell.Type.Standard),
+	])
+	
+var J = TetriminosTemplate.new([
+		CellTemplate.new(-1, 0, Cell.Type.Standard),
+		CellTemplate.new(0, 0, Cell.Type.Standard),
+		CellTemplate.new(1, 0, Cell.Type.Standard),
+		CellTemplate.new(-1, -1, Cell.Type.Standard),
+	])
+	
+var T = TetriminosTemplate.new([
+		CellTemplate.new(1, 0, Cell.Type.Standard),
+		CellTemplate.new(0, 0, Cell.Type.Standard),
+		CellTemplate.new(-1, 0, Cell.Type.Standard),
+		CellTemplate.new(0, 1, Cell.Type.Standard),
+	])
+
+var I = TetriminosTemplate.new([
+		CellTemplate.new(1, 0, Cell.Type.Standard),
+		CellTemplate.new(0, 0, Cell.Type.Standard),
+		CellTemplate.new(-1, 0, Cell.Type.Standard),
+		CellTemplate.new(-2, 0, Cell.Type.Standard),
+	])
+
+var S = TetriminosTemplate.new([
+		CellTemplate.new(-1, -1, Cell.Type.Standard),
+		CellTemplate.new(-1, 0, Cell.Type.Standard),
+		CellTemplate.new(0, 0, Cell.Type.Standard),
+		CellTemplate.new(0, 1, Cell.Type.Standard),
+	])
+
+var Z = TetriminosTemplate.new([
+		CellTemplate.new(1, -1, Cell.Type.Standard),
+		CellTemplate.new(1, 0, Cell.Type.Standard),
+		CellTemplate.new(0, 0, Cell.Type.Standard),
+		CellTemplate.new(0, 1, Cell.Type.Standard),
+	])
+
+var O = TetriminosTemplate.new([
+		CellTemplate.new(0, 0, Cell.Type.Standard),
+		CellTemplate.new(0, 1, Cell.Type.Standard),
+		CellTemplate.new(1, 0, Cell.Type.Standard),
+		CellTemplate.new(1, 1, Cell.Type.Standard),
+	])
+
+
 
 func _init() -> void:
 	var tetrimino_generator = TetriminoGenerator.new()
-	for i in 20:
-		var tetriminos = tetrimino_generator.generate_tetrimino(4, 0)
-		stash.push_back(tetriminos)
-	for i in 3:
-		var tetriminos = tetrimino_generator.generate_tetrimino(5, 0)
-		stash.push_back(tetriminos)
+	stash = [ L, J, T, T, I, I, S, Z, O, O ]
 
 func new_game():
 	current_stash = stash.duplicate()

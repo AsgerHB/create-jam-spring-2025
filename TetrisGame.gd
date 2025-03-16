@@ -317,7 +317,10 @@ func place_falling_tetriminos() -> void:
 	for cell in falling_tetriminos.cells:
 		var res_grid_pos = falling_tetriminos.grid_pos + cell.grid_pos
 		set_at(res_grid_pos.x, res_grid_pos.y, cell.type)
-		get_at(res_grid_pos.x, res_grid_pos.y).on_place(self)
+		if get_at(res_grid_pos.x, res_grid_pos.y) == null:
+			dead()
+		else:
+			get_at(res_grid_pos.x, res_grid_pos.y).on_place(self)
 	falling_tetriminos.queue_free()
 	falling_tetriminos = null
 

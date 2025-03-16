@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b8gaikrmlclxy" path="res://Scripts/selector.gd" id="1_k2e2o"]
 [ext_resource type="AudioStream" uid="uid://bkslgyuj1ovc7" path="res://Sound/Tetrogue - Menu.wav" id="2_q75pq"]
-[ext_resource type="Script" path="res://Scripts/LoopMusic.gd" id="3_c44gr"]
+[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="3_c44gr"]
 
 [node name="Selector" type="Node2D"]
 script = ExtResource("1_k2e2o")
 
 [node name="Tetrogue-Menu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_q75pq")
+volume_db = -5.0
 autoplay = true
 script = ExtResource("3_c44gr")
 
