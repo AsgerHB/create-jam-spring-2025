@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfevnlrf13kmd"]
+[gd_scene load_steps=3 format=3 uid="uid://dfevnlrf13kmd"]
 
 [ext_resource type="Texture2D" uid="uid://bbqf5hsc1tsvu" path="res://Sprites/lightning_effect.png" id="1_0672m"]
+[ext_resource type="AudioStream" uid="uid://d2n7sdntcuh5b" path="res://SFX/lightning.wav" id="2_phuli"]
 
 [node name="LightningEffect" type="Node2D"]
 
@@ -13,5 +14,11 @@ texture = ExtResource("1_0672m")
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -287)
+scale = Vector2(3, 3)
+stream = ExtResource("2_phuli")
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="queue_free"]
