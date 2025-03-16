@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1h7kajwfrkrv"]
+[gd_scene load_steps=5 format=3 uid="uid://ccggcah8x2y63"]
 
 [ext_resource type="Script" uid="uid://cb8yt3moiakpn" path="res://Scripts/Credits.gd" id="1_4uyco"]
 [ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="2_1cyd4"]
@@ -23,7 +23,7 @@ offset_right = 557.0
 offset_bottom = 163.0
 theme = ExtResource("3_m48fc")
 theme_override_font_sizes/font_size = 90
-text = "Back"
+text = "[Back]"
 
 [node name="BlockInstructions" parent="." instance=ExtResource("4_1cyd4")]
 position = Vector2(436, 69)
