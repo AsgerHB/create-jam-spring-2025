@@ -20,7 +20,7 @@ var row_spacing = 200
 var grid_spacing = 180
 
 #Minos are misalligned, hack to move them to the right manually
-var mino_offset = 45
+var mino_offset = 80
 
 func _ready():
 	generator = TetriminoGenerator.new()
