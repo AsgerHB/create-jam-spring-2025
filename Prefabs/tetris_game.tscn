@@ -19,10 +19,10 @@ wait_time = 0.05
 autostart = true
 
 [node name="Remaining Time" type="RichTextLabel" parent="."]
-offset_left = 321.0
-offset_top = -1.0
-offset_right = 834.0
-offset_bottom = 129.0
+offset_left = 449.0
+offset_top = 31.0
+offset_right = 962.0
+offset_bottom = 161.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
@@ -30,36 +30,39 @@ text = "[color=red]??:??.??????[/color]"
 scroll_active = false
 horizontal_alignment = 2
 script = ExtResource("3_arn4l")
+metadata/_edit_use_anchors_ = true
 
 [node name="Goal Label" type="RichTextLabel" parent="."]
-offset_left = 320.0
-offset_top = 126.0
-offset_right = 560.0
-offset_bottom = 192.0
+offset_left = 448.0
+offset_top = 158.0
+offset_right = 688.0
+offset_bottom = 224.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[color=yellow]Goal:[/color]"
+metadata/_edit_use_anchors_ = true
 
 [node name="Goal Value" type="RichTextLabel" parent="."]
-offset_left = 560.0
-offset_top = 127.0
-offset_right = 833.0
-offset_bottom = 186.0
+offset_left = 688.0
+offset_top = 159.0
+offset_right = 961.0
+offset_bottom = 218.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "??"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="ScoreCounter" parent="." instance=ExtResource("3_cdei4")]
-position = Vector2(320, 241)
+position = Vector2(448, 273)
 
 [node name="Status Label" type="RichTextLabel" parent="."]
-offset_left = 320.0
-offset_top = 550.0
-offset_right = 833.0
-offset_bottom = 616.0
+offset_left = 448.0
+offset_top = 582.0
+offset_right = 961.0
+offset_bottom = 648.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true

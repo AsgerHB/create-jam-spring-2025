@@ -5,6 +5,7 @@
 
 [node name="SelectorButton" type="Button"]
 theme = ExtResource("1_hw63p")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 button_mask = 7
 text = "Add to pool"
 script = ExtResource("1_bk6sj")
