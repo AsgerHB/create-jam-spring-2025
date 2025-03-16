@@ -26,7 +26,10 @@ func _ready():
 	generator = TetriminoGenerator.new()
 	#Make some minos
 	for i in minos_to_spawn:
-		tetriminos.append(generator.generate_tetrimino(randi() % 3 + 3, randi() % 7))
+		if run_state.level < 5:
+			tetriminos.append(generator.generate_tetrimino(randi() % 3 + 3, randi() % 7))
+		else:
+			tetriminos.append(generator.generate_tetrimino(randi() % 5 + 3, randi() % 15))
 	
 	#Spawn them all
 	for i in minos_to_spawn:
