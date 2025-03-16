@@ -1,23 +1,20 @@
 class_name TetriminoGenerator
 
+const oops_types: Array[Cell.Type] = [
+	Cell.Type.Sand,
+	Cell.Type.Concrete,
+	Cell.Type.Compressed,
+	Cell.Type.Clock,
+	Cell.Type.PlantPot,
+	Cell.Type.Lightning
+]
+
 func tetrimino_hash(tetrimino: Array[CellTemplate]) -> int:
 	var _hash = 0
 	for cell in tetrimino:
 		_hash ^= cell.pos.x + cell.pos.y * 100
 	return _hash
-'
-func update_sprites(cells: Array[CellTemplate]):
 	
-	for cell in cells:
-		for other_cell in cells:
-			if cell == other_cell:
-				continue;
-			if cell.pos.x - other_cell.pos.x == 1: cell.neighbours["left"] = true 
-			if cell.pos.x - other_cell.pos.x == -1: cell.neighbours["right"] = true 
-			if cell.pos.y - other_cell.pos.y == 1: cell.neighbours["down"] = true 
-			if cell.pos.y - other_cell.pos.y == -1: cell.neighbours["up"] = true 
-				
-				'
 # Complexity controls how complex the tetromino is
 func generate_tetrimino(size:int, complexity: int=0) -> TetriminosTemplate:
 	var tetrimino: Array[CellTemplate] = []
@@ -53,12 +50,9 @@ func generate_tetrimino(size:int, complexity: int=0) -> TetriminosTemplate:
 			if not possible_next_positions.has(new_position) and not used_positions.has(new_position):
 				possible_next_positions.append(new_position)
 				
-	if (complexity > 0 && randi() % 10 == 0):
-		var oops_type
-		if randi() % 2 == 0:
-			oops_type = Cell.Type.Balloon # OOPS! ALL BALLOONS!
-		else:
-			oops_type = Cell.Type.Sand # OOPS! ALL SAND!
+	if (complexity > 0 && randi() % 8 == 0):
+		print("OOPS!")
+		var oops_type = oops_types[randi() % len(oops_types)]
 		for t in tetrimino:
 			t.type = oops_type
 		
