@@ -18,6 +18,7 @@ enum Type {
 	Plant,
 	Monster,
 	Lightning,
+	Mole,
 }
 # Map that assigns a complexity score to each cell type
 const infinity = 1000000
@@ -26,9 +27,9 @@ const cell_complexity_score = {
 	Type.Sand: 1,
 	Type.Concrete: 1,
 	Type.ConcreteSemiBroken: infinity,
-	Type.Compressed: 2,
+	Type.Compressed: 1,
 	Type.Balloon: 2,
-	Type.Gold: 3,
+	Type.Gold: 2,
 	Type.Bomb: 2,
 	Type.Clock: 1,
 	Type.Gift: 2,
@@ -36,6 +37,7 @@ const cell_complexity_score = {
 	Type.Plant: infinity,
 	Type.Monster: 2,
 	Type.Lightning: 1,
+	Type.Mole: 2,
 }
 # A mapping of a sprite's state and where it maps to in the sprite sheet
 const SpriteCoords: Dictionary[Type, Vector2i] = {
@@ -53,6 +55,7 @@ const SpriteCoords: Dictionary[Type, Vector2i] = {
 	Type.Concrete: 8 * Vector2i(2,1),
 	Type.ConcreteSemiBroken: 8 * Vector2i(2,2),
 	Type.Lightning: 8 * Vector2i(4,0),
+	Type.Mole: 8 * Vector2i(5,0),
 }
 
 @export var type: Type = Type.Standard;
@@ -183,6 +186,13 @@ func on_tick(game: TetrisGame, tick: int):
 				var c = game.get_at(grid_pos.x, y)
 				if c != null:
 					c.destroy(game)
+		Type.Mole:
+			if tick % 75 == 0:
+				# Swap with a random adjacent cell
+				var dir = [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)][randi() % 4]
+				var target = grid_pos + dir
+				if game.get_at(target.x, target.y) != null:
+					game.swap(grid_pos.x, grid_pos.y, target.x, target.y)
 
 func on_place(game: TetrisGame):
 	# Called when the cell is placed

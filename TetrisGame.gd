@@ -134,6 +134,23 @@ func shift_above_cells_down(x: int, y: int):
 			return
 
 
+func swap(x1: int, y1: int, x2: int, y2: int):
+	var fst = get_at(x1, y1)
+	var snd = get_at(x2, y2)
+	if fst == null:
+		move_cell(x2, y2, x1, y1)
+		return
+	if snd == null:
+		move_cell(x1, y1, x2, y2)
+		return
+	grid[y1][x1] = snd
+	snd.grid_pos = Vector2i(x1, y1)
+	snd.position = snd.grid_pos * CELL_SIZE
+	grid[y2][x2] = fst
+	fst.grid_pos = Vector2i(x2, y2)
+	fst.position = fst.grid_pos * CELL_SIZE
+
+
 func _draw() -> void:
 	# Background
 	var half = 0.5 * CELL_SIZE
