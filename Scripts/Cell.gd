@@ -64,6 +64,7 @@ const SpriteCoords: Dictionary[Type, Vector2i] = {
 		sprite_sheet = value
 		queue_redraw()
 @export var explosion_particle: PackedScene
+const lightning_effect: PackedScene = preload("res://Prefabs/LightningEffect.tscn")
 
 # NOTE: Local coord if in falling tetriminos
 var grid_pos: Vector2i
@@ -182,6 +183,9 @@ func on_tick(game: TetrisGame, tick: int):
 			game.set_at(grid_pos.x, grid_pos.y, new_type)
 		Type.Lightning:
 			# Destroy all cells in column
+			var eff = lightning_effect.instantiate()
+			get_parent().add_child(eff)
+			eff.position = position + Vector2(0, (game.HEIGHT - grid_pos.y - 1) * CELL_SIZE)
 			for y in range(game.HEIGHT):
 				var c = game.get_at(grid_pos.x, y)
 				if c != null:
