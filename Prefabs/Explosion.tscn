@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cfnbwke3gpcxv"]
 
-[ext_resource type="Texture2D" uid="uid://byypo2xcbn4om" path="res://Sprites/Explosion.png" id="1_ps13k"]
+[ext_resource type="Texture2D" uid="uid://byypo2xcbn4om" path="res://Sprites/explosion.png" id="1_ps13k"]
 [ext_resource type="AudioStream" uid="uid://dfdw01nor3p0w" path="res://Sounds/explosion.wav" id="2_8bqok"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8bqok"]

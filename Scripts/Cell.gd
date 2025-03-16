@@ -26,11 +26,11 @@ const cell_complexity_score = {
 	Type.Concrete: 1,
 	Type.ConcreteSemiBroken: infinity,
 	Type.Compressed: 2,
-	Type.Balloon: 1,
+	Type.Balloon: 2,
 	Type.Gold: 3,
-	Type.Bomb: 3,
+	Type.Bomb: 2,
 	Type.Clock: 1,
-	Type.Gift: 1,
+	Type.Gift: 2,
 	Type.PlantPot: 1,
 	Type.Plant: infinity,
 	Type.Monster: 1,
@@ -101,6 +101,9 @@ func destroy(game: TetrisGame):
 		Type.Compressed:
 			score = 5
 			game.score_counter.add_mult(1)
+		Type.Balloon:
+			score = 10
+			game.score_counter.add_mult(1)
 		_:
 			score = 5
 	game.score_counter.apply_score(score, grid_pos * CELL_SIZE)
@@ -162,6 +165,15 @@ func on_tick(game: TetrisGame, tick: int):
 				if possible_directions.size() > 0:
 					var direction = possible_directions[randi() % possible_directions.size()]
 					game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x + direction.x, grid_pos.y + direction.y)
+		Type.Gift:
+			# For that bug where on-placing doesnt work
+			game.remove_at(grid_pos.x, grid_pos.y)
+			var non_infinite_complexity_types = []
+			for _type in Type.values():
+				if cell_complexity_score[_type] < infinity:
+					non_infinite_complexity_types.append(_type)
+			var new_type = non_infinite_complexity_types[randi() % non_infinite_complexity_types.size()]
+			game.set_at(grid_pos.x, grid_pos.y, new_type)
 
 func on_place(game: TetrisGame):
 	# Called when the cell is placed
