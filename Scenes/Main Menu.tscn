@@ -57,6 +57,7 @@ script = ExtResource("4_eotax")
 
 [node name="Tetrogue-Menu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_mjet1")
+volume_db = -5.0
 autoplay = true
 script = ExtResource("6_0126h")
 
