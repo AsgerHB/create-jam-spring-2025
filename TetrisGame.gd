@@ -155,6 +155,11 @@ func _draw() -> void:
 	# Background
 	var half = 0.5 * CELL_SIZE
 	draw_rect(Rect2(-half, -half, WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE), Color.GRAY)
+	if falling_tetriminos != null:
+		for cell in falling_tetriminos.cells:
+			var grid_pos = falling_tetriminos.grid_pos + cell.grid_pos
+			var r = Rect2(-half + grid_pos.x * CELL_SIZE, -half + grid_pos.y * CELL_SIZE, CELL_SIZE, (HEIGHT - grid_pos.y) * CELL_SIZE)
+			draw_rect(r, Color.GRAY * 0.95)
 
 
 func get_next_tetriminos_from_deck() -> TetriminosTemplate:
@@ -164,6 +169,7 @@ func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 	return next
 
 func _process(delta):
+	queue_redraw()
 	if pause:
 		return
 	if Input.is_action_just_pressed("slam_down"):
