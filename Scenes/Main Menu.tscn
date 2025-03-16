@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="1_hcxxy"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="1_totuj"]
 [ext_resource type="Texture2D" uid="uid://ddwhqq338x4d3" path="res://Sprites/Logo.png" id="3_0126h"]
-[ext_resource type="Script" uid="uid://2kgxgonphbi5" path="res://Scripts/MoveLogo.gd" id="4_4lp62"]
+[ext_resource type="Script" path="res://Scripts/MoveLogo.gd" id="4_4lp62"]
 [ext_resource type="Script" uid="uid://d3hhgq3jyhwgk" path="res://Scripts/ListenerExample.gd" id="4_eotax"]
 [ext_resource type="AudioStream" uid="uid://bkslgyuj1ovc7" path="res://Sound/Tetrogue - Menu.wav" id="5_mjet1"]
 [ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="6_0126h"]
