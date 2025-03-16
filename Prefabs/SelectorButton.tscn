@@ -4,10 +4,12 @@
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="1_hw63p"]
 
 [node name="SelectorButton" type="Button"]
+offset_right = 177.0
+offset_bottom = 40.0
 theme = ExtResource("1_hw63p")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 button_mask = 7
-text = "Add to pool"
+text = "[Add to pool]"
 script = ExtResource("1_bk6sj")
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
