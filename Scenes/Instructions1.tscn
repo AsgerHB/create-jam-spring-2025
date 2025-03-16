@@ -36,6 +36,7 @@ Reach score target before time runs out.
 Tip: Keep your [color=red] score multiplier[/color] high"
 
 [node name="Interactive" type="Node2D" parent="."]
+position = Vector2(0, -63)
 script = ExtResource("1_vs51u")
 
 [node name="BackButton" type="Button" parent="Interactive"]
