@@ -16,6 +16,11 @@ const selector_prefab: PackedScene = preload("res://Prefabs/Selector.tscn")
 @onready var status_label:RichTextLabel = $"Status Label"
 @onready var score_counter:ScoreCounter = $"ScoreCounter"
 
+@onready var move_sound:AudioStreamPlayer = $"Sounds/Move"
+@onready var spin_sound:AudioStreamPlayer = $"Sounds/Spin"
+@onready var smash_sound:AudioStreamPlayer = $"Sounds/Smash"
+@onready var clear_sound:AudioStreamPlayer = $"Sounds/Clear"
+
 @export var remaining_time: float = 50
 @export var score_goal: int = 100
 var tick_number: int = 0 # The current tick count
@@ -145,17 +150,21 @@ func _process(delta):
 	if pause:
 		return
 	if Input.is_action_just_pressed("slam_down"):
+		smash_sound.play()
 		smash_next = true
 	if Input.is_action_just_pressed("ui_right"):
+		move_sound.play()
 		if try_move_falling_tetriminos_x(1):
 			ticks_since_last_sideways_move = -6
 	elif Input.is_action_just_pressed("ui_left"):
+		move_sound.play()
 		if try_move_falling_tetriminos_x(-1):
 			ticks_since_last_sideways_move = -6
 	elif Input.is_action_just_pressed("ui_down"):
 		if try_move_falling_tetriminos_down():
 			ticks_since_last_down_move = 0
 	elif Input.is_action_just_pressed("ui_up"):
+		spin_sound.play()
 		try_rotate_falling_tetriminos()
 	
 	if remaining_time > 1:
@@ -338,6 +347,7 @@ func clear_full_rows():
 	
 	if len(rows_to_clear) > 0:
 		score_counter.bump_streak()
+		clear_sound.play()
 	
 	# Destroy all tiles in the cleared rows, applying mult
 	var first = true
