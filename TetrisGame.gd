@@ -43,7 +43,7 @@ var root
 
 func _ready() -> void:
 	root = get_tree().get_root()
-	print(self.get_path())
+	score_counter.set_level(run_state.level)
 	for row in range(HEIGHT):
 		var r = []
 		for col in range(WIDTH):
