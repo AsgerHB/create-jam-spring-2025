@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://4e0mt4skc7qg"]
+
+[ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="1_th0od"]
+[ext_resource type="Script" uid="uid://b7nw35y2wrorm" path="res://Scripts/GoUp.gd" id="2_385ts"]
+
+[node name="TimeEffect" type="Node2D"]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -159.0
+offset_top = -64.0
+offset_right = 212.0
+offset_bottom = 35.0
+theme = ExtResource("1_th0od")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[color=blue]+5 seconds[/color]"
+script = ExtResource("2_385ts")
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

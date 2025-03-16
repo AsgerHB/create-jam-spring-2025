@@ -65,6 +65,7 @@ const SpriteCoords: Dictionary[Type, Vector2i] = {
 		queue_redraw()
 @export var explosion_particle: PackedScene
 const lightning_effect: PackedScene = preload("res://Prefabs/LightningEffect.tscn")
+const time_effect: PackedScene = preload("res://Prefabs/TimeEffect.tscn")
 
 # NOTE: Local coord if in falling tetriminos
 var grid_pos: Vector2i
@@ -94,6 +95,9 @@ func destroy(game: TetrisGame):
 				if n != null:
 					n.destroy(game)
 		Type.Clock:
+			var time_effect_instance = time_effect.instantiate()
+			get_parent().add_child(time_effect_instance)
+			time_effect_instance.position = position
 			game.remove_at(grid_pos.x, grid_pos.y)
 			game.remaining_time += 5
 		_:
