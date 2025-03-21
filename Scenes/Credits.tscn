@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_uy3b0"]
 [ext_resource type="Script" uid="uid://cb8yt3moiakpn" path="res://Scripts/Credits.gd" id="3_iynit"]
 
-[node name="Menu" type="Node2D"]
+[node name="Credits" type="Node2D"]
 script = ExtResource("3_iynit")
 
 [node name="Black" type="Sprite2D" parent="."]
@@ -45,6 +45,6 @@ offset_right = 1291.0
 offset_bottom = 1003.0
 theme = ExtResource("2_uy3b0")
 theme_override_font_sizes/font_size = 90
-text = "Back"
+text = "[Back]"
 
 [connection signal="pressed" from="Interactive/BackButton" to="Interactive" method="_on_back_button_pressed"]

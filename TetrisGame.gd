@@ -391,6 +391,7 @@ func clear_full_rows():
 	
 
 func win():
+	run_state.register_score(score_counter.current_score)
 	run_state.increment_level()
 	status_label.text = "[color=green]Winner! :-)[/color]"
 	pause = true
@@ -398,8 +399,8 @@ func win():
 	get_tree().change_scene_to_file("res://Scenes/Selector.tscn")
 
 func dead():
+	run_state.register_score(score_counter.current_score)
 	status_label.text = "[color=red]DIED :'([/color]"
 	pause = true
 	await get_tree().create_timer(2.0).timeout
-	run_state.new_game()
-	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/EndScreen.tscn")

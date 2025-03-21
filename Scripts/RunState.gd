@@ -10,6 +10,9 @@ var current_stash: Array[TetriminosTemplate] = stash.duplicate();
 # All the player's tetriminos. Hard-coded to starting values
 var stash: Array[TetriminosTemplate] = []
 var level: int = 0
+var accumulated_score = 0
+var highest_score = 0
+
 var levels = [
 	[100, 90],
 	[250, 90],
@@ -78,13 +81,18 @@ var O = TetriminosTemplate.new([
 
 
 func _init() -> void:
-	var tetrimino_generator = TetriminoGenerator.new()
+	reset()
+
+func reset():
+	# var tetrimino_generator = TetriminoGenerator.new()
 	stash = [ L, J, T, T, I, I, S, Z, O, O ]
+	level = 0
+	accumulated_score = 0
+	highest_score = 0
 
 func new_game():
 	current_stash = stash.duplicate()
 	current_stash.shuffle()
-	level = 0
 
 func pop_from_stash():
 	if current_stash.size() <= 0:
@@ -101,3 +109,8 @@ func get_level():
 
 func increment_level():
 	level += 1
+
+func register_score(score):
+	accumulated_score += score
+	if score > highest_score:
+		highest_score = score
