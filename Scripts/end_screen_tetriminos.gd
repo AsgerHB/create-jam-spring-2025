@@ -4,8 +4,8 @@ class_name EndScreenTetriminos
 @export var reset_at = 1920 # Position after which to reset to
 @onready var initial_position = transform.x
 var rotation_counter = 0 # For wiggling the tetriminos
-@export var rotation_rate = 2
-@export var rotation_multiplier = 0.3
+@export var rotation_rate = 4 # How quickly they rotate
+@export var rotation_multiplier = 0.2 # Set to less than 1 to make them just wiggle a little.
 
 func initialize() -> void:
 	# Move initial position so it starts by only showing the last tetrimino
@@ -24,7 +24,10 @@ func _process(delta: float) -> void:
 		position.x = initial_position
 	
 	rotation_counter += delta*rotation_rate
-	var i = 0
+	
+	# The i is just to get a unique offset for each chid. 
+	# Since 1 is not a divisor of π, they will rotate out of sync.
+	var i = 0 
 	for child in get_children():
 		i += 1
 		child.rotation = sin(rotation_counter + i)*rotation_multiplier

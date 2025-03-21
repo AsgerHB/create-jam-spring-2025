@@ -50,7 +50,5 @@ text = "[Return to Menu]"
 position = Vector2(-62, 762)
 script = ExtResource("5_jh5rx")
 scroll_speed = 200
-rotation_rate = 4
-rotation_multiplier = 0.2
 
 [connection signal="pressed" from="Interactive/BackButton" to="Interactive" method="_on_back_button_pressed"]

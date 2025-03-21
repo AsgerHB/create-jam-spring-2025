@@ -9,18 +9,20 @@ const button_prefab: PackedScene = preload("res://Prefabs/SelectorButton.tscn")
 var generator
 var tetriminos = []
 var spawnedminos = []
-var time = 0
+var rotation_progress = 0
+@export var rotation_rate = 4 # How quickly they rotate
+@export var rotation_multiplier = 0.2 # Set to less than 1 to make them just wiggle a little.
 
-var minos_to_spawn = 6
-var minos_to_pick = 2
+@export var minos_to_spawn = 6
+@export var minos_to_pick = 2
 
-var button_y_offset = 100
-var row_offset = 500
-var row_spacing = 200
-var grid_spacing = 180
+@export var button_y_offset = 100
+@export var row_offset = 500
+@export var row_spacing = 200
+@export var grid_spacing = 180
 
 #Minos are misalligned, hack to move them to the right manually
-var mino_offset = 80
+@export var mino_offset = 80
 
 func _ready():
 	generator = TetriminoGenerator.new()
@@ -56,9 +58,15 @@ func _ready():
 
 #Spinner, this is gonna perform badly, gamejam yay
 func _process(delta):
-	time += delta
+	rotation_progress += delta*rotation_rate
+	
+	
+	# The i is just to get a unique offset for each chid. 
+	# Since 1 is not a divisor of π, they will rotate out of sync.
+	var i = 0 
 	for item in spawnedminos:
-		item.rotation = sin(time)
+		i += 1
+		item.rotation = sin(rotation_progress + i)*rotation_multiplier
 		
 func buttonFunc():
 	print("sanity sweet sanity")
