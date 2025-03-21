@@ -10,7 +10,7 @@ const cell_prefab: PackedScene = preload("res://Prefabs/Cell.tscn")
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 
-@onready var run_state:RunState = $"/root/Run"
+@onready var run_state:RunState = CurrentRun
 @onready var goal_value:RichTextLabel = $"Goal Value"
 @onready var remaining_time_label:RichTextLabel = $"Remaining Time"
 @onready var status_label:RichTextLabel = $"Status Label"
@@ -395,17 +395,11 @@ func win():
 	status_label.text = "[color=green]Winner! :-)[/color]"
 	pause = true
 	await get_tree().create_timer(2.0).timeout
-	var run = $"/root/Run"
-	var game = $"/root/Run/Game"
-	var selector = selector_prefab.instantiate()
-	run.add_child(selector)
-	game.call_deferred("queue_free")
-	
-	#get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")
-	
+	get_tree().change_scene_to_file("res://Scenes/Selector.tscn")
 
 func dead():
 	status_label.text = "[color=red]DIED :'([/color]"
 	pause = true
 	await get_tree().create_timer(2.0).timeout
+	run_state.new_game()
 	get_tree().change_scene_to_file("res://Scenes/Main Menu.tscn")

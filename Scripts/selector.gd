@@ -1,7 +1,7 @@
 extends Node2D
 class_name Selector
 
-@onready var run_state:RunState = $"/root/Run"
+@onready var run_state:RunState = CurrentRun
 
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 const button_prefab: PackedScene = preload("res://Prefabs/SelectorButton.tscn")

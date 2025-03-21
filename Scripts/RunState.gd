@@ -84,6 +84,7 @@ func _init() -> void:
 func new_game():
 	current_stash = stash.duplicate()
 	current_stash.shuffle()
+	level = 0
 
 func pop_from_stash():
 	if current_stash.size() <= 0:
