@@ -127,7 +127,7 @@ theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "Normal block. +5 points.
 Compressed block. +20 points.
-Multiplier block. +5 points [color=red]+1 mult[/color].
+Multiplier block. [color=red]+1 mult[/color].
 Balloon, floats up. +5 points [color=red]+2 mult[/color].
 Gold, steady income. +5 points.
 Bomb, explodes. +5 points.
