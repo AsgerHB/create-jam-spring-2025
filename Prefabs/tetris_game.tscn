@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtj6g7cn5y1ah"]
+[gd_scene load_steps=12 format=3 uid="uid://dtj6g7cn5y1ah"]
 
 [ext_resource type="Script" uid="uid://dhcv8k3pcomjn" path="res://TetrisGame.gd" id="1_43n6e"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_blw18"]
 [ext_resource type="Script" uid="uid://elavi4xosona" path="res://Scripts/RemainingTime.gd" id="3_arn4l"]
 [ext_resource type="PackedScene" uid="uid://cam00wyvm1d7v" path="res://Prefabs/ScoreCounter.tscn" id="3_cdei4"]
 [ext_resource type="AudioStream" uid="uid://byb2xhlhq16fj" path="res://Sound/Tetrogue - Main.wav" id="5_2fiad"]
-[ext_resource type="Script" path="res://Scripts/LoopMusic.gd" id="6_aowk6"]
+[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="6_aowk6"]
 [ext_resource type="AudioStream" uid="uid://bsq5etm746bie" path="res://SFX/move.wav" id="7_l56uk"]
 [ext_resource type="AudioStream" uid="uid://cb6j4bnup52id" path="res://SFX/rotate.wav" id="8_xqelj"]
 [ext_resource type="AudioStream" uid="uid://bhydcrsgwxxho" path="res://SFX/slam.wav" id="9_vlfn3"]
 [ext_resource type="AudioStream" uid="uid://cbtuhsa3wysxg" path="res://SFX/clear_row.wav" id="10_4fu76"]
+[ext_resource type="AudioStream" uid="uid://qiwhghip8laf" path="res://SFX/next_level.wav" id="11_xqelj"]
 
 [node name="TetrisGame" type="Node2D"]
 script = ExtResource("1_43n6e")
@@ -86,6 +87,9 @@ stream = ExtResource("9_vlfn3")
 
 [node name="Clear" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("10_4fu76")
+
+[node name="NextLevel" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("11_xqelj")
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]
 [connection signal="finished" from="Tetrogue-Main" to="Tetrogue-Main" method="_on_finished"]

@@ -20,6 +20,8 @@ const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 @onready var spin_sound:AudioStreamPlayer = $"Sounds/Spin"
 @onready var smash_sound:AudioStreamPlayer = $"Sounds/Smash"
 @onready var clear_sound:AudioStreamPlayer = $"Sounds/Clear"
+@onready var win_sound:AudioStreamPlayer = $"Sounds/NextLevel"
+@onready var background_music:AudioStreamPlayer = $"Tetrogue-Main"
 
 @export var remaining_time: float = 50
 @export var score_goal: int = 100
@@ -29,6 +31,7 @@ var tick_number: int = 0 # The current tick count
 @export var move_sideways_interval_ticks: int = 2
 
 var pause: bool = false
+var died: bool = false
 
 var smash_next: bool = false
 
@@ -171,6 +174,10 @@ func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 func _process(delta):
 	queue_redraw()
 	if pause:
+		if died:
+			background_music.pitch_scale -= delta/2
+		else:
+			background_music.volume_linear -= delta*0.5
 		return
 	if Input.is_action_just_pressed("slam_down"):
 		smash_sound.play()
@@ -395,6 +402,7 @@ func win():
 	run_state.increment_level()
 	status_label.text = "[color=green]Winner! :-)[/color]"
 	pause = true
+	win_sound.play()
 	await get_tree().create_timer(2.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/Selector.tscn")
 
@@ -402,5 +410,6 @@ func dead():
 	run_state.register_score(score_counter.current_score)
 	status_label.text = "[color=red]DIED :'([/color]"
 	pause = true
+	died = true
 	await get_tree().create_timer(2.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/EndScreen.tscn")
