@@ -68,8 +68,21 @@ func generate_tetrimino(complexity: int) -> TetriminosTemplate:
 			var new_position = next_position + offset
 			if not possible_next_positions.has(new_position) and not used_positions.has(new_position):
 				possible_next_positions.append(new_position)
-		
-	# Canonize tetrimino
+	
+	# Center tetrimino
+	var min_corner = Vector2i()
+	var max_corner = Vector2i()
+	for cell in tetrimino:
+		min_corner = min_corner.min(cell.pos)
+		max_corner = max_corner.max(cell.pos)
+	var adjust = min_corner + Vector2i(
+		floor((max_corner.x - min_corner.x + 1) / 2),
+		floor((max_corner.y - min_corner.y + 1) / 2)
+	)
+	for cell in tetrimino:
+		cell.pos -= adjust
+	
+	# Canonize tetrimino rotation
 	var min_hash = tetrimino_hash(tetrimino)
 	var min_hash_tetrimino = tetrimino.duplicate()
 	for i in range(3):
