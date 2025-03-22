@@ -4,6 +4,7 @@ class_name Selector
 @onready var run_state:RunState = CurrentRun
 @onready var pick_sound = $"Pick"
 @onready var powerup_sound = $"PowerUp"
+@onready var background_music = $"Tetrogue-Menu"
 
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 const button_prefab: PackedScene = preload("res://Prefabs/SelectorButton.tscn")
@@ -64,6 +65,7 @@ func _ready():
 #Spinner, this is gonna perform badly, gamejam yay
 func _process(delta):
 	if fade_out:
+		background_music.volume_linear -= delta*0.5
 		fade_progress += delta*fade_rate
 		var i = 0
 		var size = max(0, 1 - fade_progress)
