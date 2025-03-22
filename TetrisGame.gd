@@ -177,7 +177,7 @@ func _process(delta):
 		if died:
 			background_music.pitch_scale -= delta/2
 		else:
-			background_music.volume_linear -= delta*4
+			background_music.volume_linear -= delta*0.5
 		return
 	if Input.is_action_just_pressed("slam_down"):
 		smash_sound.play()
