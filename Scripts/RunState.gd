@@ -96,7 +96,7 @@ func get_level():
 		return levels[level]
 	else:
 		# Increase goal quadratically from now
-		var n = levels.size() - level
+		var n = level - levels.size()
 		return [5*n**2 + 250*n + 1000, 90]
 
 func increment_level():

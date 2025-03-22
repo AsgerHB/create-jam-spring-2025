@@ -6,6 +6,7 @@ const CELL_SIZE: int = 32
 enum Type {
 	Standard,
 	Compressed,
+	Multiplier,
 	Sand,
 	Balloon,
 	Gold,
@@ -24,10 +25,11 @@ enum Type {
 const infinity = 1000000
 const cell_complexity_score = {
 	Type.Standard: 0,
+	Type.Compressed: 0,
+	Type.Multiplier: 1,
 	Type.Sand: 1,
 	Type.Concrete: 1,
 	Type.ConcreteSemiBroken: infinity,
-	Type.Compressed: 1,
 	Type.Balloon: 2,
 	Type.Gold: 2,
 	Type.Bomb: 2,
@@ -42,10 +44,11 @@ const cell_complexity_score = {
 # A mapping of a sprite's state and where it maps to in the sprite sheet
 const SpriteCoords: Dictionary[Type, Vector2i] = {
 	Type.Standard: 8 * Vector2i(0,0),
+	Type.Compressed: 8 * Vector2i(5,1),
+	Type.Multiplier: 8 * Vector2i(0,2),
 	Type.Sand: 8 * Vector2i(1,0),
 	Type.Gold: 8 * Vector2i(0,1),
 	Type.Bomb: 8 * Vector2i(1,1),
-	Type.Compressed: 8 * Vector2i(0,2),
 	Type.Balloon: 8 * Vector2i(1,2),
 	Type.Monster: 8 * Vector2i(3,2),
 	Type.Gift: 8 * Vector2i(3,0),
@@ -116,7 +119,8 @@ func destroy(game: TetrisGame):
 		Type.ConcreteSemiBroken:
 			score = 10
 		Type.Compressed:
-			score = 5
+			score = 20
+		Type.Multiplier:
 			game.score_counter.add_mult(1)
 		Type.Balloon:
 			score = 5

@@ -11,119 +11,127 @@ position = Vector2(605.25, 451.75)
 scale = Vector2(6.02239, 3.74896)
 texture = ExtResource("1_u0mki")
 
-[node name="BlockSprites" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, -111.975)
-scale = Vector2(1.11686, 1.79415)
+[node name="BlockSprites" type="Sprite2D" parent="."]
+position = Vector2(60, 51.64)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(0.0531025, 0.110546, 7.75385, 7.50169)
+region_rect = Rect2(0, 0, 8, 8)
 
-[node name="BlockSprites2" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, -96.0388)
-scale = Vector2(1.03681, 1.61089)
+[node name="BlockSprites1" type="Sprite2D" parent="."]
+position = Vector2(60, 102)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(8, 0, 8, 8)
+region_rect = Rect2(40, 8, 8, 8)
 
-[node name="BlockSprites3" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, -80.2158)
-scale = Vector2(1.01605, 1.6322)
-texture = ExtResource("2_4oh6a")
-region_enabled = true
-region_rect = Rect2(8, 16, 8, 8)
-
-[node name="BlockSprites4" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, -62.8777)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("2_4oh6a")
-region_enabled = true
-region_rect = Rect2(0, 8, 8, 8)
-
-[node name="BlockSprites5" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, -47.013)
-scale = Vector2(1.14059, 1.83225)
-texture = ExtResource("2_4oh6a")
-region_enabled = true
-region_rect = Rect2(8, 8, 8, 8)
-
-[node name="BlockSprites6" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, -32.3423)
-scale = Vector2(1.14059, 1.83225)
+[node name="BlockSprites2" type="Sprite2D" parent="."]
+position = Vector2(60, 155)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(0, 16, 8, 8)
 
-[node name="BlockSprites7" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, -16.8713)
-scale = Vector2(1.14059, 1.83225)
+[node name="BlockSprites3" type="Sprite2D" parent="."]
+position = Vector2(60, 208)
+scale = Vector2(5, 5)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(8, 16, 8, 8)
+
+[node name="BlockSprites4" type="Sprite2D" parent="."]
+position = Vector2(60, 260)
+scale = Vector2(5, 5)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(0, 8, 8, 8)
+
+[node name="BlockSprites5" type="Sprite2D" parent="."]
+position = Vector2(60, 313)
+scale = Vector2(5, 5)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(8, 8, 8, 8)
+
+[node name="BlockSprites6" type="Sprite2D" parent="."]
+position = Vector2(60, 363)
+scale = Vector2(5, 5)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="BlockSprites7" type="Sprite2D" parent="."]
+position = Vector2(60, 416)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(16, 0, 8, 8)
 
-[node name="BlockSprites8" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, -1.40039)
-scale = Vector2(1.14059, 1.83225)
+[node name="BlockSprites8" type="Sprite2D" parent="."]
+position = Vector2(60, 468)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(32, 0, 8, 8)
 
-[node name="BlockSprites9" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, 13.5371)
-scale = Vector2(1.14059, 1.83225)
+[node name="BlockSprites9" type="Sprite2D" parent="."]
+position = Vector2(60, 520)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(32, 8, 8, 8)
 
-[node name="BlockSprites10" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, 29.008)
-scale = Vector2(1.14059, 1.83225)
+[node name="BlockSprites10" type="Sprite2D" parent="."]
+position = Vector2(60, 572)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(32, 16, 8, 8)
 
-[node name="BlockSprites11" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, 44.479)
-scale = Vector2(1.14059, 1.83225)
+[node name="BlockSprites11" type="Sprite2D" parent="."]
+position = Vector2(60, 628)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(24, 0, 8, 8)
 
-[node name="BlockSprites12" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, 59.1497)
-scale = Vector2(1.14059, 1.83225)
+[node name="BlockSprites12" type="Sprite2D" parent="."]
+position = Vector2(60, 679)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(24, 16, 8, 8)
 
-[node name="BlockSprites13" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, 76.7546)
-scale = Vector2(1.14059, 1.83225)
+[node name="BlockSprites13" type="Sprite2D" parent="."]
+position = Vector2(60, 730)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(40, 0, 8, 8)
 
-[node name="BlockSprites14" type="Sprite2D" parent="Gray"]
-position = Vector2(-91.6204, 91.692)
-scale = Vector2(1.14059, 1.83225)
+[node name="BlockSprites14" type="Sprite2D" parent="."]
+position = Vector2(60, 780)
+scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(16, 8, 8, 8)
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
-offset_left = 99.5002
-offset_top = 11.4997
-offset_right = 1503.5
-offset_bottom = 895.5
+offset_left = 104.0
+offset_top = 24.0
+offset_right = 1170.0
+offset_bottom = 908.0
 theme = ExtResource("3_v6a76")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 70
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "Normal block. +5 points.
-Sand, falls down. +5 points.
+Compressed block. +20 points.
+Multiplier block. +5 points [color=red]+1 mult[/color].
 Balloon, floats up. +5 points [color=red]+2 mult[/color].
 Gold, steady income. +5 points.
 Bomb, explodes. +5 points.
-Multiplier block. +5 points [color=red]+1 mult[/color].
+Sand, falls down. +5 points.
 Clock. +5 points [color=blue]+5 seconds[/color].
 Lightning, clears column. +5 points.
 Plant, grows. +5 points.

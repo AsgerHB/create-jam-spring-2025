@@ -1,9 +1,10 @@
 class_name TetriminoGenerator
 
 const oops_types: Array[Cell.Type] = [
+	Cell.Type.Compressed,
+	Cell.Type.Multiplier,
 	Cell.Type.Sand,
 	Cell.Type.Concrete,
-	Cell.Type.Compressed,
 	Cell.Type.Clock,
 	Cell.Type.PlantPot,
 	Cell.Type.Lightning
