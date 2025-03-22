@@ -20,6 +20,7 @@ const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 @onready var spin_sound:AudioStreamPlayer = $"Sounds/Spin"
 @onready var smash_sound:AudioStreamPlayer = $"Sounds/Smash"
 @onready var clear_sound:AudioStreamPlayer = $"Sounds/Clear"
+@onready var background_music:AudioStreamPlayer = $"Tetrogue-Main"
 
 @export var remaining_time: float = 50
 @export var score_goal: int = 100
@@ -171,6 +172,7 @@ func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 func _process(delta):
 	queue_redraw()
 	if pause:
+		background_music.pitch_scale -= delta
 		return
 	if Input.is_action_just_pressed("slam_down"):
 		smash_sound.play()
