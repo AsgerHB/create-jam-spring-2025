@@ -121,6 +121,7 @@ func destroy(game: TetrisGame):
 		Type.Compressed:
 			score = 20
 		Type.Multiplier:
+			score = 5
 			game.score_counter.add_mult(1)
 		Type.Balloon:
 			score = 5
