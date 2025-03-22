@@ -5,7 +5,7 @@ class_name Selector
 @onready var pick_sound = $"Pick"
 @onready var powerup_sound = $"PowerUp"
 @onready var background_music = $"Tetrogue-Menu"
-
+@onready var black_fade:Sprite2D = $"Black-fade"
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 const button_prefab: PackedScene = preload("res://Prefabs/SelectorButton.tscn")
 
@@ -66,6 +66,7 @@ func _ready():
 func _process(delta):
 	if fade_out:
 		background_music.volume_linear -= delta*0.5
+		black_fade.modulate.a += delta
 		fade_progress += delta*fade_rate
 		var i = 0
 		var size = max(0, 1 - fade_progress)
@@ -88,9 +89,6 @@ func _process(delta):
 			continue
 		item.rotation = sin(rotation_progress + i)*rotation_multiplier
 		i += 1
-		
-func buttonFunc():
-	print("sanity sweet sanity")
 
 func register_picked(index):
 	picked_minos.append(index)
@@ -104,4 +102,4 @@ func register_picked(index):
 				child.queue_free()
 		fade_out = true
 		await get_tree().create_timer(0.5).timeout
-		get_tree().change_scene_to_file("res://Scenes/Game.tscn")
+		get_tree().change_scene_to_file("res://Scenes/GetReadyScreen.tscn")

@@ -60,4 +60,10 @@ position = Vector2(0, 4)
 stream = ExtResource("10_6c46q")
 pitch_scale = 0.8
 
+[node name="Black-fade" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(145201, 45780)
+scale = Vector2(21370.9, 5953.08)
+texture = ExtResource("2_ji8yk")
+
 [connection signal="finished" from="Tetrogue-Menu" to="Tetrogue-Menu" method="_on_finished"]
