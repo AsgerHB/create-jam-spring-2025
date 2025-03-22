@@ -21,8 +21,10 @@ enum Type {
 	Lightning,
 	Mole,
 }
-# Map that assigns a complexity score to each cell type
-const infinity = 1000000
+
+# Map that assigns a complexity score to each cell type.
+# Higher complexity results in smaller tetrimino.
+const infinity = 1000000  # Cannot appear in tetrimino.
 const cell_complexity_score = {
 	Type.Standard: 0,
 	Type.Compressed: 0,
@@ -34,11 +36,11 @@ const cell_complexity_score = {
 	Type.Gold: 2,
 	Type.Bomb: 2,
 	Type.Clock: 1,
-	Type.Gift: 2,
+	Type.Gift: 3,
 	Type.PlantPot: 1,
 	Type.Plant: infinity,
 	Type.Monster: 2,
-	Type.Lightning: 1,
+	Type.Lightning: 2,
 	Type.Mole: 2,
 }
 # A mapping of a sprite's state and where it maps to in the sprite sheet
@@ -108,7 +110,7 @@ func destroy(game: TetrisGame):
 	
 
 	# Do scoring
-	var score
+	var score = 0
 	match type:
 		Type.Monster:
 			score = 20

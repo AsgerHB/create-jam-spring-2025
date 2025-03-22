@@ -27,11 +27,10 @@ var rotation_progress = 0
 func _ready():
 	generator = TetriminoGenerator.new()
 	#Make some minos
+	var complexity_min = floor(4 + run_state.level / 5.0)
+	var complexity_max = floor(complexity_min + 3 + run_state.level / 3.0)
 	for i in minos_to_spawn:
-		if run_state.level < 5:
-			tetriminos.append(generator.generate_tetrimino(randi() % 3 + 3, randi() % 7))
-		else:
-			tetriminos.append(generator.generate_tetrimino(randi() % 5 + 3, randi() % 15))
+		tetriminos.append(generator.generate_tetrimino(randi_range(complexity_min, complexity_max)))
 	
 	#Spawn them all
 	for i in minos_to_spawn:
