@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cb8yt3moiakpn" path="res://Scripts/Credits.gd" id="1_jrx8a"]
 [ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="2_3gukv"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="3_jh5rx"]
-[ext_resource type="Script" uid="uid://33r5glsquigc" path="res://Scripts/end_screen_tetriminos.gd" id="5_jh5rx"]
+[ext_resource type="PackedScene" uid="uid://d0e4h7e60xinr" path="res://Prefabs/ScrollingMinos.tscn" id="5_jh5rx"]
 [ext_resource type="Texture2D" uid="uid://dj7j4put16rls" path="res://Sprites/Gray.png" id="6_d234m"]
 
 [node name="EndScreen" type="Node2D"]
@@ -16,7 +16,7 @@ scale = Vector2(120.188, 67.1875)
 texture = ExtResource("2_3gukv")
 
 [node name="Gray" type="Sprite2D" parent="."]
-position = Vector2(959.375, 762)
+position = Vector2(963, 762)
 scale = Vector2(9.55846, 0.838174)
 texture = ExtResource("6_d234m")
 
@@ -52,9 +52,7 @@ theme = ExtResource("3_jh5rx")
 theme_override_font_sizes/font_size = 90
 text = "[Return to Menu]"
 
-[node name="EndScreenTetriminos" type="Node2D" parent="."]
+[node name="ScrollingMinos" parent="." instance=ExtResource("5_jh5rx")]
 position = Vector2(-62, 762)
-script = ExtResource("5_jh5rx")
-scroll_speed = 200
 
 [connection signal="pressed" from="Interactive/BackButton" to="Interactive" method="_on_back_button_pressed"]
