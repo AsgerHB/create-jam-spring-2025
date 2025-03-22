@@ -119,8 +119,8 @@ func destroy(game: TetrisGame):
 			score = 5
 			game.score_counter.add_mult(1)
 		Type.Balloon:
-			score = 10
-			game.score_counter.add_mult(1)
+			score = 5
+			game.score_counter.add_mult(2)
 		_:
 			score = 5
 	game.score_counter.apply_score(score, grid_pos * CELL_SIZE)

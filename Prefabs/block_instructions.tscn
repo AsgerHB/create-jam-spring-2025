@@ -119,17 +119,17 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "Normal block. +5 points.
-Sand falls down. +5 points.
-FLoats up. +10 points [color=red]+1 mult[/color].
-Steady income. +5 points.
-Explode. +5 points.
-More block per block. +5 points [color=red]+1 mult[/color].
-Extra time. +5 points +5 seconds.
-Clear blocks in column. +5 points.
-Plant that grows. +5 points.
-Grows plant. +5 points.
+Sand, falls down. +5 points.
+Balloon, floats up. +5 points [color=red]+2 mult[/color].
+Gold, steady income. +5 points.
+Bomb, explodes. +5 points.
+Multiplier block. +5 points [color=red]+1 mult[/color].
+Clock. +5 points [color=blue]+5 seconds[/color].
+Lightning, clears column. +5 points.
+Plant, grows. +5 points.
+Pot with plant. +5 points.
 Random surprise gift!
-He move. +20 points.
-Digs around. +15 points.
-Sturdy. +10 points.
+Monster, moves around. +20 points.
+Mole, digs around. +15 points.
+Concrete, sturdy. +10 points.
 There may be more that I forgot..."

@@ -13,22 +13,6 @@ var level: int = 0
 var accumulated_score = 0
 var highest_score = 0
 
-var levels = [
-	[100, 90],
-	[250, 90],
-	[400, 90],
-	[550, 90],
-	[750, 90],
-	[1000, 90],
-	[1250, 90],
-	[1500, 90],
-	[1750, 90],
-	[2000, 90],
-	[2300, 90],
-	[2600, 90],
-	[2900, 90],
-]
-
 var L = TetriminosTemplate.new([
 		CellTemplate.new(-1, 0, Cell.Type.Standard),
 		CellTemplate.new(0, 0, Cell.Type.Standard),
@@ -101,11 +85,19 @@ func pop_from_stash():
 	return current_stash.pop_back()
 
 func get_level():
-	var n = levels.size()
-	if level < n:
+	const levels = [
+		[100, 90],
+		[250, 90],
+		[400, 90],
+		[550, 90],
+		[750, 90],
+	]
+	if level < levels.size():
 		return levels[level]
 	else:
-		return [11000 + 2**(level - n), 60]
+		# Increase goal quadratically from now
+		var n = levels.size() - level
+		return [5*n**2 + 250*n + 1000, 90]
 
 func increment_level():
 	level += 1
