@@ -1,16 +1,32 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtj6g7cn5y1ah"]
+[gd_scene load_steps=16 format=4 uid="uid://dtj6g7cn5y1ah"]
 
 [ext_resource type="Script" uid="uid://dhcv8k3pcomjn" path="res://Scripts/TetrisGame.gd" id="1_43n6e"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_blw18"]
 [ext_resource type="Script" uid="uid://elavi4xosona" path="res://Scripts/RemainingTime.gd" id="3_arn4l"]
 [ext_resource type="PackedScene" uid="uid://cam00wyvm1d7v" path="res://Prefabs/ScoreCounter.tscn" id="3_cdei4"]
 [ext_resource type="AudioStream" uid="uid://byb2xhlhq16fj" path="res://Sound/Tetrogue - Main.wav" id="5_2fiad"]
-[ext_resource type="Script" path="res://Scripts/LoopMusic.gd" id="6_aowk6"]
+[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="6_aowk6"]
 [ext_resource type="AudioStream" uid="uid://bsq5etm746bie" path="res://SFX/move.wav" id="7_l56uk"]
 [ext_resource type="AudioStream" uid="uid://cb6j4bnup52id" path="res://SFX/rotate.wav" id="8_xqelj"]
 [ext_resource type="AudioStream" uid="uid://bhydcrsgwxxho" path="res://SFX/slam.wav" id="9_vlfn3"]
 [ext_resource type="AudioStream" uid="uid://cbtuhsa3wysxg" path="res://SFX/clear_row.wav" id="10_4fu76"]
 [ext_resource type="AudioStream" uid="uid://qiwhghip8laf" path="res://SFX/next_level.wav" id="11_xqelj"]
+[ext_resource type="Texture2D" uid="uid://dxf5o723ebvq0" path="res://Sprites/background.png" id="12_4fu76"]
+[ext_resource type="Script" uid="uid://bk2bcbbga8r47" path="res://Scripts/background.gd" id="12_vlfn3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sbb0m"]
+texture = ExtResource("12_4fu76")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hkvcf"]
+tile_size = Vector2i(8, 8)
+sources/1 = SubResource("TileSetAtlasSource_sbb0m")
 
 [node name="TetrisGame" type="Node2D"]
 script = ExtResource("1_43n6e")
@@ -90,6 +106,13 @@ stream = ExtResource("10_4fu76")
 
 [node name="NextLevel" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("11_xqelj")
+
+[node name="background" type="TileMapLayer" parent="."]
+z_index = -1
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAACAAIAAAACAAAAAAACAAMAAAACAAAAAAACAAQAAAACAAAAAAACAAUAAAACAAAAAAACAAYAAAACAAAAAAACAAcAAAACAAAAAAACAAgAAAACAAAAAAACAAkAAAACAAAAAAACAAoAAAACAAAAAAACAAsAAAACAAAAAAABAAwAAAACAAAAAAABAA0AAAACAAAAAAACAAwAAAACAAAAAAADAAwAAAACAAAAAAADAAsAAAACAAAAAAAEAAsAAAACAAAAAAAEAAoAAAACAAAAAAAEAAkAAAACAAAAAAAFAAkAAAACAAAAAAAFAAgAAAACAAAAAAAFAAcAAAACAAAAAAAGAAYAAAACAAAAAAAGAAUAAAACAAAAAAAHAAUAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_hkvcf")
+script = ExtResource("12_vlfn3")
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick"]
 [connection signal="finished" from="Tetrogue-Main" to="Tetrogue-Main" method="_on_finished"]

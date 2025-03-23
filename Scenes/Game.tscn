@@ -33,6 +33,7 @@ sources/0 = SubResource("TileSetAtlasSource_kldst")
 [node name="Game" type="Node2D"]
 
 [node name="Black" type="Sprite2D" parent="."]
+z_index = -100
 scale = Vector2(457.941, 256)
 texture = ExtResource("2_gl6un")
 
@@ -43,5 +44,5 @@ tile_map_data = PackedByteArray("AAABABUAAAAAAAAAAAALAAEAAAAAAAAAAAAAAAAAAAAAAAA
 tile_set = SubResource("TileSet_b2bpf")
 
 [node name="TetrisGame" parent="Border" instance=ExtResource("1_iukft")]
-position = Vector2(12, 12)
+position = Vector2(8, 8)
 scale = Vector2(0.25, 0.25)

@@ -15,6 +15,7 @@ const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 @onready var remaining_time_label:RichTextLabel = $"Remaining Time"
 @onready var status_label:RichTextLabel = $"Status Label"
 @onready var score_counter:ScoreCounter = $"ScoreCounter"
+@onready var background:FillableBackground = $"background" 
 
 @onready var move_sound:AudioStreamPlayer = $"Sounds/Move"
 @onready var spin_sound:AudioStreamPlayer = $"Sounds/Spin"
@@ -24,6 +25,7 @@ const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 @onready var background_music:AudioStreamPlayer = $"Tetrogue-Main"
 
 @export var remaining_time: float = 50
+@export var max_time: float = 50
 @export var score_goal: int = 100
 var tick_number: int = 0 # The current tick count
 @export var move_interval_ticks: int = 14
@@ -59,7 +61,8 @@ func _ready() -> void:
 	var lvl = run_state.get_level()
 	score_goal = lvl[0]
 	remaining_time = lvl[1]
-	remaining_time_label.set_max_time(remaining_time)
+	max_time = remaining_time
+	remaining_time_label.set_max_time(max_time)
 	
 	goal_value.text = str(score_goal)
 	#win()
@@ -173,14 +176,18 @@ func queue_line_clear(y: int):
 
 func _draw() -> void:
 	# Background
-	var extra_top = 1 * CELL_SIZE
-	var half = 0.5 * CELL_SIZE
-	draw_rect(Rect2(-half, -half - extra_top, WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE + extra_top), Color.GRAY)
 	if falling_tetriminos != null:
+		var min_y_cells: Dictionary = {}
 		for cell in falling_tetriminos.cells:
-			var grid_pos = falling_tetriminos.grid_pos + cell.grid_pos
-			var r = Rect2(-half + grid_pos.x * CELL_SIZE, -half + grid_pos.y * CELL_SIZE, CELL_SIZE, (HEIGHT - grid_pos.y) * CELL_SIZE)
-			draw_rect(r, Color.GRAY * 0.95)
+			if min_y_cells.has(cell.grid_pos.x):
+				min_y_cells[cell.grid_pos.x] = min(cell.grid_pos.y, min_y_cells[cell.grid_pos.x])
+			else:
+				min_y_cells[cell.grid_pos.x] = cell.grid_pos.y
+				
+		for x in min_y_cells:
+			var grid_pos = falling_tetriminos.grid_pos + Vector2i(x, min_y_cells[x])
+			var r = Rect2(grid_pos.x * CELL_SIZE, grid_pos.y * CELL_SIZE, CELL_SIZE, (HEIGHT - grid_pos.y) * CELL_SIZE)
+			draw_rect(r, Color.WHITE * 0.6)
 
 
 func get_next_tetriminos_from_deck() -> TetriminosTemplate:
@@ -232,6 +239,8 @@ func _on_tick() -> void:
 	if pause:
 		return
 	tick_number += 1
+	
+	background.set_filled(remaining_time / max_time)
 	
 	clear_full_rows()
 

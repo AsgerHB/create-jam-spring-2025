@@ -79,7 +79,7 @@ const time_effect: PackedScene = preload("res://Prefabs/TimeEffect.tscn")
 var grid_pos: Vector2i
 
 func _draw() -> void:
-	const rec = Rect2(-CELL_SIZE / 2, -CELL_SIZE / 2, CELL_SIZE, CELL_SIZE)
+	const rec = Rect2(0, 0, CELL_SIZE, CELL_SIZE)
 	match type:
 		_:
 			var sprite_coords = SpriteCoords[type]
