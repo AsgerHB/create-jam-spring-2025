@@ -12,115 +12,122 @@ scale = Vector2(6.02239, 3.74896)
 texture = ExtResource("1_u0mki")
 
 [node name="BlockSprites" type="Sprite2D" parent="."]
-position = Vector2(60, 51.64)
+position = Vector2(60, 37.64)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(0, 0, 8, 8)
 
 [node name="BlockSprites1" type="Sprite2D" parent="."]
-position = Vector2(60, 102)
+position = Vector2(60, 88)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(40, 8, 8, 8)
 
 [node name="BlockSprites2" type="Sprite2D" parent="."]
-position = Vector2(60, 155)
+position = Vector2(60, 141)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(0, 16, 8, 8)
 
 [node name="BlockSprites3" type="Sprite2D" parent="."]
-position = Vector2(60, 208)
+position = Vector2(60, 194)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(8, 16, 8, 8)
 
 [node name="BlockSprites4" type="Sprite2D" parent="."]
-position = Vector2(60, 260)
+position = Vector2(60, 246)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(0, 8, 8, 8)
 
 [node name="BlockSprites5" type="Sprite2D" parent="."]
-position = Vector2(60, 313)
+position = Vector2(60, 299)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(8, 8, 8, 8)
 
 [node name="BlockSprites6" type="Sprite2D" parent="."]
-position = Vector2(60, 363)
+position = Vector2(60, 349)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(8, 0, 8, 8)
 
 [node name="BlockSprites7" type="Sprite2D" parent="."]
-position = Vector2(60, 416)
+position = Vector2(60, 402)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(16, 0, 8, 8)
 
 [node name="BlockSprites8" type="Sprite2D" parent="."]
-position = Vector2(60, 468)
+position = Vector2(60, 454)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(32, 0, 8, 8)
 
 [node name="BlockSprites9" type="Sprite2D" parent="."]
-position = Vector2(60, 520)
+position = Vector2(60, 506)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(32, 8, 8, 8)
 
 [node name="BlockSprites10" type="Sprite2D" parent="."]
-position = Vector2(60, 572)
+position = Vector2(60, 558)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(32, 16, 8, 8)
 
 [node name="BlockSprites11" type="Sprite2D" parent="."]
-position = Vector2(60, 628)
+position = Vector2(60, 614)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(24, 0, 8, 8)
 
 [node name="BlockSprites12" type="Sprite2D" parent="."]
-position = Vector2(60, 679)
+position = Vector2(60, 665)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(24, 16, 8, 8)
 
 [node name="BlockSprites13" type="Sprite2D" parent="."]
-position = Vector2(60, 730)
+position = Vector2(60, 716)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(40, 0, 8, 8)
 
 [node name="BlockSprites14" type="Sprite2D" parent="."]
-position = Vector2(60, 780)
+position = Vector2(60, 766)
 scale = Vector2(5, 5)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(16, 8, 8, 8)
 
+[node name="BlockSprites15" type="Sprite2D" parent="."]
+position = Vector2(60, 815)
+scale = Vector2(5, 5)
+texture = ExtResource("2_4oh6a")
+region_enabled = true
+region_rect = Rect2(24, 8, 8, 8)
+
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 offset_left = 104.0
-offset_top = 24.0
+offset_top = 10.0
 offset_right = 1170.0
-offset_bottom = 908.0
+offset_bottom = 894.0
 theme = ExtResource("3_v6a76")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 64
@@ -140,4 +147,5 @@ Random surprise gift!
 Monster, moves around. +20 points.
 Mole, digs around. +15 points.
 Concrete, sturdy. +10 points.
+Avil, pushes things down.
 There may be more that I forgot..."

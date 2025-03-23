@@ -139,6 +139,15 @@ func shift_above_cells_down(x: int, y: int):
 			return
 
 
+func shift_cells_down_range(x: int, min_y: int, max_y: int):
+	var c = get_at(x, max_y)
+	if c != null:
+		return
+	for from_y in range(max_y - 1, max(-1, min_y - 1), -1):
+		var to_y = from_y + 1
+		move_cell(x, from_y, x, to_y)
+
+
 func swap(x1: int, y1: int, x2: int, y2: int):
 	var fst = get_at(x1, y1)
 	var snd = get_at(x2, y2)

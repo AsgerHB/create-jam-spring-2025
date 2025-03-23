@@ -20,6 +20,7 @@ enum Type {
 	Monster,
 	Lightning,
 	Mole,
+	Anvil,
 }
 
 # Map that assigns a complexity score to each cell type.
@@ -42,6 +43,7 @@ const cell_complexity_score = {
 	Type.Monster: 2,
 	Type.Lightning: 2,
 	Type.Mole: 2,
+	Type.Anvil: 2,
 }
 # A mapping of a sprite's state and where it maps to in the sprite sheet
 const SpriteCoords: Dictionary[Type, Vector2i] = {
@@ -61,6 +63,7 @@ const SpriteCoords: Dictionary[Type, Vector2i] = {
 	Type.ConcreteSemiBroken: 8 * Vector2i(2,2),
 	Type.Lightning: 8 * Vector2i(4,0),
 	Type.Mole: 8 * Vector2i(5,0),
+	Type.Anvil: 8 * Vector2i(3,1),
 }
 
 @export var type: Type = Type.Standard;
@@ -107,7 +110,7 @@ func destroy(game: TetrisGame):
 	
 
 	# Do scoring
-	var score = 0
+	var score
 	match type:
 		Type.Monster:
 			score = 20
@@ -120,10 +123,13 @@ func destroy(game: TetrisGame):
 		Type.Compressed:
 			score = 20
 		Type.Multiplier:
+			score = 0
 			game.score_counter.add_mult(1)
 		Type.Balloon:
 			score = 5
 			game.score_counter.add_mult(2)
+		Type.Anvil:
+			score = 0
 		_:
 			score = 5
 	game.score_counter.apply_score(score, grid_pos * CELL_SIZE)
@@ -210,6 +216,12 @@ func on_tick(game: TetrisGame, tick: int):
 				var target = grid_pos + dir
 				if game.get_at(target.x, target.y) != null:
 					game.swap(grid_pos.x, grid_pos.y, target.x, target.y)
+		Type.Anvil:
+			if tick % 3 == 1:
+				for y in range(grid_pos.y, game.HEIGHT):
+					if game.get_at(grid_pos.x, y) == null:
+						game.shift_cells_down_range(grid_pos.x, grid_pos.y, y)
+						break
 
 func on_place(game: TetrisGame):
 	# Called when the cell is placed
