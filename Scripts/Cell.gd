@@ -171,7 +171,7 @@ func on_tick(game: TetrisGame, tick: int):
 						break
 		Type.Monster:
 			var moved = false
-			if tick % 3 == 0:
+			if tick % 5 == 2:
 				moved = moved or game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y + 1)
 			if not moved and tick % 12 == 0:
 				var possible_directions = []
