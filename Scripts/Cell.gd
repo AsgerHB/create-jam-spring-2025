@@ -68,7 +68,7 @@ const SpriteCoords: Dictionary[Type, Vector2i] = {
 	set(value):
 		sprite_sheet = value
 		queue_redraw()
-@export var explosion_particle: PackedScene
+const explosion_particle: PackedScene = preload("res://Prefabs/Explosion.tscn")
 const lightning_effect: PackedScene = preload("res://Prefabs/LightningEffect.tscn")
 const time_effect: PackedScene = preload("res://Prefabs/TimeEffect.tscn")
 
@@ -91,14 +91,11 @@ func destroy(game: TetrisGame):
 		Type.Bomb:
 			var particle_instance = explosion_particle.instantiate()
 			get_parent().add_child(particle_instance)
-			particle_instance.position = position
+			particle_instance.setup(grid_pos, Rect2i(0, grid_pos.y - 1, 10, 3), CELL_SIZE)
 			game.remove_at(grid_pos.x, grid_pos.y)
-			# Destroy all surrounding blocks
-			for offset in [Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, 0), Vector2i(1, -1), Vector2i(0, -1), Vector2i(-1, -1), Vector2i(-1, 0), Vector2i(-1, 1)]:
-				var res_grid_pos = grid_pos + offset
-				var n = game.get_at(res_grid_pos.x, res_grid_pos.y)
-				if n != null:
-					n.destroy(game)
+			game.queue_line_clear(grid_pos.y - 1)
+			game.queue_line_clear(grid_pos.y)
+			game.queue_line_clear(grid_pos.y + 1)
 		Type.Clock:
 			var time_effect_instance = time_effect.instantiate()
 			get_parent().add_child(time_effect_instance)

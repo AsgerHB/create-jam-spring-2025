@@ -40,6 +40,8 @@ var falling_tetriminos: Tetriminos = null
 var ticks_since_last_down_move: int = 0
 var ticks_since_last_sideways_move: int = 0
 
+var queued_line_clears = []
+
 var move_int 
 
 var root
@@ -152,6 +154,12 @@ func swap(x1: int, y1: int, x2: int, y2: int):
 	grid[y2][x2] = fst
 	fst.grid_pos = Vector2i(x2, y2)
 	fst.position = fst.grid_pos * CELL_SIZE
+
+
+func queue_line_clear(y: int):
+	if y < 0 || y >= HEIGHT:
+		return
+	queued_line_clears.append(y)
 
 
 func _draw() -> void:
@@ -365,7 +373,6 @@ func place_falling_tetriminos() -> void:
 
 
 func clear_full_rows():
-	var rows_to_clear = []
 	for y in range(HEIGHT):
 		var do_clear = true
 		for x in range(WIDTH):
@@ -373,15 +380,22 @@ func clear_full_rows():
 				do_clear = false
 				continue
 		if do_clear:
-			rows_to_clear.append(y)
+			queued_line_clears.append(y)
 	
-	if len(rows_to_clear) > 0:
+	if len(queued_line_clears) > 0:
 		score_counter.bump_streak()
 		clear_sound.play()
 	
+	var cleared_lines = []
+	
 	# Destroy all tiles in the cleared rows, applying mult
 	var first = true
-	for y in rows_to_clear:
+	while len(queued_line_clears) > 0:
+		# NOTE: More lines may be queued by cells during this loop, e.g. by bombs
+		var y = queued_line_clears.pop_front()
+		if y in cleared_lines:
+			continue  # Do not double clear
+		cleared_lines.append(y)
 		if !first:
 			score_counter.add_mult(1)
 		first = false
@@ -392,9 +406,12 @@ func clear_full_rows():
 			destroy_at(x, y)
 		
 	# Then shift cells down (affects resolution order)
-	for y in rows_to_clear:
+	cleared_lines.sort()
+	for y in cleared_lines:
 		for x in range(WIDTH):
 			shift_above_cells_down(x, y)
+	
+	queued_line_clears.clear()
 	
 
 func win():

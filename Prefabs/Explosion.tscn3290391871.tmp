@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfnbwke3gpcxv"]
 
-[ext_resource type="Script" uid="uid://bd23tf2icged1" path="res://Scripts/explosion.gd" id="1_ps13k"]
+[ext_resource type="Script" uid="uid://bd23tf2icged1" path="res://Prefabs/explosion.gd" id="1_ps13k"]
 [ext_resource type="AudioStream" uid="uid://dfdw01nor3p0w" path="res://SFX/explosion.wav" id="2_8bqok"]
 
 [node name="ExplosionEffect" type="Node2D"]
@@ -11,12 +11,7 @@ stream = ExtResource("2_8bqok")
 autoplay = true
 
 [node name="SpreadTimer" type="Timer" parent="."]
-wait_time = 0.04
-autostart = true
-
-[node name="DestroyTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.01
 autostart = true
 
 [connection signal="timeout" from="SpreadTimer" to="." method="_on_spread_timer_timeout"]
-[connection signal="timeout" from="DestroyTimer" to="." method="queue_free"]
