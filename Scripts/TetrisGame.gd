@@ -164,8 +164,9 @@ func queue_line_clear(y: int):
 
 func _draw() -> void:
 	# Background
+	var extra_top = 1 * CELL_SIZE
 	var half = 0.5 * CELL_SIZE
-	draw_rect(Rect2(-half, -half, WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE), Color.GRAY)
+	draw_rect(Rect2(-half, -half - extra_top, WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE + extra_top), Color.GRAY)
 	if falling_tetriminos != null:
 		for cell in falling_tetriminos.cells:
 			var grid_pos = falling_tetriminos.grid_pos + cell.grid_pos
