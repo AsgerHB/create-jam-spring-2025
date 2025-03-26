@@ -6,8 +6,7 @@
 [node name="LightningEffect" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -287)
-scale = Vector2(3, 3)
+position = Vector2(16, -368)
 texture = ExtResource("1_0672m")
 
 [node name="Timer" type="Timer" parent="."]

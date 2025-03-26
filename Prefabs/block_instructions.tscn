@@ -12,116 +12,100 @@ scale = Vector2(6.02239, 3.74896)
 texture = ExtResource("1_u0mki")
 
 [node name="BlockSprites" type="Sprite2D" parent="."]
-position = Vector2(60, 37.64)
-scale = Vector2(5, 5)
+position = Vector2(71, 33)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(0, 0, 8, 8)
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="BlockSprites1" type="Sprite2D" parent="."]
-position = Vector2(60, 88)
-scale = Vector2(5, 5)
+position = Vector2(71, 88)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(40, 8, 8, 8)
+region_rect = Rect2(160, 32, 32, 32)
 
 [node name="BlockSprites2" type="Sprite2D" parent="."]
-position = Vector2(60, 141)
-scale = Vector2(5, 5)
+position = Vector2(71, 141)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(0, 16, 8, 8)
+region_rect = Rect2(0, 64, 32, 32)
 
 [node name="BlockSprites3" type="Sprite2D" parent="."]
-position = Vector2(60, 194)
-scale = Vector2(5, 5)
+position = Vector2(71, 194)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(8, 16, 8, 8)
+region_rect = Rect2(32, 64, 32, 32)
 
 [node name="BlockSprites4" type="Sprite2D" parent="."]
-position = Vector2(60, 246)
-scale = Vector2(5, 5)
+position = Vector2(71, 247)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(0, 8, 8, 8)
+region_rect = Rect2(0, 32, 32, 32)
 
 [node name="BlockSprites5" type="Sprite2D" parent="."]
-position = Vector2(60, 299)
-scale = Vector2(5, 5)
+position = Vector2(71, 295)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(8, 8, 8, 8)
+region_rect = Rect2(32, 32, 32, 32)
 
 [node name="BlockSprites6" type="Sprite2D" parent="."]
-position = Vector2(60, 349)
-scale = Vector2(5, 5)
+position = Vector2(71, 349)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(8, 0, 8, 8)
+region_rect = Rect2(32, 0, 32, 32)
 
 [node name="BlockSprites7" type="Sprite2D" parent="."]
-position = Vector2(60, 402)
-scale = Vector2(5, 5)
+position = Vector2(71, 402)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(16, 0, 8, 8)
+region_rect = Rect2(64, 0, 32, 32)
 
 [node name="BlockSprites8" type="Sprite2D" parent="."]
-position = Vector2(60, 454)
-scale = Vector2(5, 5)
+position = Vector2(71, 454)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(32, 0, 8, 8)
+region_rect = Rect2(128, 0, 32, 32)
 
 [node name="BlockSprites9" type="Sprite2D" parent="."]
-position = Vector2(60, 506)
-scale = Vector2(5, 5)
+position = Vector2(71, 505)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(32, 8, 8, 8)
+region_rect = Rect2(128, 32, 32, 32)
 
 [node name="BlockSprites10" type="Sprite2D" parent="."]
-position = Vector2(60, 558)
-scale = Vector2(5, 5)
+position = Vector2(71, 554)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(32, 16, 8, 8)
+region_rect = Rect2(128, 64, 32, 32)
 
 [node name="BlockSprites11" type="Sprite2D" parent="."]
-position = Vector2(60, 614)
-scale = Vector2(5, 5)
+position = Vector2(71, 613)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(24, 0, 8, 8)
+region_rect = Rect2(96, 0, 32, 32)
 
 [node name="BlockSprites12" type="Sprite2D" parent="."]
-position = Vector2(60, 665)
-scale = Vector2(5, 5)
+position = Vector2(71, 665)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(24, 16, 8, 8)
+region_rect = Rect2(96, 64, 32, 32)
 
 [node name="BlockSprites13" type="Sprite2D" parent="."]
-position = Vector2(60, 716)
-scale = Vector2(5, 5)
+position = Vector2(71, 716)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(40, 0, 8, 8)
+region_rect = Rect2(160, 0, 32, 32)
 
 [node name="BlockSprites14" type="Sprite2D" parent="."]
-position = Vector2(60, 766)
-scale = Vector2(5, 5)
+position = Vector2(71, 766)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(16, 8, 8, 8)
+region_rect = Rect2(64, 32, 32, 32)
 
 [node name="BlockSprites15" type="Sprite2D" parent="."]
-position = Vector2(60, 815)
-scale = Vector2(5, 5)
+position = Vector2(71, 814)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
-region_rect = Rect2(24, 8, 8, 8)
+region_rect = Rect2(96, 32, 32, 32)
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 offset_left = 104.0
