@@ -187,7 +187,16 @@ func _draw() -> void:
 		for x in min_y_cells:
 			var grid_pos = falling_tetriminos.grid_pos + Vector2i(x, min_y_cells[x])
 			var r = Rect2(grid_pos.x * CELL_SIZE, grid_pos.y * CELL_SIZE, CELL_SIZE, (HEIGHT - grid_pos.y) * CELL_SIZE)
-			draw_rect(r, Color.WHITE * 0.6)
+			draw_rect(r, Color.BLACK * 0.3)
+		
+		var height = 0
+		while try_move_falling_tetriminos_down(false):
+			height += 1
+		for cell in falling_tetriminos.cells:
+			var grid_pos = falling_tetriminos.grid_pos + cell.grid_pos
+			var r = Rect2(grid_pos.x * CELL_SIZE, grid_pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+			draw_rect(r, Color.WHITE * 0.5)
+		try_move_falling_tetriminos_up(height)
 
 
 func get_next_tetriminos_from_deck() -> TetriminosTemplate:
@@ -324,7 +333,7 @@ func try_move_falling_tetriminos_x(delta: int) -> bool:
 
 
 # Returns true if it moved; false if landed OR if null
-func try_move_falling_tetriminos_down() -> bool:
+func try_move_falling_tetriminos_down(land: bool=true) -> bool:
 	if falling_tetriminos == null:
 		return false
 	falling_tetriminos.grid_pos.y += 1
@@ -333,7 +342,22 @@ func try_move_falling_tetriminos_down() -> bool:
 		# Undo move and place instead
 		falling_tetriminos.grid_pos.y -= 1
 		falling_tetriminos.position.y -= CELL_SIZE
-		place_falling_tetriminos()
+		if land:
+			place_falling_tetriminos()
+		return false
+	return true
+
+
+func try_move_falling_tetriminos_up(steps: int=1) -> bool:
+	if falling_tetriminos == null:
+		return false
+	falling_tetriminos.grid_pos.y -= steps
+	falling_tetriminos.position.y -= steps * CELL_SIZE
+	if does_falling_tetriminos_collide():
+		# Undo move and place instead
+		falling_tetriminos.grid_pos.y += steps
+		falling_tetriminos.position.y += steps * CELL_SIZE
+		return false
 	return true
 
 
