@@ -84,6 +84,13 @@ func pop_from_stash():
 		current_stash.shuffle()
 	return current_stash.pop_back()
 
+func peek_next():
+	if current_stash.size() <= 0:
+		current_stash = stash.duplicate()
+		current_stash.shuffle()
+	return current_stash.back()
+	
+
 func get_level():
 	const levels = [
 		[100, 90],

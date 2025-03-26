@@ -16,6 +16,7 @@ const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 @onready var status_label:RichTextLabel = $"Status Label"
 @onready var score_counter:ScoreCounter = $"ScoreCounter"
 @onready var background:FillableBackground = $"background" 
+@onready var next_tetriminos:Tetriminos = $"Wiggler/NextTetriminos"
 
 @onready var move_sound:AudioStreamPlayer = $"Sounds/Move"
 @onready var spin_sound:AudioStreamPlayer = $"Sounds/Spin"
@@ -202,8 +203,8 @@ func _draw() -> void:
 
 func get_next_tetriminos_from_deck() -> TetriminosTemplate:
 	var next = run_state.pop_from_stash()
-	if next == null:
-		dead()
+	var next_next = run_state.peek_next()
+	next_tetriminos.setup(next_next)
 	return next
 
 func _process(delta):

@@ -13,7 +13,12 @@ func setup(template: TetriminosTemplate):
 	if template == null: # After running out of tetriminos, it still tries to spawn the last one
 		return
 		
-	assert(len(cells) == 0, "Tetriminos got setup twice")
+	cells = []
+	
+	for n in get_children():
+		remove_child(n)
+		n.queue_free() 
+		
 	for ct in template.cells:
 		var cell: Cell = cell_prefab.instantiate()
 		add_child(cell)

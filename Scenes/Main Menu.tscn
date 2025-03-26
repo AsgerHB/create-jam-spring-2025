@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://d3hhgq3jyhwgk" path="res://Scripts/ListenerExample.gd" id="4_eotax"]
 [ext_resource type="AudioStream" uid="uid://bkslgyuj1ovc7" path="res://Sound/Tetrogue - Menu.wav" id="5_mjet1"]
 [ext_resource type="Texture2D" uid="uid://byed2rlko15i1" path="res://Sprites/buttons/Start Game.png" id="6_0vewo"]
-[ext_resource type="Script" path="res://Scripts/LoopMusic.gd" id="6_0126h"]
+[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="6_0126h"]
 [ext_resource type="Texture2D" uid="uid://bxj6uf6svr8qp" path="res://Sprites/buttons/Instructions.png" id="7_3hb06"]
 [ext_resource type="Texture2D" uid="uid://tv6pe0bu1ocx" path="res://Sprites/buttons/Start Game click.png" id="7_jgydl"]
 [ext_resource type="Texture2D" uid="uid://4mjgb8jkcl8d" path="res://Sprites/buttons/Credits.png" id="8_ns28u"]
