@@ -25,12 +25,11 @@
 script = ExtResource("1_eotax")
 
 [node name="Backdrop" type="Sprite2D" parent="."]
-position = Vector2(960, 540)
-scale = Vector2(0.711567, 0.722656)
 texture = ExtResource("2_vuees")
+centered = false
 
 [node name="Logo" type="Sprite2D" parent="."]
-position = Vector2(960, 185)
+position = Vector2(960, 243)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_0126h")
 script = ExtResource("4_4lp62")
@@ -50,9 +49,10 @@ position = Vector2(960, 540)
 
 [node name="PlayButton" type="TextureButton" parent="Interactive"]
 offset_left = -557.2
-offset_top = -121.0
+offset_top = -60.0
 offset_right = 557.2
-offset_bottom = 33.0
+offset_bottom = 94.0
+scale = Vector2(0.998327, 1)
 theme = ExtResource("1_totuj")
 texture_normal = ExtResource("6_0vewo")
 texture_pressed = ExtResource("7_jgydl")
@@ -62,9 +62,10 @@ stretch_mode = 5
 
 [node name="InstructionsButton" type="TextureButton" parent="Interactive"]
 offset_left = -210.0
-offset_top = 106.0
+offset_top = 167.0
 offset_right = 210.0
-offset_bottom = 184.0
+offset_bottom = 245.0
+scale = Vector2(0.998327, 1)
 theme = ExtResource("1_totuj")
 texture_normal = ExtResource("7_3hb06")
 texture_pressed = ExtResource("10_apm58")
@@ -74,9 +75,10 @@ stretch_mode = 5
 
 [node name="CreditsButton" type="TextureButton" parent="Interactive"]
 offset_left = -210.0
-offset_top = 184.0
+offset_top = 245.0
 offset_right = 210.0
-offset_bottom = 273.6
+offset_bottom = 334.6
+scale = Vector2(0.998327, 1)
 theme = ExtResource("1_totuj")
 texture_normal = ExtResource("8_ns28u")
 texture_pressed = ExtResource("13_ryust")
@@ -86,9 +88,10 @@ stretch_mode = 5
 
 [node name="ExitButton" type="TextureButton" parent="Interactive"]
 offset_left = -210.0
-offset_top = 274.0
+offset_top = 335.0
 offset_right = 210.0
-offset_bottom = 437.1
+offset_bottom = 498.1
+scale = Vector2(0.998327, 1)
 theme = ExtResource("1_totuj")
 texture_normal = ExtResource("9_ef6yq")
 texture_pressed = ExtResource("16_fr4vf")

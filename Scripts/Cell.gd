@@ -1,6 +1,7 @@
 extends Node2D
 class_name Cell
 
+const SPRITE_SIZE = 32
 const CELL_SIZE: int = 32
 
 enum Type {
@@ -47,23 +48,23 @@ const cell_complexity_score = {
 }
 # A mapping of a sprite's state and where it maps to in the sprite sheet
 const SpriteCoords: Dictionary[Type, Vector2i] = {
-	Type.Standard: 8 * Vector2i(0,0),
-	Type.Compressed: 8 * Vector2i(5,1),
-	Type.Multiplier: 8 * Vector2i(0,2),
-	Type.Sand: 8 * Vector2i(1,0),
-	Type.Gold: 8 * Vector2i(0,1),
-	Type.Bomb: 8 * Vector2i(1,1),
-	Type.Balloon: 8 * Vector2i(1,2),
-	Type.Monster: 8 * Vector2i(3,2),
-	Type.Gift: 8 * Vector2i(3,0),
-	Type.Plant: 8 * Vector2i(4,1),
-	Type.PlantPot: 8 * Vector2i(4,2),
-	Type.Clock: 8 * Vector2i(2,0),
-	Type.Concrete: 8 * Vector2i(2,1),
-	Type.ConcreteSemiBroken: 8 * Vector2i(2,2),
-	Type.Lightning: 8 * Vector2i(4,0),
-	Type.Mole: 8 * Vector2i(5,0),
-	Type.Anvil: 8 * Vector2i(3,1),
+	Type.Standard: SPRITE_SIZE * Vector2i(0,0),
+	Type.Compressed: SPRITE_SIZE * Vector2i(5,1),
+	Type.Multiplier: SPRITE_SIZE * Vector2i(0,2),
+	Type.Sand: SPRITE_SIZE * Vector2i(1,0),
+	Type.Gold: SPRITE_SIZE * Vector2i(0,1),
+	Type.Bomb: SPRITE_SIZE * Vector2i(1,1),
+	Type.Balloon: SPRITE_SIZE * Vector2i(1,2),
+	Type.Monster: SPRITE_SIZE * Vector2i(3,2),
+	Type.Gift: SPRITE_SIZE * Vector2i(3,0),
+	Type.Plant: SPRITE_SIZE * Vector2i(4,1),
+	Type.PlantPot: SPRITE_SIZE * Vector2i(4,2),
+	Type.Clock: SPRITE_SIZE * Vector2i(2,0),
+	Type.Concrete: SPRITE_SIZE * Vector2i(2,1),
+	Type.ConcreteSemiBroken: SPRITE_SIZE * Vector2i(2,2),
+	Type.Lightning: SPRITE_SIZE * Vector2i(4,0),
+	Type.Mole: SPRITE_SIZE * Vector2i(5,0),
+	Type.Anvil: SPRITE_SIZE * Vector2i(3,1),
 }
 
 @export var type: Type = Type.Standard;
@@ -83,7 +84,7 @@ func _draw() -> void:
 	match type:
 		_:
 			var sprite_coords = SpriteCoords[type]
-			draw_texture_rect_region(sprite_sheet, rec, Rect2(sprite_coords.x, sprite_coords.y, 8,8))
+			draw_texture_rect_region(sprite_sheet, rec, Rect2(sprite_coords.x, sprite_coords.y, SPRITE_SIZE,SPRITE_SIZE))
 
 func destroy(game: TetrisGame):
 	# Do effects
