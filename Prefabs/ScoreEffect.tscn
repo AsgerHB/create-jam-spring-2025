@@ -7,7 +7,7 @@
 script = ExtResource("1_ka2of")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
-gravity_scale = 0.1
+gravity_scale = 0.2
 
 [node name="Label" type="Label" parent="RigidBody2D"]
 offset_left = -15.0
