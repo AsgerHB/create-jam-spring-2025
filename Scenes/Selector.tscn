@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b8gaikrmlclxy" path="res://Scripts/selector.gd" id="1_k2e2o"]
 [ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="2_ji8yk"]
 [ext_resource type="AudioStream" uid="uid://bkslgyuj1ovc7" path="res://Sound/Tetrogue - Menu.wav" id="2_q75pq"]
-[ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="3_c44gr"]
+[ext_resource type="Script" path="res://Scripts/LoopMusic.gd" id="3_c44gr"]
 [ext_resource type="Texture2D" uid="uid://dj7j4put16rls" path="res://Sprites/Gray.png" id="3_h32ys"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="4_c44gr"]
 [ext_resource type="PackedScene" uid="uid://bbnjt3yj141lc" path="res://Prefabs/block_instructions.tscn" id="6_h32ys"]

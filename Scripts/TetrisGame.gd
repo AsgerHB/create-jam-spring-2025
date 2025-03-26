@@ -196,7 +196,7 @@ func _draw() -> void:
 			var grid_pos = falling_tetriminos.grid_pos + cell.grid_pos
 			var r = Rect2(grid_pos.x * CELL_SIZE, grid_pos.y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
 			var sprite_coords = Cell.SpriteCoords[cell.type]
-			draw_texture_rect_region(cell.silhouettes, r, Rect2(sprite_coords.x, sprite_coords.y, 8,8), Color.WHITE * 0.5)
+			draw_texture_rect_region(cell.silhouettes, r, Rect2(sprite_coords.x, sprite_coords.y, Cell.SPRITE_SIZE, Cell.SPRITE_SIZE), Color.WHITE * 0.5)
 		try_move_falling_tetriminos_up(height)
 
 
