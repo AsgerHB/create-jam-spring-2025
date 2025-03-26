@@ -215,22 +215,23 @@ func _process(delta):
 			background_music.volume_linear -= delta*0.5
 		return
 	if Input.is_action_just_pressed("slam_down"):
-		smash_sound.play()
-		smash_next = true
+		if falling_tetriminos != null and !smash_next:
+			smash_sound.play()
+			smash_next = true
 	if Input.is_action_just_pressed("ui_right"):
-		move_sound.play()
 		if try_move_falling_tetriminos_x(1):
+			move_sound.play()
 			ticks_since_last_sideways_move = -6
 	elif Input.is_action_just_pressed("ui_left"):
-		move_sound.play()
 		if try_move_falling_tetriminos_x(-1):
+			move_sound.play()
 			ticks_since_last_sideways_move = -6
 	elif Input.is_action_just_pressed("ui_down"):
 		if try_move_falling_tetriminos_down():
 			ticks_since_last_down_move = 0
 	elif Input.is_action_just_pressed("ui_up"):
-		spin_sound.play()
-		try_rotate_falling_tetriminos()
+		if try_rotate_falling_tetriminos():
+			spin_sound.play()
 	
 	if remaining_time > 1:
 		remaining_time -= delta
