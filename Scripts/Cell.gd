@@ -71,6 +71,7 @@ const SpriteCoords: Dictionary[Type, Vector2i] = {
 	set(value):
 		sprite_sheet = value
 		queue_redraw()
+@export var silhouettes: Texture2D
 const explosion_particle: PackedScene = preload("res://Prefabs/Explosion.tscn")
 const lightning_effect: PackedScene = preload("res://Prefabs/LightningEffect.tscn")
 const time_effect: PackedScene = preload("res://Prefabs/TimeEffect.tscn")
