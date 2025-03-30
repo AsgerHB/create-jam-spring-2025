@@ -23,13 +23,15 @@ text = "Credits"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 offset_left = 85.0
-offset_top = 250.0
+offset_top = 170.0
 offset_right = 1826.0
-offset_bottom = 792.0
+offset_bottom = 870.0
 theme = ExtResource("2_uy3b0")
 theme_override_font_sizes/normal_font_size = 100
 text = "Game made by 
 Nicolaj, Mathias, Rasmus, Christian and Asger
+
+Additional art: Luna
 
 Additional credits:
 Mozart NBP by FontGeek,
