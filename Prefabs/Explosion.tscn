@@ -1,14 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfnbwke3gpcxv"]
+[gd_scene load_steps=2 format=3 uid="uid://cfnbwke3gpcxv"]
 
 [ext_resource type="Script" uid="uid://bd23tf2icged1" path="res://Scripts/explosion.gd" id="1_ps13k"]
-[ext_resource type="AudioStream" uid="uid://dfdw01nor3p0w" path="res://SFX/explosion.wav" id="2_8bqok"]
 
 [node name="ExplosionEffect" type="Node2D"]
 script = ExtResource("1_ps13k")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_8bqok")
-autoplay = true
 
 [node name="SpreadTimer" type="Timer" parent="."]
 wait_time = 0.04

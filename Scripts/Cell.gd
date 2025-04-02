@@ -1,6 +1,9 @@
 extends Node2D
 class_name Cell
 
+@onready var lightning_sound:AudioStreamPlayer = $"../Sounds/Lightning"
+@onready var explosion_sound:AudioStreamPlayer = $"../Sounds/Explosion"
+
 const SPRITE_SIZE = 32
 const CELL_SIZE: int = 32
 
@@ -101,6 +104,10 @@ func destroy(game: TetrisGame):
 			game.queue_line_clear(grid_pos.y - 1)
 			game.queue_line_clear(grid_pos.y)
 			game.queue_line_clear(grid_pos.y + 1)
+			
+			# Play sound
+			if not explosion_sound.playing:
+				explosion_sound.play()
 		Type.Clock:
 			var time_effect_instance = time_effect.instantiate()
 			get_parent().add_child(time_effect_instance)
@@ -203,10 +210,16 @@ func on_tick(game: TetrisGame, tick: int):
 			var new_type = non_infinite_complexity_types[randi() % non_infinite_complexity_types.size()]
 			game.set_at(grid_pos.x, grid_pos.y, new_type)
 		Type.Lightning:
-			# Destroy all cells in column
+			# Lightning effect
 			var eff = lightning_effect.instantiate()
 			get_parent().add_child(eff)
 			eff.position = position + Vector2(0, (game.HEIGHT - grid_pos.y - 1) * CELL_SIZE)
+			
+			# Play sound
+			if not lightning_sound.playing:
+				lightning_sound.play()
+			
+			# Destroy all cells in column
 			for y in range(game.HEIGHT):
 				var c = game.get_at(grid_pos.x, y)
 				if c != null:
