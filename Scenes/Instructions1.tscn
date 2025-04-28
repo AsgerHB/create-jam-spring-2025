@@ -27,7 +27,7 @@ offset_top = 250.0
 offset_right = 1826.0
 offset_bottom = 792.0
 theme = ExtResource("3_mq808")
-theme_override_font_sizes/normal_font_size = 100
+theme_override_font_sizes/normal_font_size = 81
 bbcode_enabled = true
 text = "ARROWS    Move blocks
 SPACE     Slam block down

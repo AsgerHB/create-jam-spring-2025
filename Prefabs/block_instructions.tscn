@@ -7,114 +7,114 @@
 [node name="BlockInstructions" type="Node2D"]
 
 [node name="Gray" type="Sprite2D" parent="."]
-position = Vector2(605.25, 451.75)
-scale = Vector2(6.02239, 3.74896)
+modulate = Color(1, 1, 1, 0.14902)
+position = Vector2(605.25, 477.5)
+scale = Vector2(6.02239, 3.96265)
 texture = ExtResource("1_u0mki")
 
 [node name="BlockSprites" type="Sprite2D" parent="."]
-position = Vector2(71, 33)
+position = Vector2(71, 56)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="BlockSprites1" type="Sprite2D" parent="."]
-position = Vector2(71, 88)
+position = Vector2(71, 105)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(160, 32, 32, 32)
 
 [node name="BlockSprites2" type="Sprite2D" parent="."]
-position = Vector2(71, 141)
+position = Vector2(71, 158)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(0, 64, 32, 32)
 
 [node name="BlockSprites3" type="Sprite2D" parent="."]
-position = Vector2(71, 194)
+position = Vector2(71, 208)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(32, 64, 32, 32)
 
 [node name="BlockSprites4" type="Sprite2D" parent="."]
-position = Vector2(71, 247)
+position = Vector2(71, 262)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(0, 32, 32, 32)
 
 [node name="BlockSprites5" type="Sprite2D" parent="."]
-position = Vector2(71, 295)
+position = Vector2(71, 312)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
 
 [node name="BlockSprites6" type="Sprite2D" parent="."]
-position = Vector2(71, 349)
+position = Vector2(71, 367)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 
 [node name="BlockSprites7" type="Sprite2D" parent="."]
-position = Vector2(71, 402)
+position = Vector2(71, 418)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
 [node name="BlockSprites8" type="Sprite2D" parent="."]
-position = Vector2(71, 454)
+position = Vector2(71, 469)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(128, 0, 32, 32)
 
 [node name="BlockSprites9" type="Sprite2D" parent="."]
-position = Vector2(71, 505)
+position = Vector2(71, 522)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(128, 32, 32, 32)
 
 [node name="BlockSprites10" type="Sprite2D" parent="."]
-position = Vector2(71, 554)
+position = Vector2(71, 572)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(128, 64, 32, 32)
 
 [node name="BlockSprites11" type="Sprite2D" parent="."]
-position = Vector2(71, 613)
+position = Vector2(71, 627)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(96, 0, 32, 32)
 
 [node name="BlockSprites12" type="Sprite2D" parent="."]
-position = Vector2(71, 665)
+position = Vector2(71, 677)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(96, 64, 32, 32)
 
 [node name="BlockSprites13" type="Sprite2D" parent="."]
-position = Vector2(71, 716)
+position = Vector2(71, 728)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(160, 0, 32, 32)
 
 [node name="BlockSprites14" type="Sprite2D" parent="."]
-position = Vector2(71, 766)
+position = Vector2(71, 781)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(64, 32, 32, 32)
 
 [node name="BlockSprites15" type="Sprite2D" parent="."]
-position = Vector2(71, 814)
+position = Vector2(71, 833)
 texture = ExtResource("2_4oh6a")
 region_enabled = true
 region_rect = Rect2(96, 32, 32, 32)
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 offset_left = 104.0
-offset_top = 10.0
+offset_top = 33.0
 offset_right = 1170.0
-offset_bottom = 894.0
+offset_bottom = 917.0
 theme = ExtResource("3_v6a76")
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 52
 bbcode_enabled = true
 text = "Normal block. +5 points.
 Compressed block. +20 points.

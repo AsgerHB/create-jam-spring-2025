@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cam00wyvm1d7v"]
+[gd_scene load_steps=4 format=3 uid="uid://cam00wyvm1d7v"]
 
 [ext_resource type="Script" uid="uid://drx246b0dacf8" path="res://Scripts/ScoreCounter.gd" id="1_sc4lm"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_1ac0v"]
+[ext_resource type="FontFile" uid="uid://23q2k2ipj02t" path="res://Theming/Minecraft Ten/MinecraftTen-mono.ttf" id="3_1ac0v"]
 
 [node name="ScoreCounter" type="Node2D"]
 script = ExtResource("1_sc4lm")
@@ -11,9 +12,11 @@ offset_left = 240.0
 offset_right = 513.0
 offset_bottom = 100.0
 theme = ExtResource("2_1ac0v")
+theme_override_fonts/normal_font = ExtResource("3_1ac0v")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
-text = "0"
+text = "250
+"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 2
@@ -24,9 +27,10 @@ offset_top = 94.0
 offset_right = 513.0
 offset_bottom = 194.0
 theme = ExtResource("2_1ac0v")
+theme_override_fonts/normal_font = ExtResource("3_1ac0v")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
-text = "0"
+text = "x3"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 2
@@ -63,9 +67,10 @@ offset_top = 188.0
 offset_right = 513.0
 offset_bottom = 288.0
 theme = ExtResource("2_1ac0v")
+theme_override_fonts/normal_font = ExtResource("3_1ac0v")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
-text = "0"
+text = "15"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 2

@@ -6,6 +6,7 @@ class_name Selector
 @onready var powerup_sound = $"PowerUp"
 @onready var background_music = $"Tetrogue-Menu"
 @onready var black_fade:Sprite2D = $"Black-fade"
+@onready var level_up_text:RichTextLabel = $"LevelUpContainer/LevelUpText"
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 const button_prefab: PackedScene = preload("res://Prefabs/SelectorButton.tscn")
 
@@ -23,7 +24,7 @@ var fade_progress = 0
 @export var minos_to_spawn = 6
 @export var minos_to_pick = 2
 
-@export var button_y_offset = 100
+@export var button_y_offset = -160
 @export var row_offset = 500
 @export var row_spacing = 200
 @export var grid_spacing = 180
@@ -32,6 +33,9 @@ var fade_progress = 0
 @export var mino_offset = 80
 
 func _ready():
+	# Set "reached level ??" text
+	level_up_text.text = level_up_text.text.replace("??", str(run_state.level))
+	
 	generator = TetriminoGenerator.new()
 	#Make some minos
 	var complexity_min = floor(4 + run_state.level / 5.0)
