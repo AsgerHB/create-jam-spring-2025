@@ -16,7 +16,7 @@ func tetrimino_hash(tetrimino: Array[CellTemplate]) -> int:
 		_hash ^= cell.pos.x + cell.pos.y * 100
 	return _hash
 
-func random_type_with_finite_complexity() -> Cell.Type:
+static func random_type_with_finite_complexity() -> Cell.Type:
 	var t = Cell.Type.values().pick_random()
 	while Cell.cell_complexity_score[t] == Cell.infinity:
 		t = Cell.Type.values().pick_random()
