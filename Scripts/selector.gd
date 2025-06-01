@@ -1,20 +1,23 @@
 extends Node2D
 class_name Selector
 
+enum State { ReadyToBreak, Breaking, Idle, FadeOut }
+
 @onready var run_state:RunState = CurrentRun
 @onready var pick_sound = $"Pick"
 @onready var powerup_sound = $"PowerUp"
 @onready var background_music = $"Tetrogue-Menu"
 @onready var black_fade:Sprite2D = $"Black-fade"
 @onready var level_up_text:RichTextLabel = $"LevelUpContainer/LevelUpText"
+@onready var instructions = $"InstructionsPopup"
+@onready var breakable_chunk:BreakableChunk = $"BreakableChunk"
 const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 const selection_option_prefab: PackedScene = preload("res://Prefabs/SelectionOption.tscn")
 
+var animation_state:State = State.ReadyToBreak
 var generator
 var tetriminos = []
-var spawnedminos = []
-var picked_minos = []
-var fade_out = false
+var spawnedminos:Array[SelectionOption] = []
 var fade_rate = 2
 var fade_progress = 0
 
@@ -42,7 +45,7 @@ func _ready():
 	#Spawn them all
 	for i in minos_to_spawn:
 		
-		var option = selection_option_prefab.instantiate()
+		var option:SelectionOption = selection_option_prefab.instantiate()
 		add_child(option)
 		
 		var current_mino = tetriminos.pop_back()
@@ -52,18 +55,36 @@ func _ready():
 		if(i % 2 == 0):
 			ypos += row_offset
 			xpos += grid_spacing
-		option.position = Vector2(xpos + mino_offset, ypos)
-		
+		option.starting_position = breakable_chunk.position
+		option.position = option.starting_position
+		option.target = Vector2(xpos + mino_offset, ypos)
+		spawnedminos.push_back(option)
 
-#Spinner, this is gonna perform badly, gamejam yay
 func _process(delta):
-	if fade_out:
-		background_music.volume_linear -= delta*0.5
-		black_fade.modulate.a += delta
-		fade_progress += delta*fade_rate
+	match animation_state:
+		State.ReadyToBreak:
+			level_up_text.visible = false
+			instructions.visible = false
+		State.Breaking:
+			level_up_text.visible = false
+			instructions.visible = false
+		State.Idle:
+			level_up_text.visible = true
+			instructions.visible = true
+		State.FadeOut:
+			background_music.volume_linear -= delta*0.5
+			black_fade.modulate.a += delta
+			fade_progress += delta*fade_rate
+
+func chunk_breaking():
+	animation_state = State.Breaking
+
+func chunk_broken():
+	animation_state = State.Idle
+	for option in spawnedminos:
+		option.animation_status = SelectionOption.Status.FlyingIn
 
 func register_picked(index):
-	picked_minos.append(index)
 	powerup_sound.pitch_scale += 0.2
 	powerup_sound.play()
 	if minos_to_pick > 1:
@@ -72,6 +93,6 @@ func register_picked(index):
 		for child in get_children():
 			if child is SelectionOption:
 				child.start_fading_out()
-		fade_out = true
+		animation_state = State.FadeOut
 		await get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://Scenes/GetReadyScreen.tscn")

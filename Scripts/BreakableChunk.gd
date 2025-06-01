@@ -1,4 +1,5 @@
 extends Node2D
+class_name BreakableChunk
 
 @export var width:int = 10
 @export var height:int = 10
@@ -19,8 +20,15 @@ var target_distance_max = target_distance_min*4
 var cell_starting_points = []
 var cell_targets = []
 
+var notified_breaking = false # for debounce
+var notified_broken = false # for debounce
+
 const cell_prefab = preload("res://Prefabs/Cell.tscn")
 @onready var cells_container = $"Cells"
+@onready var button = $"Button"
+@onready var selector:Selector = $".."
+@onready var chunk_break_sound:AudioStreamPlayer = $"ChunkBreak"
+@onready var chunk_breaking_sound:AudioStreamPlayer = $"ChunkBreaking"
 
 func _ready() -> void:
 	var x_start = -(width/2)*Cell.CELL_SIZE
@@ -55,19 +63,33 @@ func _process(delta):
 		rotation_progress += delta*rotation_rate
 		cells_container.rotation = sin(rotation_progress)*rotation_multiplier
 	else:
-		cells_container.rotation = 0
 		if shake_time > shake_progress:
+			if !notified_breaking:
+				notified_breaking = true
+				chunk_breaking_sound.play()
+			cells_container.rotation = 0
 			shake_progress += delta
 			for cell:Cell in cells_container.get_children():
 				cell.position += Vector2(randf() - 0.5, randf() - 0.5)
-		if shake_time <= shake_progress and flyaway_time > flyaway_progress:
+		elif flyaway_time > flyaway_progress:
+			cells_container.rotation = 0
 			var i = 0
 			flyaway_progress += delta
-			print(flyaway_progress/flyaway_time)
 			for cell:Cell in cells_container.get_children():
 				cell.position = lerp(cell_starting_points[i], cell_targets[i], flyaway_progress/flyaway_time)
 				i += 1
+			if !notified_broken:
+				chunk_break_sound.play()
+				notified_broken = true
+				selector.chunk_broken()
+		else:
+			free_self_no_lag() # Async function avoid lag spike when freeing so many objects
 
+func free_self_no_lag():
+	await get_tree().create_timer(0.2).timeout # This is the only way I know to make the function async.
+	self.queue_free()
 
 func _on_button_pressed() -> void:
+	button.visible = false
 	broken = true
+	selector.chunk_breaking()
