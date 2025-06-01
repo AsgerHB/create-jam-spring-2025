@@ -12,6 +12,7 @@
 
 [resource]
 default_font = ExtResource("1_ve1wj")
+Button/colors/font_focus_color = Color(0.329412, 0.823529, 0.00784314, 1)
 Button/colors/font_hover_color = Color(0.464866, 0.400022, 0.997883, 1)
 Button/colors/font_pressed_color = Color(0.506524, 0.0509143, 1, 1)
 Button/font_sizes/font_size = 25

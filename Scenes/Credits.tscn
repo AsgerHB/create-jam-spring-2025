@@ -38,7 +38,6 @@ Minecraft ten font by nubefonts,
 Tetris A Type by Hirokazu Tanaka"
 
 [node name="Interactive" type="Node2D" parent="."]
-script = ExtResource("3_iynit")
 
 [node name="BackButton" type="Button" parent="Interactive"]
 offset_left = 583.0
@@ -49,4 +48,4 @@ theme = ExtResource("2_uy3b0")
 theme_override_font_sizes/font_size = 90
 text = "[Back]"
 
-[connection signal="pressed" from="Interactive/BackButton" to="Interactive" method="_on_back_button_pressed"]
+[connection signal="pressed" from="Interactive/BackButton" to="." method="_on_back_button_pressed"]

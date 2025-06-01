@@ -31,8 +31,10 @@ text = "
 
 [node name="ChunkBreak" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_trau2")
+volume_db = -8.0
 
 [node name="ChunkBreaking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ok7w7")
+volume_db = -8.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

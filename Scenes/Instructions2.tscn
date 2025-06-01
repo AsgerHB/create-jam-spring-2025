@@ -14,7 +14,6 @@ scale = Vector2(120.188, 67.1875)
 texture = ExtResource("2_1cyd4")
 
 [node name="Interactive" type="Node2D" parent="."]
-script = ExtResource("1_4uyco")
 
 [node name="BackButton" type="Button" parent="Interactive"]
 offset_left = -151.0
@@ -28,4 +27,4 @@ text = "[Back]"
 [node name="BlockInstructions" parent="." instance=ExtResource("4_1cyd4")]
 position = Vector2(436, 69)
 
-[connection signal="pressed" from="Interactive/BackButton" to="Interactive" method="_on_back_button_pressed"]
+[connection signal="pressed" from="Interactive/BackButton" to="." method="_on_back_button_pressed"]

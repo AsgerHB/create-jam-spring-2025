@@ -31,6 +31,7 @@ const cell_prefab = preload("res://Prefabs/Cell.tscn")
 @onready var chunk_breaking_sound:AudioStreamPlayer = $"ChunkBreaking"
 
 func _ready() -> void:
+	button.grab_focus()
 	var x_start = -(width/2)*Cell.CELL_SIZE
 	var y_start = -(height/2)*Cell.CELL_SIZE
 	var x = x_start

@@ -37,13 +37,14 @@ Tip: Keep your [color=red] score multiplier[/color] high"
 
 [node name="Interactive" type="Node2D" parent="."]
 position = Vector2(0, -63)
-script = ExtResource("1_vs51u")
 
 [node name="BackButton" type="Button" parent="Interactive"]
 offset_left = 92.0
 offset_top = 878.0
 offset_right = 800.0
 offset_bottom = 992.0
+focus_neighbor_left = NodePath("../NextButton")
+focus_neighbor_right = NodePath("../NextButton")
 theme = ExtResource("3_mq808")
 theme_override_font_sizes/font_size = 90
 text = "[Back]"
@@ -53,9 +54,11 @@ offset_left = 1007.0
 offset_top = 878.0
 offset_right = 1715.0
 offset_bottom = 992.0
+focus_neighbor_left = NodePath("../BackButton")
+focus_neighbor_right = NodePath(".")
 theme = ExtResource("3_mq808")
 theme_override_font_sizes/font_size = 90
 text = "[Next]"
 
-[connection signal="pressed" from="Interactive/BackButton" to="Interactive" method="_on_back_button_pressed"]
-[connection signal="pressed" from="Interactive/NextButton" to="Interactive" method="_on_next_button_pressed"]
+[connection signal="pressed" from="Interactive/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Interactive/NextButton" to="." method="_on_next_button_pressed"]

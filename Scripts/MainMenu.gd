@@ -1,5 +1,7 @@
 extends Node2D
 
+func _ready() -> void:
+	$"Interactive/PlayButton".grab_focus()
 
 func _on_play_button_pressed() -> void:
 	CurrentRun.reset()

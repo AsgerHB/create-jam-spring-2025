@@ -1,8 +1,10 @@
 extends Node2D
 
 @onready var stats:RichTextLabel = $"Stats"
+@onready var begin_button:Button = $"Interactive/BeginButton"
 
 func _ready() -> void:
+	begin_button.grab_focus()
 	var level_info = CurrentRun.get_level()
 	var score_target = level_info[0]
 	var time = level_info[1]

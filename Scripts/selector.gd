@@ -59,6 +59,20 @@ func _ready():
 		option.position = option.starting_position
 		option.target = Vector2(xpos + mino_offset, ypos)
 		spawnedminos.push_back(option)
+	
+	# Set focus neighbors for keyboard navigation.
+	for i in minos_to_spawn:
+		var option:SelectionOption = spawnedminos[i]
+		var left = (i - 2)%minos_to_spawn
+		option.button.focus_neighbor_left = spawnedminos[left].button.get_path()
+		var right = (i + 2)%minos_to_spawn
+		option.button.focus_neighbor_right = spawnedminos[right].button.get_path()
+		
+		# TODO: Also make the wrap-around correct. 
+		var top = (i + 1)%minos_to_spawn
+		option.button.focus_neighbor_top = spawnedminos[top].button.get_path()
+		var bottom = (i - 1)%minos_to_spawn
+		option.button.focus_neighbor_bottom = spawnedminos[bottom].button.get_path()
 
 func _process(delta):
 	match animation_state:
@@ -89,6 +103,7 @@ func register_picked(index):
 	powerup_sound.play()
 	if minos_to_pick > 1:
 		minos_to_pick -= 1
+		reassign_focus()
 	else:
 		for child in get_children():
 			if child is SelectionOption:
@@ -96,3 +111,11 @@ func register_picked(index):
 		animation_state = State.FadeOut
 		await get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://Scenes/GetReadyScreen.tscn")
+
+func reassign_focus() -> void:
+	for option in spawnedminos:
+		if option.picked:
+			continue
+		else:
+			option.button.grab_focus()
+			break

@@ -42,6 +42,8 @@ func _process(delta: float) -> void:
 				global_position = target
 				animation_status = Status.Idle
 				button.visible = true
+				if id == 0:
+					button.grab_focus()
 		Status.Idle:
 			# button.visible = true # Had to set it elsewhere
 			pass
