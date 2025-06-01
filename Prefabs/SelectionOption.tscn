@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://divvrw2rjvrc2"]
+
+[ext_resource type="Script" uid="uid://disg2pjndaupp" path="res://Scripts/selection_option.gd" id="1_2b6dh"]
+[ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_exotd"]
+[ext_resource type="Script" uid="uid://c6ost157qn27d" path="res://Scripts/selector_button.gd" id="3_rw2f2"]
+[ext_resource type="PackedScene" uid="uid://dmexrcsp4jh1v" path="res://Prefabs/Tetriminos.tscn" id="4_a6fcw"]
+
+[node name="SelectionOption" type="Node2D"]
+script = ExtResource("1_2b6dh")
+
+[node name="SelectorButton" type="Button" parent="."]
+offset_left = -90.0
+offset_top = -145.0
+offset_right = 90.0
+offset_bottom = 145.0
+theme = ExtResource("2_exotd")
+button_mask = 7
+text = "
+
+
+
+
+
+
+
+
+[Add to pool]"
+script = ExtResource("3_rw2f2")
+
+[node name="Tetriminos" parent="." instance=ExtResource("4_a6fcw")]
+
+[connection signal="button_down" from="SelectorButton" to="SelectorButton" method="_on_button_down"]
+[connection signal="pressed" from="SelectorButton" to="SelectorButton" method="_on_pressed"]
