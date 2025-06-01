@@ -29,8 +29,8 @@ offset_bottom = 792.0
 theme = ExtResource("3_mq808")
 theme_override_font_sizes/normal_font_size = 81
 bbcode_enabled = true
-text = "ARROWS    Move blocks
-SPACE     Slam block down
+text = "ARROWS	= Move blocks
+SPACE		= Slam block down
 
 Reach score target before time runs out.
 Tip: Keep your [color=red] score multiplier[/color] high"
