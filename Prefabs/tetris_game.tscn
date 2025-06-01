@@ -121,6 +121,7 @@ theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "next:"
+scroll_active = false
 metadata/_edit_use_anchors_ = true
 
 [node name="Wiggler" type="Node2D" parent="."]
