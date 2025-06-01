@@ -114,7 +114,7 @@ func register_picked(index):
 
 func reassign_focus() -> void:
 	for option in spawnedminos:
-		if option.picked:
+		if !option.button.visible:
 			continue
 		else:
 			option.button.grab_focus()
