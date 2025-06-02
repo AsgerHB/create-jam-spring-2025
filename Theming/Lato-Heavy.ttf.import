@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ckluv6kderyi0"
-path="res://.godot/imported/MinecraftTen-VGORe.ttf-634f1887c02e535ab2d61fba6b848145.fontdata"
+uid="uid://cf0217gmibv8t"
+path="res://.godot/imported/Lato-Heavy.ttf-04521ef748cfb7fee11bf099556ff57e.fontdata"
 
 [deps]
 
-source_file="res://Theming/Minecraft Ten/MinecraftTen-VGORe.ttf"
-dest_files=["res://.godot/imported/MinecraftTen-VGORe.ttf-634f1887c02e535ab2d61fba6b848145.fontdata"]
+source_file="res://Theming/Lato-Heavy.ttf"
+dest_files=["res://.godot/imported/Lato-Heavy.ttf-04521ef748cfb7fee11bf099556ff57e.fontdata"]
 
 [params]
 
@@ -26,15 +26,10 @@ subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null
-fallbacks=[Resource("res://Theming/Lato-Heavy.ttf")]
+fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-"size": Vector2i(16, 0)
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}
