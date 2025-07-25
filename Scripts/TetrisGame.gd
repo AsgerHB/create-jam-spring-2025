@@ -221,17 +221,29 @@ func _process(delta):
 			smash_next = true
 	if Input.is_action_just_pressed("ui_right"):
 		if try_move_falling_tetriminos_x(1):
+			move_sound.pitch_scale = 1
 			move_sound.play()
 			ticks_since_last_sideways_move = -6
+		else:
+			move_sound.pitch_scale = 0.7
+			move_sound.play()
 	elif Input.is_action_just_pressed("ui_left"):
 		if try_move_falling_tetriminos_x(-1):
+			move_sound.pitch_scale = 1
 			move_sound.play()
 			ticks_since_last_sideways_move = -6
+		else:
+			move_sound.pitch_scale = 0.7
+			move_sound.play()
 	elif Input.is_action_just_pressed("ui_down"):
 		if try_move_falling_tetriminos_down():
 			ticks_since_last_down_move = 0
 	elif Input.is_action_just_pressed("ui_up"):
 		if try_rotate_falling_tetriminos():
+			spin_sound.pitch_scale = 1
+			spin_sound.play()
+		else:
+			spin_sound.pitch_scale = 0.6
 			spin_sound.play()
 	
 	if remaining_time > 1:
