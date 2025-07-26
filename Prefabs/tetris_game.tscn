@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dtj6g7cn5y1ah"]
+[gd_scene load_steps=24 format=4 uid="uid://dtj6g7cn5y1ah"]
 
 [ext_resource type="Script" uid="uid://dhcv8k3pcomjn" path="res://Scripts/TetrisGame.gd" id="1_43n6e"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_blw18"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bx82estqdp3a7" path="res://Scripts/LoopMusic.gd" id="6_aowk6"]
 [ext_resource type="AudioStream" uid="uid://bsq5etm746bie" path="res://SFX/move.wav" id="7_l56uk"]
 [ext_resource type="AudioStream" uid="uid://cb6j4bnup52id" path="res://SFX/rotate.wav" id="8_xqelj"]
+[ext_resource type="Script" uid="uid://dh1tah0s2sm1r" path="res://Scripts/Lock.gd" id="9_e7tmm"]
 [ext_resource type="AudioStream" uid="uid://bhydcrsgwxxho" path="res://SFX/slam.wav" id="9_vlfn3"]
 [ext_resource type="AudioStream" uid="uid://cbtuhsa3wysxg" path="res://SFX/clear_row.wav" id="10_4fu76"]
 [ext_resource type="AudioStream" uid="uid://qiwhghip8laf" path="res://SFX/next_level.wav" id="11_xqelj"]
@@ -18,6 +19,8 @@
 [ext_resource type="Script" uid="uid://bk2bcbbga8r47" path="res://Scripts/background.gd" id="12_vlfn3"]
 [ext_resource type="AudioStream" uid="uid://d2n7sdntcuh5b" path="res://SFX/lightning.wav" id="13_6lloh"]
 [ext_resource type="Script" uid="uid://0mya0f5x0amh" path="res://Scripts/Tetriminos.gd" id="14_sbb0m"]
+[ext_resource type="AudioStream" uid="uid://kvd5yyeinmip" path="res://SFX/hold.wav" id="16_plmhb"]
+[ext_resource type="Texture2D" uid="uid://de5fw5hcg7hjp" path="res://Sprites/lock.png" id="20_unx4p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4fu76"]
 texture = ExtResource("12_4fu76")
@@ -124,13 +127,44 @@ text = "next:"
 scroll_active = false
 metadata/_edit_use_anchors_ = true
 
-[node name="Wiggler" type="Node2D" parent="."]
+[node name="Next Label2" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_left = -2.89583
+anchor_top = -0.909091
+anchor_right = -2.89583
+anchor_bottom = -0.909091
+offset_left = -443.0
+offset_top = 467.0
+offset_right = -203.0
+offset_bottom = 533.0
+theme = ExtResource("2_blw18")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "held:"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Next Wiggler" type="Node2D" parent="."]
 position = Vector2(-390, 118)
 script = ExtResource("5_hkvcf")
 
-[node name="NextTetriminos" type="Node2D" parent="Wiggler"]
+[node name="NextTetriminos" type="Node2D" parent="Next Wiggler"]
 script = ExtResource("14_sbb0m")
 metadata/_custom_type_script = "uid://0mya0f5x0amh"
+
+[node name="Held Wiggler" type="Node2D" parent="."]
+position = Vector2(-390, 582)
+script = ExtResource("5_hkvcf")
+
+[node name="HeldTetriminos" type="Node2D" parent="Held Wiggler"]
+script = ExtResource("14_sbb0m")
+metadata/_custom_type_script = "uid://0mya0f5x0amh"
+
+[node name="Lock" type="Sprite2D" parent="Held Wiggler"]
+position = Vector2(84, 54)
+scale = Vector2(5.15625, 5.15625)
+texture = ExtResource("20_unx4p")
+script = ExtResource("9_e7tmm")
 
 [node name="Tetrogue-Main" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_2fiad")
@@ -157,6 +191,9 @@ stream = ExtResource("13_6lloh")
 
 [node name="Clear" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("10_4fu76")
+
+[node name="Hold" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("16_plmhb")
 
 [node name="NextLevel" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("11_xqelj")

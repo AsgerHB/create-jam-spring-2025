@@ -16,12 +16,14 @@ const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 @onready var status_label:RichTextLabel = $"Status Label"
 @onready var score_counter:ScoreCounter = $"ScoreCounter"
 @onready var background:FillableBackground = $"background" 
-@onready var next_tetriminos:Tetriminos = $"Wiggler/NextTetriminos"
+@onready var next_tetriminos:Tetriminos = $"Next Wiggler/NextTetriminos"
+@onready var held_tetriminos:Tetriminos = $"Held Wiggler/HeldTetriminos"
 
 @onready var move_sound:AudioStreamPlayer = $"Sounds/Move"
 @onready var spin_sound:AudioStreamPlayer = $"Sounds/Spin"
 @onready var smash_sound:AudioStreamPlayer = $"Sounds/Smash"
 @onready var clear_sound:AudioStreamPlayer = $"Sounds/Clear"
+@onready var hold_sound:AudioStreamPlayer = $"Sounds/Hold"
 @onready var win_sound:AudioStreamPlayer = $"Sounds/NextLevel"
 @onready var background_music:AudioStreamPlayer = $"Tetrogue-Main"
 
@@ -37,6 +39,8 @@ var pause: bool = false
 var died: bool = false
 
 var smash_next: bool = false
+var hold_next: bool = false
+var hold_locked = false
 
 var grid: Array = []
 var falling_tetriminos: Tetriminos = null
@@ -219,6 +223,13 @@ func _process(delta):
 		if falling_tetriminos != null and !smash_next:
 			smash_sound.play()
 			smash_next = true
+	if Input.is_action_just_pressed("hold") and !hold_next and !hold_locked:
+		hold_sound.pitch_scale = 1
+		hold_sound.play()
+		hold_next = true
+	elif Input.is_action_just_pressed("hold") and hold_locked:
+		hold_sound.pitch_scale = 0.7
+		hold_sound.play()
 	if Input.is_action_just_pressed("ui_right"):
 		if try_move_falling_tetriminos_x(1):
 			move_sound.pitch_scale = 1
@@ -303,6 +314,16 @@ func _on_tick() -> void:
 				pass
 			ticks_since_last_down_move = 0
 			return
+	elif hold_next:
+		hold_next = false
+		if falling_tetriminos == null: # Address race condition where player can press "hold" before a tetriminos is spawned in
+			return
+		hold_locked = true
+		var previously_held:TetriminosTemplate = held_tetriminos.template
+		held_tetriminos.setup(falling_tetriminos.template)
+		falling_tetriminos.queue_free()
+		spawn_new_tetriminos(previously_held)
+		return
 	else:
 		# Move downwards regularly, but faster if key is held
 		ticks_since_last_down_move += 1
@@ -319,15 +340,18 @@ func _on_tick() -> void:
 
 	
 	# If we do not have a falling tetriminos, spawn one instead
-	print("Spawning new falling tetriminos")
-	var template = get_next_tetriminos_from_deck()
+	spawn_new_tetriminos()
+
+func spawn_new_tetriminos(template:TetriminosTemplate=null):
+	if template == null:
+		template = get_next_tetriminos_from_deck()
 	falling_tetriminos = tetriminos_prefab.instantiate()
 	add_child(falling_tetriminos)
 	falling_tetriminos.setup(template)
 	var grid_pos = Vector2i(WIDTH / 2, 0)
 	falling_tetriminos.position = grid_pos * CELL_SIZE
 	falling_tetriminos.grid_pos = grid_pos
-	
+
 
 	# If we immediately collide with existing cells -> game over
 	if does_falling_tetriminos_collide():
@@ -428,6 +452,7 @@ func place_falling_tetriminos() -> void:
 			get_at(res_grid_pos.x, res_grid_pos.y).on_place(self)
 	falling_tetriminos.queue_free()
 	falling_tetriminos = null
+	hold_locked = false
 
 
 func clear_full_rows():

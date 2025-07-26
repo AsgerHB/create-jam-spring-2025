@@ -5,12 +5,13 @@ const CELL_SIZE: int = 32
 
 const cell_prefab = preload("res://Prefabs/Cell.tscn")
 
-
+var template: TetriminosTemplate = null
 var cells: Array[Cell]
 var grid_pos: Vector2i = Vector2i(0, 0)
 
-func setup(template: TetriminosTemplate):
-	if template == null: # After running out of tetriminos, it still tries to spawn the last one
+func setup(templateʹ: TetriminosTemplate):
+	template = templateʹ
+	if templateʹ == null: # After running out of tetriminos, it still tries to spawn the last one
 		return
 		
 	cells = []
