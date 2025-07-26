@@ -56,23 +56,27 @@ sources/0 = SubResource("TileSetAtlasSource_4fu76")
 
 [node name="TetrisGame" type="Node2D"]
 script = ExtResource("1_43n6e")
+metadata/_edit_vertical_guides_ = [-32.0, 349.0, -640.0, 955.0]
+metadata/_edit_horizontal_guides_ = [161.0, 426.0]
 
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
 
 [node name="Remaining Time" type="RichTextLabel" parent="."]
-offset_left = 449.0
-offset_top = 31.0
-offset_right = 962.0
-offset_bottom = 161.0
+clip_contents = false
+offset_left = -140.0
+offset_top = 695.0
+offset_right = 460.0
+offset_bottom = 825.0
 theme = ExtResource("2_blw18")
 theme_override_fonts/normal_font = ExtResource("3_6lloh")
-theme_override_font_sizes/normal_font_size = 70
+theme_override_font_sizes/normal_font_size = 67
 bbcode_enabled = true
-text = "[color=red]??:??.????[/color]"
+text = "[color=blue]??:??.???[/color]"
 scroll_active = false
-horizontal_alignment = 2
+autowrap_mode = 0
+horizontal_alignment = 1
 script = ExtResource("3_arn4l")
 metadata/_edit_use_anchors_ = true
 
@@ -102,14 +106,23 @@ metadata/_edit_use_anchors_ = true
 [node name="ScoreCounter" parent="." instance=ExtResource("3_cdei4")]
 position = Vector2(448, 273)
 
-[node name="Status Label" type="RichTextLabel" parent="."]
-offset_left = 448.0
-offset_top = 582.0
-offset_right = 961.0
-offset_bottom = 657.0
+[node name="Status Wiggler" type="Node2D" parent="."]
+position = Vector2(152, -168)
+script = ExtResource("5_hkvcf")
+rotation_rate = 10
+rotation_multiplier = 0.1
+
+[node name="Status Label" type="RichTextLabel" parent="Status Wiggler"]
+offset_left = -184.0
+offset_right = 197.0
+offset_bottom = 75.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
+text = "<status>"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="Next Label" type="RichTextLabel" parent="."]
 anchors_preset = -1
@@ -117,9 +130,10 @@ anchor_left = -2.89583
 anchor_top = -0.909091
 anchor_right = -2.89583
 anchor_bottom = -0.909091
-offset_left = -443.0
-offset_right = -203.0
-offset_bottom = 66.0
+offset_left = -644.0
+offset_top = 156.0
+offset_right = -404.0
+offset_bottom = 222.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
@@ -133,10 +147,10 @@ anchor_left = -2.89583
 anchor_top = -0.909091
 anchor_right = -2.89583
 anchor_bottom = -0.909091
-offset_left = -443.0
-offset_top = 467.0
-offset_right = -203.0
-offset_bottom = 533.0
+offset_left = -643.0
+offset_top = 373.0
+offset_right = -403.0
+offset_bottom = 439.0
 theme = ExtResource("2_blw18")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
@@ -144,19 +158,45 @@ text = "held:"
 scroll_active = false
 metadata/_edit_use_anchors_ = true
 
+[node name="Level Label" type="RichTextLabel" parent="."]
+offset_left = -35.0
+offset_top = -79.0
+offset_right = 205.0
+offset_bottom = -19.0
+theme = ExtResource("2_blw18")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[color=blue]Level:[/color]"
+scroll_active = false
+
+[node name="CurrentLevel" type="RichTextLabel" parent="."]
+offset_left = 83.0
+offset_top = -79.0
+offset_right = 356.0
+offset_bottom = -19.0
+theme = ExtResource("2_blw18")
+theme_override_fonts/normal_font = ExtResource("3_6lloh")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "15"
+scroll_active = false
+horizontal_alignment = 2
+
 [node name="Next Wiggler" type="Node2D" parent="."]
-position = Vector2(-390, 118)
+position = Vector2(-282, 181)
 script = ExtResource("5_hkvcf")
 
 [node name="NextTetriminos" type="Node2D" parent="Next Wiggler"]
+position = Vector2(-32, -32)
 script = ExtResource("14_sbb0m")
 metadata/_custom_type_script = "uid://0mya0f5x0amh"
 
 [node name="Held Wiggler" type="Node2D" parent="."]
-position = Vector2(-390, 582)
+position = Vector2(-282, 402)
 script = ExtResource("5_hkvcf")
 
 [node name="HeldTetriminos" type="Node2D" parent="Held Wiggler"]
+position = Vector2(-32, -32)
 script = ExtResource("14_sbb0m")
 metadata/_custom_type_script = "uid://0mya0f5x0amh"
 

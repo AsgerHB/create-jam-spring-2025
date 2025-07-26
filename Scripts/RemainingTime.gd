@@ -1,6 +1,8 @@
 extends RichTextLabel
 
 var max_time: float = 0.0
+@onready var initial_size:float = get_theme_font_size("normal_font_size")
+var max_size:float = 140
 
 func set_max_time(time: float):
 	max_time = time
@@ -17,7 +19,7 @@ func set_time(time: float):
 
 	var lerp_factor = ((max_time - _time) / max_time) ** 2
 	var color = Color.BLUE.lerp(Color.RED, lerp_factor)
-	add_theme_font_size_override("normal_font_size", lerpf(70, 140, lerp_factor))
+	add_theme_font_size_override("normal_font_size", lerpf(initial_size, max_size, lerp_factor))
 	text = ("[color=" + color.to_html() + "]" + 
 		"%02.0f" % minutes + ":" + 
 		"%02.0f" % seconds + "." + 

@@ -13,9 +13,10 @@ const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 @onready var run_state:RunState = CurrentRun
 @onready var goal_value:RichTextLabel = $"Goal Value"
 @onready var remaining_time_label:RichTextLabel = $"Remaining Time"
-@onready var status_label:RichTextLabel = $"Status Label"
+@onready var status_label:RichTextLabel = $"Status Wiggler/Status Label"
+@onready var current_level_text:RichTextLabel = $"CurrentLevel"
 @onready var score_counter:ScoreCounter = $"ScoreCounter"
-@onready var background:FillableBackground = $"background" 
+@onready var background:FillableBackground = $"background"
 @onready var next_tetriminos:Tetriminos = $"Next Wiggler/NextTetriminos"
 @onready var held_tetriminos:Tetriminos = $"Held Wiggler/HeldTetriminos"
 
@@ -55,7 +56,8 @@ var root
 
 func _ready() -> void:
 	root = get_tree().get_root()
-	score_counter.set_level(run_state.level)
+	status_label.text = ""
+	current_level_text.text = str(run_state.level)
 	for row in range(HEIGHT):
 		var r = []
 		for col in range(WIDTH):

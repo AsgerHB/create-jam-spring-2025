@@ -3,7 +3,6 @@ class_name ScoreCounter
 
 @onready var current_score_text:RichTextLabel = $"CurrentScore"
 @onready var current_multiplier_text:RichTextLabel = $"CurrentMultiplier"
-@onready var current_level_text:RichTextLabel = $"CurrentLevel"
 
 var score_effect: PackedScene = preload("res://Prefabs/ScoreEffect.tscn")
 
@@ -56,6 +55,3 @@ func apply_score(points: int, position: Vector2):
 	_spawn_score_effect(points*current_mult, position)
 	current_score += points*current_mult
 	current_score_text.text = str(current_score)
-
-func set_level(level: int):
-	current_level_text.text = str(level)

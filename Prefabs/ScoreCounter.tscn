@@ -51,26 +51,3 @@ theme = ExtResource("2_1ac0v")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[color=red]Mult:[/color]"
-
-[node name="Level Label" type="RichTextLabel" parent="."]
-offset_top = 200.0
-offset_right = 240.0
-offset_bottom = 300.0
-theme = ExtResource("2_1ac0v")
-theme_override_font_sizes/normal_font_size = 70
-bbcode_enabled = true
-text = "[color=blue]Level:[/color]"
-
-[node name="CurrentLevel" type="RichTextLabel" parent="."]
-offset_left = 240.0
-offset_top = 188.0
-offset_right = 513.0
-offset_bottom = 288.0
-theme = ExtResource("2_1ac0v")
-theme_override_fonts/normal_font = ExtResource("3_1ac0v")
-theme_override_font_sizes/normal_font_size = 70
-bbcode_enabled = true
-text = "15"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 2
