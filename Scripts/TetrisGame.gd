@@ -64,6 +64,9 @@ func _ready() -> void:
 			r.append(null)
 		grid.append(r)
 	
+	if run_state.level != 0:
+		choose_map()
+	
 	run_state.new_game()
 	var lvl = run_state.get_level()
 	score_goal = lvl[0]
@@ -515,3 +518,13 @@ func dead():
 	died = true
 	await get_tree().create_timer(2.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/EndScreen.tscn")
+
+func choose_map():
+	var map = MapSelector.get_random_map(0.5).to_array(WIDTH, HEIGHT)
+	
+	for row in WIDTH:
+		for col in HEIGHT:
+			var cell = map[row][col]
+			if cell == null:
+				continue
+			set_at(row, col, cell)
