@@ -23,9 +23,9 @@ horizontal_alignment = 2
 
 [node name="CurrentMultiplier" type="RichTextLabel" parent="."]
 offset_left = 240.0
-offset_top = 94.0
+offset_top = 102.0
 offset_right = 513.0
-offset_bottom = 194.0
+offset_bottom = 202.0
 theme = ExtResource("2_1ac0v")
 theme_override_fonts/normal_font = ExtResource("3_1ac0v")
 theme_override_font_sizes/normal_font_size = 70
@@ -44,9 +44,9 @@ bbcode_enabled = true
 text = "[color=yellow]Score:[/color]"
 
 [node name="Mult Label" type="RichTextLabel" parent="."]
-offset_top = 100.0
+offset_top = 108.0
 offset_right = 240.0
-offset_bottom = 200.0
+offset_bottom = 208.0
 theme = ExtResource("2_1ac0v")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true

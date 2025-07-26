@@ -104,7 +104,7 @@ horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ScoreCounter" parent="." instance=ExtResource("3_cdei4")]
-position = Vector2(448, 273)
+position = Vector2(448, 264)
 
 [node name="Status Wiggler" type="Node2D" parent="."]
 position = Vector2(152, -168)
