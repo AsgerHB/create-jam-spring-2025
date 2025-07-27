@@ -1,16 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://cam00wyvm1d7v"]
+[gd_scene load_steps=6 format=3 uid="uid://cam00wyvm1d7v"]
 
 [ext_resource type="Script" uid="uid://drx246b0dacf8" path="res://Scripts/ScoreCounter.gd" id="1_sc4lm"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_1ac0v"]
 [ext_resource type="FontFile" uid="uid://23q2k2ipj02t" path="res://Theming/Minecraft Ten/MinecraftTen-mono.ttf" id="3_1ac0v"]
+[ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="4_mb18e"]
+[ext_resource type="Texture2D" uid="uid://ufj5ulowrf58" path="res://Sprites/White.png" id="5_4v2mb"]
 
 [node name="ScoreCounter" type="Node2D"]
 script = ExtResource("1_sc4lm")
+metadata/_edit_vertical_guides_ = [506.0]
+
+[node name="Goal Value" type="RichTextLabel" parent="."]
+offset_left = 228.0
+offset_top = 88.0
+offset_right = 509.0
+offset_bottom = 163.0
+theme = ExtResource("2_1ac0v")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "??"
+horizontal_alignment = 2
 
 [node name="CurrentScore" type="RichTextLabel" parent="."]
 offset_left = 240.0
+offset_top = 194.0
 offset_right = 513.0
-offset_bottom = 100.0
+offset_bottom = 294.0
 theme = ExtResource("2_1ac0v")
 theme_override_fonts/normal_font = ExtResource("3_1ac0v")
 theme_override_font_sizes/normal_font_size = 70
@@ -23,9 +38,9 @@ horizontal_alignment = 2
 
 [node name="CurrentMultiplier" type="RichTextLabel" parent="."]
 offset_left = 240.0
-offset_top = 102.0
+offset_top = 296.0
 offset_right = 513.0
-offset_bottom = 202.0
+offset_bottom = 396.0
 theme = ExtResource("2_1ac0v")
 theme_override_fonts/normal_font = ExtResource("3_1ac0v")
 theme_override_font_sizes/normal_font_size = 70
@@ -36,18 +51,41 @@ scroll_active = false
 horizontal_alignment = 2
 
 [node name="Score Label" type="RichTextLabel" parent="."]
+offset_top = 194.0
 offset_right = 240.0
-offset_bottom = 100.0
+offset_bottom = 294.0
 theme = ExtResource("2_1ac0v")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[color=yellow]Score:[/color]"
 
 [node name="Mult Label" type="RichTextLabel" parent="."]
-offset_top = 108.0
+offset_top = 302.0
 offset_right = 240.0
-offset_bottom = 208.0
+offset_bottom = 402.0
 theme = ExtResource("2_1ac0v")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[color=red]Mult:[/color]"
+
+[node name="Goal Label" type="RichTextLabel" parent="."]
+offset_top = 87.0
+offset_right = 240.0
+offset_bottom = 162.0
+theme = ExtResource("2_1ac0v")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[color=yellow]Goal:[/color]"
+
+[node name="Bar" type="Sprite2D" parent="."]
+position = Vector2(253.929, 17.0967)
+scale = Vector2(29.2493, 3.03946)
+skew = 0.911062
+texture = ExtResource("4_mb18e")
+
+[node name="Progress" type="Sprite2D" parent="Bar"]
+modulate = Color(0, 0.869586, 0.459424, 1)
+position = Vector2(-7.595, 0)
+scale = Vector2(0.947475, 0.5625)
+texture = ExtResource("5_4v2mb")
+offset = Vector2(8, 0)

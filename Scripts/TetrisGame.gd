@@ -11,7 +11,6 @@ const tetriminos_prefab: PackedScene = preload("res://Prefabs/Tetriminos.tscn")
 const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 
 @onready var run_state:RunState = CurrentRun
-@onready var goal_value:RichTextLabel = $"Goal Value"
 @onready var remaining_time_label:RichTextLabel = $"Remaining Time"
 @onready var status_label:RichTextLabel = $"Status Wiggler/Status Label"
 @onready var current_level_text:RichTextLabel = $"CurrentLevel"
@@ -73,8 +72,6 @@ func _ready() -> void:
 	remaining_time = lvl[1]
 	max_time = remaining_time
 	remaining_time_label.set_max_time(max_time)
-	
-	goal_value.text = str(score_goal)
 	#win()
 
 func out_of_bounds(x: int, y: int) -> bool:
