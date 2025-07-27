@@ -30,6 +30,7 @@ func _process(delta: float) -> void:
 	var current_progress = (float(current_score)/float(score_goal))*progress_width
 	if progress.scale.x != current_progress:
 		progress.scale.x = min(progress.scale.x + 1*delta, current_progress, progress_width)
+		progress.scale.x = max(0.005, progress.scale.x)
 	
 	progress.modulate.h += 0.2*delta
 	progress.modulate.s = max(progress.scale.x/progress_width - 0.3, 0)

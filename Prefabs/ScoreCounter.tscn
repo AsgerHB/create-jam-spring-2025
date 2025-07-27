@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cam00wyvm1d7v"]
+[gd_scene load_steps=5 format=3 uid="uid://cam00wyvm1d7v"]
 
 [ext_resource type="Script" uid="uid://drx246b0dacf8" path="res://Scripts/ScoreCounter.gd" id="1_sc4lm"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_1ac0v"]
 [ext_resource type="FontFile" uid="uid://23q2k2ipj02t" path="res://Theming/Minecraft Ten/MinecraftTen-mono.ttf" id="3_1ac0v"]
-[ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="4_mb18e"]
 [ext_resource type="Texture2D" uid="uid://ufj5ulowrf58" path="res://Sprites/White.png" id="5_4v2mb"]
 
 [node name="ScoreCounter" type="Node2D"]
@@ -78,10 +77,11 @@ bbcode_enabled = true
 text = "[color=yellow]Goal:[/color]"
 
 [node name="Bar" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.2)
 position = Vector2(253.929, 17.0967)
 scale = Vector2(29.2493, 3.03946)
 skew = 0.911062
-texture = ExtResource("4_mb18e")
+texture = ExtResource("5_4v2mb")
 
 [node name="Progress" type="Sprite2D" parent="Bar"]
 modulate = Color(0, 0.869586, 0.459424, 1)
