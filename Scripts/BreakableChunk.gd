@@ -125,6 +125,7 @@ func free_self_no_lag():
 
 func _on_break_button_pressed() -> void:
 	break_button.visible = false
+	re_roll_button.visible = false
 	broken = true
 	selector.chunk_breaking()
 
