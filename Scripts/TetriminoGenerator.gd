@@ -1,48 +1,12 @@
 class_name TetriminoGenerator
 
-const oops_types: Array[Cell.Type] = [
-	Cell.Type.Compressed,
-	Cell.Type.Multiplier,
-	Cell.Type.Sand,
-	Cell.Type.Concrete,
-	Cell.Type.Clock,
-	Cell.Type.PlantPot,
-	Cell.Type.Lightning
-]
-
 func tetrimino_hash(tetrimino: Array[CellTemplate]) -> int:
 	var _hash = 0
 	for cell in tetrimino:
 		_hash ^= cell.pos.x + cell.pos.y * 100
 	return _hash
 
-static func random_type_with_finite_complexity() -> Cell.Type:
-	var t = Cell.Type.values().pick_random()
-	while Cell.cell_complexity_score[t] == Cell.infinity:
-		t = Cell.Type.values().pick_random()
-	return t
-
-# Complexity controls how complex the tetromino is
-func generate_tetrimino(size: int, complexity: int) -> TetriminosTemplate:
-	# Determine types in the tetrimino
-	var types = []
-	if randi() % 8 == 0:
-		# OOOPS all same
-		var t = oops_types.pick_random()
-		types.append(t)
-		complexity -= 2 * Cell.cell_complexity_score[t]
-	else:
-		# At most two types beside standard
-		types.append(Cell.Type.Standard)
-		types.append(random_type_with_finite_complexity())
-		if randi() % complexity == 0:
-			# If complexity is low we increase chance of standard (big tetris)
-			types.append(Cell.Type.Standard)
-		else:
-			types.append(random_type_with_finite_complexity())
-		for t in types:
-			complexity -= Cell.cell_complexity_score[t]
-		
+func generate_tetrimino(size:int, types:Array[Cell.Type]) -> TetriminosTemplate:		
 	var tetrimino: Array[CellTemplate] = []
 	var possible_next_positions: Array[Vector2i] = [Vector2i(0, 0)]
 	var used_positions: Array[Vector2i] = []

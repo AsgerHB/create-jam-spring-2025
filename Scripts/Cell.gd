@@ -27,28 +27,10 @@ enum Type {
 	Anvil,
 }
 
-# Map that assigns a complexity score to each cell type.
-# Higher complexity results in smaller tetrimino.
-const infinity = 1000000  # Cannot appear in tetrimino.
-const cell_complexity_score = {
-	Type.Standard: 0,
-	Type.Compressed: 0,
-	Type.Multiplier: 1,
-	Type.Sand: 1,
-	Type.Concrete: 1,
-	Type.ConcreteSemiBroken: infinity,
-	Type.Balloon: 2,
-	Type.Gold: 2,
-	Type.Bomb: 2,
-	Type.Clock: 1,
-	Type.Gift: 3,
-	Type.PlantPot: 1,
-	Type.Plant: infinity,
-	Type.Monster: 2,
-	Type.Lightning: 2,
-	Type.Mole: 2,
-	Type.Anvil: 2,
-}
+# Types that do not "occur natturally" but only as a result of other cells.
+# E.g. plants grow from pots and should never spawn on their own.
+const non_natural_types = [ Type.ConcreteSemiBroken, Type.Plant ]
+
 # A mapping of a sprite's state and where it maps to in the sprite sheet
 const SpriteCoords: Dictionary[Type, Vector2i] = {
 	Type.Standard: SPRITE_SIZE * Vector2i(0,0),
@@ -145,6 +127,14 @@ func destroy(game: TetrisGame):
 
 	return true
 
+# Get a random types that "occurs natturally."
+# E.g. plants grow from pots and should never spawn on their own.
+static func random_special_type() -> Type:
+	var types = Type.values()
+	var result = Type.Standard
+	while non_natural_types.has(result) or result == Type.Standard:
+		result = types[randi_range(0, types.size() - 1)]
+	return result
 
 func on_move(game: TetrisGame, to_x: int, to_y: int) -> bool:
 	# Returns true if the cell can be moved
@@ -159,7 +149,7 @@ func on_tick(game: TetrisGame, tick: int):
 				game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y + 1)
 		Type.Balloon:
 			if tick % 3 == 0:
-				if grid_pos.y == 0:
+				if grid_pos.y == 4:
 					game.remove_at(grid_pos.x, grid_pos.y)
 				else:
 					game.try_move_cell(grid_pos.x, grid_pos.y, grid_pos.x, grid_pos.y - 1)
@@ -203,11 +193,7 @@ func on_tick(game: TetrisGame, tick: int):
 		Type.Gift:
 			# For that bug where on-placing doesnt work
 			game.remove_at(grid_pos.x, grid_pos.y)
-			var non_infinite_complexity_types = []
-			for _type in Type.values():
-				if cell_complexity_score[_type] < infinity:
-					non_infinite_complexity_types.append(_type)
-			var new_type = non_infinite_complexity_types[randi() % non_infinite_complexity_types.size()]
+			var new_type = random_special_type()
 			game.set_at(grid_pos.x, grid_pos.y, new_type)
 		Type.Lightning:
 			# Lightning effect
@@ -242,10 +228,8 @@ func on_place(game: TetrisGame):
 	# Called when the cell is placed
 	match type:
 		Type.Gift:
-			game.remove_at(grid_pos.x, grid_pos.y)
-			var non_infinite_complexity_types = []
-			for _type in Type.values():
-				if cell_complexity_score[_type] < infinity:
-					non_infinite_complexity_types.append(_type)
-			var new_type = non_infinite_complexity_types[randi() % non_infinite_complexity_types.size()]
-			game.set_at(grid_pos.x, grid_pos.y, new_type)
+			pass
+			#game.remove_at(grid_pos.x, grid_pos.y)
+			#var non_infinite_complexity_types = []
+			#var new_type = random_special_type()
+			#game.set_at(grid_pos.x, grid_pos.y, new_type)

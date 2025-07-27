@@ -32,7 +32,7 @@ func spawn_new():
 	var size = randi_range(3, 5)
 	if randf() > 0.5:
 		size = 4
-	var template:TetriminosTemplate = generator.generate_tetrimino(size, 1)
+	var template:TetriminosTemplate = generator.generate_tetrimino(size, [Cell.Type.Standard])
 	for cell:CellTemplate in template.cells:
 		cell.type = Cell.Type.Standard
 	minos.setup(template)

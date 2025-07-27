@@ -10,24 +10,23 @@ script = ExtResource("1_wp06w")
 
 [node name="Cells" type="Node2D" parent="."]
 
-[node name="Button" type="Button" parent="."]
-offset_left = -352.0
-offset_top = -295.0
-offset_right = 347.0
-offset_bottom = 302.0
+[node name="Break" type="Button" parent="."]
+offset_left = -451.0
+offset_top = 164.0
+offset_right = -1.0
+offset_bottom = 414.0
 theme = ExtResource("2_1amd8")
 theme_override_font_sizes/font_size = 50
-text = "
+text = "[ Break ]"
 
-
-
-
-
-
-
-
-
-[ Break ]"
+[node name="Re-roll" type="Button" parent="."]
+offset_left = -1.0
+offset_top = 164.0
+offset_right = 449.0
+offset_bottom = 414.0
+theme = ExtResource("2_1amd8")
+theme_override_font_sizes/font_size = 50
+text = "[ Re-roll (?) ]"
 
 [node name="ChunkBreak" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_trau2")
@@ -37,4 +36,5 @@ volume_db = -8.0
 stream = ExtResource("4_ok7w7")
 volume_db = -8.0
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Break" to="." method="_on_break_button_pressed"]
+[connection signal="pressed" from="Re-roll" to="." method="_on_re_roll_button_pressed"]

@@ -1,10 +1,11 @@
 extends Node2D
 class_name SelectionOption
 
-@export var flying_in_multiplier = 0.8 + randf_range(0, 2)
+@export var flying_in_speed = 1.0 + randf_range(0, 1)
 @export var rotation_rate = 4 # How quickly they rotate
 @export var rotation_multiplier = 0.2 # Set to less than 1 to make them just wiggle a little.
 
+@onready var cell_occluder_prefab = preload("res://Prefabs/CellOccluder.tscn")
 @onready var selector:Selector = $"/root/Selector"
 @onready var button:Button = $"SelectorButton"
 @onready var tetriminos:Tetriminos = $"Tetriminos"
@@ -28,6 +29,7 @@ func _ready() -> void:
 	
 	# Start in the center of the block (offset by at most 2)
 	global_position = starting_position
+	
 
 func _process(delta: float) -> void:
 	match animation_status:
@@ -36,7 +38,7 @@ func _process(delta: float) -> void:
 			global_position = starting_position
 		Status.FlyingIn:
 			button.visible = false
-			flying_in_progress += delta*flying_in_multiplier
+			flying_in_progress += delta*flying_in_speed
 			global_position = lerp(starting_position, target, flying_in_progress)
 			if flying_in_progress >= 1:
 				global_position = target
@@ -70,6 +72,10 @@ func setup(templateʹ:TetriminosTemplate, idʹ:int) -> void: # U+2B9 Modifier Le
 	template = templateʹ
 	id = idʹ
 	tetriminos.setup(template)
+	
+	# Add occluders for cool shadow effect
+	for cell in tetriminos.get_children():
+		cell.add_child(cell_occluder_prefab.instantiate())
 
 func fly_in() -> void:
 	animation_status = Status.FlyingIn

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmlcob562vhmb"]
+[gd_scene load_steps=13 format=3 uid="uid://bmlcob562vhmb"]
 
 [ext_resource type="Script" uid="uid://b8gaikrmlclxy" path="res://Scripts/selector.gd" id="1_k2e2o"]
 [ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="2_ji8yk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://2kgxgonphbi5" path="res://Scripts/MoveLogo.gd" id="8_1tlbm"]
 [ext_resource type="AudioStream" uid="uid://bti3rquj6gvmu" path="res://SFX/powerUp.wav" id="10_6c46q"]
 [ext_resource type="PackedScene" uid="uid://bfvv4jth18nh8" path="res://Prefabs/BreakableChunk.tscn" id="11_6c46q"]
+[ext_resource type="Texture2D" uid="uid://clavpgclb5vwm" path="res://Sprites/Neutral Point Light.webp" id="12_xgtsy"]
 
 [node name="Selector" type="Node2D"]
 script = ExtResource("1_k2e2o")
@@ -32,7 +33,6 @@ autoplay = true
 script = ExtResource("3_c44gr")
 
 [node name="InstructionsPopup" type="Node2D" parent="."]
-visible = false
 position = Vector2(1241, 50)
 scale = Vector2(0.5, 0.5)
 
@@ -44,6 +44,7 @@ scale = Vector2(1.11686, 1.11686)
 script = ExtResource("8_1tlbm")
 
 [node name="LevelUpText" type="RichTextLabel" parent="LevelUpContainer"]
+visible = false
 offset_left = 120.0
 offset_top = 418.0
 offset_right = 1123.0
@@ -66,6 +67,13 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(982, 612)
 scale = Vector2(133.688, 79.8125)
 texture = ExtResource("2_ji8yk")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(615, 484)
+scale = Vector2(5.32031, 5.32031)
+color = Color(1, 1, 1, 0.796078)
+shadow_enabled = true
+texture = ExtResource("12_xgtsy")
 
 [node name="BreakableChunk" parent="." instance=ExtResource("11_6c46q")]
 z_index = 1
