@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dc5p0aausbw13"]
 
 [ext_resource type="Script" uid="uid://cog16yksrpnpa" path="res://Scripts/end_screen.gd" id="1_3gukv"]
-[ext_resource type="Texture2D" uid="uid://bb72uply2u8hi" path="res://Sprites/Black.png" id="2_3gukv"]
+[ext_resource type="Texture2D" uid="uid://dldbjt53d4g84" path="res://Sprites/backdrop.png" id="2_jh5rx"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="3_jh5rx"]
 [ext_resource type="PackedScene" uid="uid://d0e4h7e60xinr" path="res://Prefabs/ScrollingMinos.tscn" id="5_jh5rx"]
 [ext_resource type="Texture2D" uid="uid://dj7j4put16rls" path="res://Sprites/Gray.png" id="6_d234m"]
@@ -10,12 +10,12 @@
 script = ExtResource("1_3gukv")
 
 [node name="Black" type="Sprite2D" parent="."]
-position = Vector2(958.5, 539.5)
-scale = Vector2(120.188, 67.1875)
-texture = ExtResource("2_3gukv")
+position = Vector2(960, 540)
+texture = ExtResource("2_jh5rx")
 
 [node name="Gray" type="Sprite2D" parent="."]
-position = Vector2(963, 762)
+modulate = Color(1, 1, 1, 0.14902)
+position = Vector2(961, 769)
 scale = Vector2(9.55846, 0.838174)
 texture = ExtResource("6_d234m")
 
