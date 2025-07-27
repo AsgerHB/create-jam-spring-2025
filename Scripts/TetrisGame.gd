@@ -16,8 +16,11 @@ const selector_prefab: PackedScene = preload("res://Scenes/Selector.tscn")
 @onready var current_level_text:RichTextLabel = $"CurrentLevel"
 @onready var score_counter:ScoreCounter = $"ScoreCounter"
 @onready var background:FillableBackground = $"background"
-@onready var next_tetriminos:Tetriminos = $"Next Wiggler/NextTetriminos"
-@onready var held_tetriminos:Tetriminos = $"Held Wiggler/HeldTetriminos"
+@onready var held = $"Held"
+@onready var next = $"Next"
+@onready var next_tetriminos:Tetriminos = $"Next/Wiggler/NextTetriminos"
+@onready var held_tetriminos:Tetriminos = $"Held/Wiggler/HeldTetriminos"
+@onready var continue_button = $"ContinueButton"
 
 @onready var move_sound:AudioStreamPlayer = $"Sounds/Move"
 @onready var spin_sound:AudioStreamPlayer = $"Sounds/Spin"
@@ -505,17 +508,29 @@ func win():
 	status_label.text = "[color=green]Winner! :-)[/color]"
 	pause = true
 	win_sound.play()
-	await get_tree().create_timer(2.0).timeout
-	get_tree().change_scene_to_file("res://Scenes/Selector.tscn")
+	held.visible = false
+	next.visible = false
+	continue_button.visible = true
+	continue_button.grab_focus()
 
+
+	
 func dead():
 	run_state.register_score(score_counter.current_score)
 	status_label.text = "[color=red]DIED :'([/color]"
 	pause = true
 	died = true
-	await get_tree().create_timer(2.0).timeout
-	get_tree().change_scene_to_file("res://Scenes/EndScreen.tscn")
+	held.visible = false
+	next.visible = false
+	continue_button.visible = true
+	continue_button.grab_focus()
 
+func _on_continue_button_pressed() -> void:
+	if died:
+		get_tree().change_scene_to_file("res://Scenes/EndScreen.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/Selector.tscn")
+	
 func choose_map():
 	var map = MapSelector.get_random_map(0.5).to_array(WIDTH, HEIGHT)
 	

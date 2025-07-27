@@ -32,6 +32,7 @@ autoplay = true
 script = ExtResource("3_c44gr")
 
 [node name="InstructionsPopup" type="Node2D" parent="."]
+visible = false
 position = Vector2(1241, 50)
 scale = Vector2(0.5, 0.5)
 
