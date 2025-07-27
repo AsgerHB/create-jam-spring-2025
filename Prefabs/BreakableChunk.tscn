@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfvv4jth18nh8"]
+[gd_scene load_steps=6 format=3 uid="uid://bfvv4jth18nh8"]
 
 [ext_resource type="Script" uid="uid://dnux67afd8mve" path="res://Scripts/BreakableChunk.gd" id="1_wp06w"]
 [ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="2_1amd8"]
 [ext_resource type="AudioStream" uid="uid://c86syfvgpokpp" path="res://SFX/chunk_break.wav" id="3_trau2"]
 [ext_resource type="AudioStream" uid="uid://ctlps6cooq7dr" path="res://SFX/chunk_breaking.wav" id="4_ok7w7"]
+[ext_resource type="AudioStream" uid="uid://bqt70v2i5ek5s" path="res://SFX/re_roll.wav" id="5_ok7w7"]
 
 [node name="BreakableChunk" type="Node2D"]
 script = ExtResource("1_wp06w")
@@ -35,6 +36,9 @@ volume_db = -8.0
 [node name="ChunkBreaking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ok7w7")
 volume_db = -8.0
+
+[node name="ReRoll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ok7w7")
 
 [connection signal="pressed" from="Break" to="." method="_on_break_button_pressed"]
 [connection signal="pressed" from="Re-roll" to="." method="_on_re_roll_button_pressed"]

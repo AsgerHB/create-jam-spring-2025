@@ -35,6 +35,7 @@ const cell_occluder_prefab = preload("res://Prefabs/CellOccluder.tscn")
 @onready var selector:Selector = $".."
 @onready var chunk_break_sound:AudioStreamPlayer = $"ChunkBreak"
 @onready var chunk_breaking_sound:AudioStreamPlayer = $"ChunkBreaking"
+@onready var re_roll_sound:AudioStreamPlayer = $"ReRoll"
 var types:Array[Cell.Type]
 
 func _ready() -> void:
@@ -46,6 +47,8 @@ func _ready() -> void:
 	break_button.grab_focus()
 	
 	roll_chunk()
+	
+	re_roll_sound.pitch_scale = 0.4
 
 func roll_chunk():
 	# Clean up if this has been called before
@@ -127,6 +130,8 @@ func _on_break_button_pressed() -> void:
 
 func _on_re_roll_button_pressed() -> void:
 	re_rolls -= 1
+	re_roll_sound.pitch_scale += 0.6
+	re_roll_sound.play()
 	roll_chunk()
 	rotation_rate += 5
 	if re_rolls < 1:
