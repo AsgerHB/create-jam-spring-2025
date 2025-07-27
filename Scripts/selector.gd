@@ -33,14 +33,34 @@ var fade_progress = 0
 
 func _ready():
 	# Set "reached level ??" text
-	level_up_text.text = level_up_text.text.replace("??", str(run_state.level))
+	var level = run_state.level
+	level = 15
+	level_up_text.text = level_up_text.text.replace("??", str(level))
 	
-	generator = TetriminoGenerator.new()
 	#Make some minos
-	var complexity_min = floor(4 + run_state.level / 5.0)
-	var complexity_max = floor(complexity_min + 3 + run_state.level / 3.0)
+	generator = TetriminoGenerator.new()
+	
+	# Size: We want a good chance of generating the nice size-4 pieces
+	# And then we want more awkward sizes to become more common in the higher levels.
+	var prob_regular_size = 0.5
+	var size_min = 3
+	var size_max = 4
+	if level >= 15:
+		size_max = 7
+	elif level >= 10:
+		size_max = 6
+		size_min = 4
+	elif level >= 5:
+		size_max = 5
+
+	var complexity_min = floor(4 + level / 5.0)
+	var complexity_max = floor(complexity_min + 3 + level / 3.0)
 	for i in minos_to_spawn:
-		tetriminos.append(generator.generate_tetrimino(randi_range(complexity_min, complexity_max)))
+		var size = 4
+		if randf() > prob_regular_size:
+			size = randi_range(size_min, size_max)
+		var complexity = randi_range(complexity_min, complexity_max)
+		tetriminos.append(generator.generate_tetrimino(size, complexity))
 	
 	#Spawn them all
 	for i in minos_to_spawn:

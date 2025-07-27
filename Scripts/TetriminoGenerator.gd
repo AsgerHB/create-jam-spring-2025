@@ -23,7 +23,7 @@ static func random_type_with_finite_complexity() -> Cell.Type:
 	return t
 
 # Complexity controls how complex the tetromino is
-func generate_tetrimino(complexity: int) -> TetriminosTemplate:
+func generate_tetrimino(size: int, complexity: int) -> TetriminosTemplate:
 	# Determine types in the tetrimino
 	var types = []
 	if randi() % 8 == 0:
@@ -42,10 +42,7 @@ func generate_tetrimino(complexity: int) -> TetriminosTemplate:
 			types.append(random_type_with_finite_complexity())
 		for t in types:
 			complexity -= Cell.cell_complexity_score[t]
-	
-	# Remaining complexity determines size
-	var size = 3 + max(0, floor(complexity / 2.0))
-	
+		
 	var tetrimino: Array[CellTemplate] = []
 	var possible_next_positions: Array[Vector2i] = [Vector2i(0, 0)]
 	var used_positions: Array[Vector2i] = []
