@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://qgj3w5fl5ufa"]
+
+[ext_resource type="Script" uid="uid://bt6kflsk6tjp5" path="res://Scripts/LevelOption.gd" id="1_1m5am"]
+[ext_resource type="Texture2D" uid="uid://dj7j4put16rls" path="res://Sprites/Gray.png" id="1_x5qd5"]
+[ext_resource type="PackedScene" uid="uid://cb5c51hui5nyi" path="res://Prefabs/Maps/sand.tscn" id="2_viymq"]
+[ext_resource type="Theme" uid="uid://0guyg45mewl2" path="res://Theming/retro.tres" id="3_xspn1"]
+[ext_resource type="Texture2D" uid="uid://bq6ukaem2e0ba" path="res://Sprites/ChunkIcon.png" id="4_n51tq"]
+[ext_resource type="PackedScene" uid="uid://lsisdh7xvcsl" path="res://Prefabs/wiggler.tscn" id="4_wjffp"]
+[ext_resource type="Texture2D" uid="uid://mxwcuwpt7cji" path="res://Sprites/ModifyIcon.png" id="7_mj6rh"]
+
+[node name="LevelOption" type="Node2D"]
+script = ExtResource("1_1m5am")
+metadata/_edit_horizontal_guides_ = [-130.0, 130.0]
+metadata/_edit_vertical_guides_ = [236.0, -236.0]
+
+[node name="Gray" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.14902)
+scale = Vector2(2.45771, 1.14523)
+texture = ExtResource("1_x5qd5")
+
+[node name="Map Transform" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-164, -2)
+scale = Vector2(0.743781, 1.07493)
+texture = ExtResource("1_x5qd5")
+
+[node name="Map" parent="Map Transform" instance=ExtResource("2_viymq")]
+self_modulate = Color(1, 1, 1, 1)
+position = Vector2(-81.5763, -119.438)
+scale = Vector2(0.51145, 0.353891)
+
+[node name="Reward Label" type="RichTextLabel" parent="."]
+offset_left = -82.0
+offset_top = -134.0
+offset_right = 224.74
+offset_bottom = -74.0
+theme = ExtResource("3_xspn1")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[color=white]Reward:[/color]"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Chunk" type="Node2D" parent="."]
+visible = false
+
+[node name="Wiggler" parent="Chunk" instance=ExtResource("4_wjffp")]
+position = Vector2(66, -4)
+rotation_multiplier = 0.1
+
+[node name="ChunkIcon" type="Sprite2D" parent="Chunk/Wiggler"]
+texture = ExtResource("4_n51tq")
+
+[node name="Label" type="RichTextLabel" parent="Chunk"]
+offset_left = -82.0
+offset_top = 77.0
+offset_right = 224.74
+offset_bottom = 137.0
+theme = ExtResource("3_xspn1")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "chunk"
+scroll_active = false
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Modify" type="Node2D" parent="."]
+
+[node name="Wiggler" parent="Modify" instance=ExtResource("4_wjffp")]
+position = Vector2(66, -4)
+rotation_multiplier = 0.1
+
+[node name="ChunkIcon" type="Sprite2D" parent="Modify/Wiggler"]
+texture = ExtResource("7_mj6rh")
+
+[node name="Label" type="RichTextLabel" parent="Modify"]
+offset_left = -82.0
+offset_top = 77.0
+offset_right = 224.74
+offset_bottom = 137.0
+theme = ExtResource("3_xspn1")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "Modify"
+scroll_active = false
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
