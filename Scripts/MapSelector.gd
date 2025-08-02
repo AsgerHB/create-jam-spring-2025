@@ -34,7 +34,6 @@ static var maps:Array[PackedScene] = [
 	]
 
 static func get_random_map(probability_empty) -> Map:
-	return preload("res://Prefabs/Maps/monster_mash.tscn").instantiate()
 	if randf() < probability_empty:
 		return empty.instantiate()
 	else:
